@@ -98,6 +98,66 @@ h2{font-size:17px;margin:18px 0 4px}
 .instbadge{position:fixed;left:12px;bottom:14px;background:rgba(10,12,19,.95);border:1px solid rgba(212,175,55,.45);border-radius:12px;padding:8px 12px;font-size:11px;color:var(--tx);z-index:88;display:none;max-width:70vw;box-shadow:0 12px 30px rgba(0,0,0,.7)}
 .instbadge b{color:var(--goldhi)}
 #screenvid{position:fixed;width:2px;height:2px;opacity:0;pointer-events:none;left:-10px;top:-10px}
+
+/* ════════════ NEAR-LINK RESULT POPUP ════════════ */
+#linktip{position:fixed;z-index:97;display:none;width:min(338px,calc(100vw - 20px));background:linear-gradient(160deg,#1e1730 0%,#0B0D15 62%,#161226 100%);border:1.5px solid var(--tipcol,var(--gold));border-radius:16px;padding:13px 14px 12px;box-shadow:0 18px 50px rgba(0,0,0,.85),0 0 30px rgba(212,175,55,.28);animation:tipin .22s cubic-bezier(.2,1.4,.5,1);transform-origin:var(--tip-origin,50% 100%)}
+@keyframes tipin{from{opacity:0;transform:translateY(8px) scale(.92)}to{opacity:1;transform:none}}
+#linktip.show{display:block}
+#ltarrow{position:absolute;width:15px;height:15px;background:#0B0D15;border-right:1.5px solid var(--tipcol,var(--gold));border-bottom:1.5px solid var(--tipcol,var(--gold));transform:rotate(45deg);left:var(--ax,50%);margin-left:-8px;pointer-events:none}
+#linktip.below #ltarrow{top:-8px;transform:rotate(225deg);margin-left:0}
+#linktip.above #ltarrow{bottom:-8px}
+.lt-head{display:flex;align-items:center;gap:8px;font-weight:900;font-size:14px;letter-spacing:.6px;line-height:1.25;padding-right:16px}
+.lt-ic{font-size:19px;flex:0 0 auto;filter:drop-shadow(0 0 6px currentColor)}
+.lt-host{font-size:10.5px;color:var(--mu);margin-top:5px;word-break:break-all;font-family:ui-monospace,Menlo,Consolas,monospace}
+.lt-bar{height:7px;border-radius:5px;background:rgba(255,255,255,.07);overflow:hidden;margin-top:9px;border:1px solid rgba(255,255,255,.09)}
+.lt-bar i{display:block;height:100%;border-radius:5px;transition:width .5s cubic-bezier(.3,1,.4,1)}
+.lt-meta{display:flex;justify-content:space-between;font-size:9.5px;letter-spacing:1px;color:var(--mu);margin-top:4px;font-weight:800}
+.lt-why{margin-top:9px;padding-top:8px;border-top:1px dashed rgba(255,255,255,.12);font-size:11.5px;line-height:1.55;color:var(--tx)}
+.lt-why b{color:var(--goldhi)}
+.lt-ev{display:flex;flex-wrap:wrap;gap:4px;margin-top:8px}
+.lt-chip{font-size:9px;font-weight:800;letter-spacing:.4px;padding:3px 7px;border-radius:20px;border:1px solid;background:rgba(0,0,0,.35)}
+.lt-acts{display:flex;gap:6px;margin-top:11px}
+.lt-acts button{flex:1;border:0;border-radius:10px;padding:9px 6px;font-weight:900;font-size:11px;cursor:pointer;letter-spacing:.4px;transition:transform .12s,filter .12s}
+.lt-acts button:active{transform:scale(.95)}
+.lt-go{background:linear-gradient(135deg,var(--goldhi),#8A6D1B);color:#111}
+.lt-stop{background:rgba(255,255,255,.07);color:var(--tx);border:1px solid rgba(255,255,255,.2)!important}
+.lt-more{background:rgba(212,175,55,.14)!important;color:var(--goldhi);border:1px solid rgba(212,175,55,.45)!important}
+.lt-x{position:absolute;top:7px;right:9px;background:none;border:0;color:var(--mu);font-size:14px;cursor:pointer;padding:2px 5px;line-height:1}
+.lt-x:hover{color:#fff}
+
+/* ════════════ ORGANISED, BEAUTIFIED SHIELD PANEL ════════════ */
+#agentpanel h3{display:flex;align-items:center;gap:7px;justify-content:space-between}
+#agentpanel .apdot{width:8px;height:8px;border-radius:50%;background:var(--em);box-shadow:0 0 8px var(--em);animation:apb 1.8s ease-in-out infinite;flex:0 0 auto}
+@keyframes apb{50%{opacity:.35;transform:scale(.8)}}
+.apwrap{display:flex;gap:7px;align-items:center}
+.apcard{position:relative;background:rgba(0,0,0,.4);border:1px solid rgba(255,255,255,.09);border-left:3px solid var(--em);border-radius:12px;padding:10px 11px;margin:9px 0 4px;font-size:12px;line-height:1.6;color:var(--tx);min-height:56px}
+.apcard .big{display:block;font-weight:900;font-size:14px;letter-spacing:1.2px;margin-bottom:3px}
+.apcard .scanbar{position:absolute;inset:0;border-radius:12px;overflow:hidden;pointer-events:none;opacity:.5}
+.apcard .scanbar::after{content:"";position:absolute;top:0;bottom:0;width:38%;background:linear-gradient(90deg,transparent,rgba(246,226,122,.16),transparent);animation:apscan 1.6s linear infinite;display:block}
+.apcard.busy .scanbar::after{display:block}
+.apcard .scanbar{display:none}
+.apcard.busy .scanbar{display:block}
+@keyframes apscan{from{left:-40%}to{left:100%}}
+.apwhy{font-size:11px;line-height:1.6;color:var(--mu);background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);border-radius:11px;padding:9px 10px;margin-bottom:9px;max-height:132px;overflow:auto}
+.apwhy .wrow{display:flex;gap:6px;align-items:flex-start;padding:3.5px 0;border-bottom:1px solid rgba(255,255,255,.05)}
+.apwhy .wrow:last-child{border:0}
+.apwhy .wi{flex:0 0 auto;font-size:10px;line-height:1.5}
+.apwhy .wt{color:var(--tx);font-size:10.5px}
+.apsec{font-size:9.5px;letter-spacing:2px;color:var(--mu);font-weight:900;margin:12px 0 5px;display:flex;align-items:center;gap:7px}
+.apsec::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,rgba(212,175,55,.4),transparent)}
+.aplog{max-height:118px;overflow:auto;font-size:10.5px;line-height:1.5;padding:2px 0}
+.aplog .lrow{display:flex;gap:7px;align-items:flex-start;padding:5px 6px;border-radius:9px;background:rgba(255,255,255,.03);margin-bottom:4px;border-left:2.5px solid var(--mu);animation:apin .25s ease}
+@keyframes apin{from{opacity:0;transform:translateX(-6px)}to{opacity:1;transform:none}}
+.aplog .lrow .lt{flex:1;min-width:0;word-break:break-word}
+.aplog .lrow .lm{color:var(--mu);font-size:9px;letter-spacing:.6px;flex:0 0 auto;font-variant-numeric:tabular-nums}
+.aplog .lrow.safe{border-left-color:var(--em)}.aplog .lrow.scam{border-left-color:var(--dn)}.aplog .lrow.warn{border-left-color:var(--goldhi)}
+.apempty{font-size:10.5px;color:var(--mu);font-style:italic;padding:7px 4px}
+.apfloat{position:relative;overflow:hidden}
+.apfloat.on{background:linear-gradient(135deg,#00E5A0,#00A874)!important;color:#06120C!important;border:0!important;box-shadow:0 0 22px rgba(0,229,160,.45)}
+.apfloat.on::after{content:"LIVE";position:absolute;top:5px;right:6px;font-size:7.5px;font-weight:900;letter-spacing:1.5px;background:rgba(0,0,0,.35);padding:2px 5px;border-radius:6px}
+.apbtn[disabled]{opacity:.45;cursor:not-allowed}
+.apgrid{display:grid;grid-template-columns:1fr 1fr;gap:7px}
+.apgrid .apbtn{margin-top:0}
 </style>
 </head>
 <body>
@@ -188,6 +248,7 @@ h2{font-size:17px;margin:18px 0 4px}
 <div id="wizard"><div class="wzcard">
   <h2>🛡️ Enable Shield Agent</h2>
   <div class="m" style="color:var(--mu);font-size:11px;margin-bottom:6px">Grant these once — the agent then watches links, messages and on-screen text, and blocks scams before they open.</div>
+  <div class="wzstep"><div class="e">🛰️</div><div style="flex:1"><div class="t">Run above all apps &amp; websites <span style="color:var(--goldhi)">— MAIN PERMISSION</span></div><div class="m">Uses the browser's picture-in-picture window, the only overlay a website is allowed to draw over other apps. The 🛡️ stays floating on top of every app/site you use and shows every verdict live. <b style="color:var(--goldhi)">Tap to approve → shield floats immediately.</b></div></div><div class="wzstat wait" id="wzfloat">APPROVE →</div></div>
   <div class="wzstep"><div class="e">🔔</div><div style="flex:1"><div class="t">Background alerts</div><div class="m">Real browser permission. Threat verdicts arrive as notifications even when this tab is minimized.</div></div><div class="wzstat wait" id="wznotif">ALLOW →</div></div>
   <div class="wzstep"><div class="e">📋</div><div style="flex:1"><div class="t">Clipboard link watch</div><div class="m">Scans any link you copy from WhatsApp/SMS/email — result appears on the floating shield.</div></div><div class="wzstat wait" id="wzclip">ALLOW →</div></div>
   <div class="wzstep"><div class="e">👁️</div><div style="flex:1"><div class="t">On-screen text scan</div><div class="m">Optional. Uses screen-capture + on-device OCR to read messages/URLs visible on screen and flag scams. Nothing leaves your phone.</div></div><div class="wzstat wait" id="wzscreen">ALLOW →</div></div>
@@ -206,19 +267,30 @@ h2{font-size:17px;margin:18px 0 4px}
   <div id="intactions"></div>
 </div></div>
 
+<!-- ═══════════ RESULT POPPED OUT RIGHT NEXT TO THE LINK ═══════════ -->
+<div id="linktip"><div id="ltarrow"></div><button class="lt-x" id="ltx">✕</button><div id="ltbody"></div></div>
+
 <!-- ═══════════ FLOATING SHIELD ICON ═══════════ -->
 <div id="agentfab" title="Shield Agent"><span class="shield">🛡️</span><span class="pip"></span><span class="badge">0</span><span class="lbl">SHIELD</span></div>
 <div id="agentpanel">
   <button class="apx" id="apclose">✕</button>
-  <h3>🛡️ SHIELD AGENT</h3>
-  <div id="agentresult"><span class="big" style="color:var(--em)">ACTIVE — PROTECTED</span>Watching copied links, taps and typed URLs. Drag me anywhere; tap me for the last verdict.</div>
-  <div class="aprow"><span>Background alerts</span><b id="apnotif" class="prompt">not asked</b></div>
-  <div class="aprow"><span>Background worker</span><b id="apsw" class="denied">checking…</b></div>
-  <div class="aprow"><span>Clipboard watch</span><b id="apclip" class="prompt">off</b></div>
-  <div class="aprow"><span>On-screen text scan</span><b id="apscreen" class="prompt">off</b></div>
-  <button class="apbtn go" id="apenable">⚙️ GRANT PERMISSIONS</button>
-  <button class="apbtn" id="apscreenbtn">👁️ START/STOP SCREEN SCAN</button>
-  <button class="apbtn" id="aptest">⚡ RUN SPEED TEST</button>
+  <h3>🛡️ SHIELD AGENT <span class="apwrap"><span class="apdot"></span></span></h3>
+  <div class="apcard" id="agentresult"><span class="big" style="color:var(--em)">ACTIVE — PROTECTED</span>Watching copied links, taps and typed URLs. Drag me anywhere; tap me for the last verdict.</div>
+  <div class="apsec">🔍 WHY — EVIDENCE</div>
+  <div class="apwhy" id="apwhy"><div class="apempty">Verdict reasons and live source checks will be listed here.</div></div>
+  <div class="apsec">📶 STATUS</div>
+  <div class="apwhy" style="max-height:none;padding-top:4px;padding-bottom:4px">
+    <div class="aprow"><span>Background alerts</span><b id="apnotif" class="prompt">not asked</b></div><div class="aprow"><span>Background worker</span><b id="apsw" class="denied">checking…</b></div><div class="aprow"><span>Clipboard watch</span><b id="apclip" class="prompt">off</b></div><div class="aprow"><span>On-screen text scan</span><b id="apscreen" class="prompt">off</b></div><div class="aprow"><span>Floating above apps</span><b id="apfloatst" class="prompt">off</b></div>
+  </div>
+  <div class="apsec">⏱️ LIVE ACTIVITY</div>
+  <div class="aplog" id="aplog"><div class="apempty">No scans yet — results will appear here.</div></div>
+  <div class="apsec">⚙️ CONTROLS</div>
+  <button class="apbtn go apfloat" id="apenable">🛰️ RUN ABOVE ALL APPS — TAP TO START</button>
+  <div class="apgrid" style="margin-top:7px">
+    <button class="apbtn" id="apperms">⚙️ ALL PERMISSIONS</button>
+    <button class="apbtn" id="apscreenbtn">👁️ SCREEN SCAN</button>
+    <button class="apbtn" id="aptest">⚡ SPEED TEST</button>
+  </div>
 </div>
 <div class="instbadge" id="instbadge"></div>
 
@@ -794,19 +866,19 @@ document.addEventListener("click",(e)=>{
  const href=a.getAttribute("href")||"";
  if(!/^https?:/i.test(href))return;      // mailto:, #anchors → untouched
  if(new URL(href,location.href).host===location.host)return; // own pages pass
- const ok=interceptNow(href,"tap");
+ const ok=interceptNow(href,"tap",a);
  if(!ok){e.preventDefault();e.stopPropagation();return}
 },true);
 // window.open is guarded too (popups, sandbox opens, target=_blank)
 const _open=window.open.bind(window);
 window.open=function(u){ if(typeof u==="string"&&/^https?:/i.test(u)&&new URL(u,location.href).host!==location.host){
-  if(!interceptNow(u,"popup"))return null;return _open(u,"_blank","noopener")} return _open.apply(window,arguments)};
+  if(!interceptNow(u,"popup",null))return null;return _open(u,"_blank","noopener")} return _open.apply(window,arguments)};
 // form submits with external action are screened (sync — blocked same tick)
 document.addEventListener("submit",(e)=>{
  const f=e.target;const act=f.getAttribute("action")||"";
  if(!/^https?:/i.test(act))return;
  if(new URL(act,location.href).host===location.host)return;
- if(!interceptNow(act,"form")){e.preventDefault();e.stopPropagation()}
+ if(!interceptNow(act,"form",f)){e.preventDefault();e.stopPropagation()}
 },true);
 
 // ── 4. TYPING WATCH — instant screen of whatever is being typed ────────────
@@ -1020,6 +1092,337 @@ if(navigator.serviceWorker){
  });
 }
 agentState("safe","🛡️ SHIELD AGENT READY","Tap for permissions — enable background alerts, clipboard watch and (optionally) on-screen scan.");
+</script>
+
+<script>
+// ═══════════════════════════════════════════════════════════════════════════
+// FLOATING SHIELD (runs above every app & website via Picture-in-Picture) +
+// RESULT POPUPS pinned right beside the link/message + organised panel.
+// Picture-in-Picture is the only overlay a website is permitted to draw on
+// top of other apps — Android/iOS reserve true system overlays for native apps.
+// ═══════════════════════════════════════════════════════════════════════════
+const esc=s=>String(s==null?"":s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const stripTags=s=>String(s==null?"":s).replace(/<br\s*\/?>/gi," · ").replace(/<[^>]+>/g,"");
+
+// ── A. ORGANISED PANEL: activity log + evidence ────────────────────────────
+const PIP={on:false,mode:null,canvas:null,ctx:null,video:null,stream:null,win:null,loop:null,supported:null,state:null};
+let _lastLog={big:"",t:0};
+function logActivity(kind,big,text){
+  const box=A$("aplog");if(!box)return;
+  const now=Date.now();
+  if(big===_lastLog.big&&now-_lastLog.t<4000)return;
+  _lastLog={big:big,t:now};
+  const empty=box.querySelector(".apempty");if(empty)empty.remove();
+  const cls=kind==="scam"?"scam":kind==="safe"?"safe":"warn";
+  const row=document.createElement("div");
+  row.className="lrow "+cls;
+  row.innerHTML='<span class="lm">'+new Date().toLocaleTimeString([],{hour:"2-digit",minute:"2-digit",second:"2-digit"})+
+    '</span><span class="lt"><b>'+esc(big)+'</b> — '+esc(stripTags(text)).slice(0,140)+'</span>';
+  box.insertBefore(row,box.firstChild);
+  while(box.children.length>25)box.removeChild(box.lastChild);
+}
+function renderWhy(r,src){
+  const box=A$("apwhy");if(!box||!r)return;
+  const sm={clean:["✅","#00E5A0"],warn:["⚠️","#F6E27A"],bad:["⛔","#FF4D6D"],skip:["➖","#6E6880"]};
+  let html="";
+  if(r.hits&&r.hits.length){
+    html+=r.hits.slice(0,4).map(h=>'<div class="wrow"><span class="wi">🔎</span><span class="wt">'+esc(h)+'</span></div>').join("");
+  }
+  const ev=(r.sources&&r.sources.length)?r.sources.filter(s=>s.state!=="skip").slice(0,6):[];
+  html+=ev.map(s=>{const m=sm[s.state]||["•","#9A94A6"];
+    return '<div class="wrow"><span class="wi">'+m[0]+'</span><span class="wt"><b style="color:'+m[1]+'">'+esc(s.name)+'</b> — '+esc(s.detail)+'</span></div>';}).join("");
+  if(src)html+='<div class="wrow"><span class="wi">⏱</span><span class="wt" style="color:#9A94A6">'+esc(src)+'</span></div>';
+  if(!html)html='<div class="apempty">No red flags — clean.</div>';
+  box.innerHTML=html;
+}
+
+// ── B. NEAR-LINK RESULT POPUP ──────────────────────────────────────────────
+const TIP={shown:false,url:null,host:null,el:null,sources:null};
+function hideTip(){const t=A$("linktip");if(t){t.classList.remove("show");t.style.display="none"}
+  clearTimeout(TIP._t);
+  TIP.shown=false;TIP.el=null;TIP.sources=null;}
+function positionTip(el,col){
+  const tip=A$("linktip");if(!tip)return;
+  tip.style.setProperty("--tipcol",col||"#D4AF37");
+  tip.style.visibility="hidden";
+  tip.style.display="block";tip.className="show";
+  const tw=tip.offsetWidth,th=tip.offsetHeight;
+  let left,top,cls,ax=tw/2-8;
+  if(el&&el.getBoundingClientRect){
+    const rc=el.getBoundingClientRect();
+    const midX=rc.left+rc.width/2;
+    left=Math.min(Math.max(8,midX-tw/2),Math.max(8,window.innerWidth-tw-8));
+    const belowY=rc.bottom+14,aboveY=rc.top-th-14;
+    if(belowY+th<window.innerHeight-8){top=belowY;cls="below"}
+    else if(aboveY>8){top=aboveY;cls="above"}
+    else{top=Math.min(Math.max(8,belowY),Math.max(8,window.innerHeight-th-8));cls="below"}
+    ax=Math.min(Math.max(20,midX-left-8),tw-36);
+    tip.style.setProperty("--tip-origin",(midX-left)+"px 100%");
+  }else{
+    left=Math.max(8,(window.innerWidth-tw)/2);
+    top=Math.max(8,window.innerHeight-th-96);
+    cls="above";
+  }
+  tip.style.left=left+"px";tip.style.top=top+"px";
+  tip.className="show "+cls;
+  tip.style.setProperty("--ax",ax+"px");
+  tip.style.visibility="visible";
+}
+function showTip(el,r,url,ms,sources){
+  const tip=A$("linktip"),body=A$("ltbody");if(!tip||!body||!r)return;
+  clearTimeout(TIP._t); // never let a previous auto-dismiss kill this popup
+  const col=r.verdict==="safe"?"#00E5A0":r.verdict==="suspicious"?"#F6E27A":"#FF4D6D";
+  const ic=r.verdict==="safe"?"✅":r.verdict==="suspicious"?"⚠️":"⛔";
+  const title=r.verdict==="safe"?"GENUINE — SAFE TO OPEN":r.verdict==="suspicious"?"NOT SAFE — DO NOT ENTER":"SCAM — STOPPED";
+  const host=r.host||url;
+  const why=(r.hits||[]).slice(0,3);
+  const evsrc=(sources&&sources.length?sources:r.sources||[]).filter(s=>s.state!=="skip").slice(0,5);
+  const sm={clean:"#00E5A0",warn:"#F6E27A",bad:"#FF4D6D"};
+  const chips=evsrc.length?'<div class="lt-ev">'+evsrc.map(s=>'<span class="lt-chip" style="color:'+(sm[s.state]||"#9A94A6")+';border-color:'+(sm[s.state]||"#9A94A6")+'66">'+esc(s.name)+'</span>').join("")+'</div>':"";
+  let acts="";
+  if(r.verdict==="safe"){
+    acts='<div class="lt-acts"><button class="lt-stop" data-a="close">✓ OK</button></div>';
+  }else if(r.verdict==="suspicious"){
+    acts='<div class="lt-acts"><button class="lt-stop" data-a="close">↩ STAY SAFE</button><button class="lt-more" data-a="risk">⚠️ OPEN ANYWAY</button></div>';
+  }else{
+    acts='<div class="lt-acts"><button class="lt-stop" data-a="close">↩ STAY SAFE</button><button class="lt-more" data-a="more">🔎 FULL REPORT</button></div>';
+  }
+  body.innerHTML=
+    '<div class="lt-head"><span class="lt-ic" style="color:'+col+'">'+ic+'</span><span style="color:'+col+'">'+title+'</span></div>'+
+    '<div class="lt-host">'+esc(host)+'</div>'+
+    '<div class="lt-bar"><i style="width:4%;background:'+col+'"></i></div>'+
+    '<div class="lt-meta"><span>RISK SCORE</span><span style="color:'+col+'">'+(r.score||0)+'/100</span></div>'+
+    (why.length?'<div class="lt-why"><b>Why:</b> '+why.map(esc).join(" · ")+'</div>':"")+
+    chips+acts;
+  requestAnimationFrame(()=>{const b=body.querySelector(".lt-bar i");if(b)b.style.width=Math.max(4,Math.min(100,r.score||0))+"%"});
+  body.querySelectorAll("button[data-a]").forEach(b=>{
+    b.onclick=()=>{
+      const a=b.dataset.a;
+      if(a==="risk"){hideTip();try{window.open(url,"_blank","noopener")}catch(e){}}
+      else if(a==="more"){hideTip();openFullReport(r,evsrc)}
+      else hideTip();
+    };
+  });
+  positionTip(el,col);
+  TIP.shown=true;TIP.url=url;TIP.host=r.host||"";TIP.el=el;TIP.sources=evsrc;
+  if(r.verdict==="safe"){clearTimeout(TIP._t);TIP._t=setTimeout(hideTip,2800)}
+  else haptic(r.verdict==="scam"?[40,60,40]:25);
+}
+function openFullReport(r,sources){
+  const inter=A$("interdict");if(!inter)return;
+  A$("inticon").textContent=r.verdict==="scam"?"🛑":"⚠️";
+  A$("inttitle").textContent=r.verdict==="scam"?"SCAM — FULL REPORT":"SUSPICIOUS — FULL REPORT";
+  A$("inttitle").style.color=r.verdict==="scam"?"#FF4D6D":"#F6E27A";
+  A$("inturl").textContent=r.host||"";
+  A$("intsub").textContent=disclaimerFor(r);
+  A$("intlist").innerHTML=evidenceLines(sources&&sources.length?sources:r.sources)||"<li>Live sources unreachable — offline screen stands</li>";
+  A$("intactions").innerHTML='<button class="apbtn go" id="frback">↩ GO BACK — STAY SAFE</button>';
+  A$("frback").onclick=()=>{inter.style.display="none"};
+  inter.style.display="flex";
+}
+window.addEventListener("scroll",()=>{if(TIP.shown)hideTip()},{passive:true,capture:true});
+window.addEventListener("resize",()=>{if(TIP.shown)hideTip()});
+A$("ltx").onclick=hideTip;
+
+// ── C. Intercept wrapper: results pop out NEXT TO the tapped link ──────────
+const _ii=interceptNow;
+interceptNow=function(url,how,el){
+  const t0=performance.now();
+  const r=analyzeText(url);
+  const ms=(performance.now()-t0).toFixed(1);
+  const ok=_ii(url,how,el);
+  if(el){
+    const inter=A$("interdict");
+    if(inter&&inter.style.display==="flex")inter.style.display="none"; // near-link popup is the result surface
+    showTip(el,r,url,ms,null);
+  }
+  return ok;
+};
+
+// ── D. Verdict hooks → pop the result beside the link + organise the panel ─
+const _pp2=paintPopup;
+paintPopup=function(r,url){
+  _pp2(r,url);
+  renderWhy(r,"");
+  if(TIP.shown&&r.host&&r.host===TIP.host)showTip(TIP.el,r,TIP.url,0,r.sources);
+};
+const _pu2=paintUrl;
+paintUrl=function(r,src){
+  _pu2(r,src);
+  renderWhy(r,src);
+  if(TIP.shown&&r.host&&r.host===TIP.host)showTip(TIP.el,r,TIP.url,0,r.sources);
+};
+
+// ── E. agentState → live card colour, activity log, and the floating window ─
+const _as=agentState;
+agentState=function(kind,big,text,color){
+  _as(kind,big,text,color);
+  try{
+    const col=color||(kind==="scam"?"#FF4D6D":kind==="safe"?"#00E5A0":"#F6E27A");
+    const sc=(String(text||"").match(/(\d{1,3})\s*\/\s*100/)||[])[1];
+    PIP.state={kind:kind,big:big,text:text,color:col,score:sc!=null?Math.min(100,+sc):null};
+    const card=A$("agentresult");
+    if(card){
+      card.style.borderLeftColor=col;
+      card.classList.toggle("busy",kind==="working");
+      const bg=card.querySelector(".big");if(bg)bg.style.color=col;
+    }
+    if(PIP.on){pipDraw();if(PIP.mode==="doc")renderDocPip()}
+    logActivity(kind,big,text);
+    const why=A$("apwhy");
+    if(why&&!(kind==="safe"&&/^🛡️ SHIELD AGENT/.test(big))){
+      why.innerHTML='<div class="wrow"><span class="wi">'+(kind==="scam"?"⛔":kind==="safe"?"✅":kind==="working"?"🔬":"⚠️")+
+        '</span><span class="wt">'+String(text||"").replace(/<br\s*\/?>/gi,"<br>")+'</span></div>';
+    }
+  }catch(e){}
+};
+
+// ── F. THE FLOATING SHIELD (Picture-in-Picture above other apps) ───────────
+function rrPath(g,x,y,w,h,r){g.beginPath();g.moveTo(x+r,y);
+  g.arcTo(x+w,y,x+w,y+h,r);g.arcTo(x+w,y+h,x,y+h,r);g.arcTo(x,y+h,x,y,r);g.arcTo(x,y,x+w,y,r);g.closePath()}
+function fitText(g,t,max){if(g.measureText(t).width<=max)return t;let s=t;
+  while(s.length>1&&g.measureText(s+"…").width>max)s=s.slice(0,-1);return s+"…"}
+function wrapText(g,t,max,maxLines){
+  const words=String(t||"").split(/\s+/),lines=[];let cur="";
+  for(const w of words){const test=cur?cur+" "+w:w;
+    if(g.measureText(test).width>max&&cur){lines.push(cur);cur=w;if(lines.length>=maxLines)break}
+    else cur=test}
+  if(lines.length<maxLines&&cur)lines.push(cur);
+  return lines.slice(0,maxLines);
+}
+function pipDraw(){
+  const c=PIP.canvas,g=PIP.ctx;if(!c||!g)return;
+  const W=c.width,H=c.height;
+  const s=PIP.state||{kind:"safe",big:"SHIELD ACTIVE",text:"Watching links, taps and messages",score:null};
+  const col=s.color||(s.kind==="scam"?"#FF4D6D":s.kind==="safe"?"#00E5A0":"#F6E27A");
+  const pulse=0.5+0.5*Math.sin(Date.now()/650);
+  g.clearRect(0,0,W,H);
+  const bg=g.createLinearGradient(0,0,W,H);
+  bg.addColorStop(0,"#1c1526");bg.addColorStop(.6,"#0A0C13");bg.addColorStop(1,"#141021");
+  g.fillStyle=bg;g.fillRect(0,0,W,H);
+  g.save();
+  g.lineWidth=3;g.strokeStyle=col;g.shadowColor=col;g.shadowBlur=14+12*pulse;
+  rrPath(g,5,5,W-10,H-10,20);g.stroke();
+  g.restore();
+  g.save();rrPath(g,5,5,W-10,H-10,20);g.clip();
+  g.textAlign="center";g.textBaseline="alphabetic";
+  g.font='44px "Segoe UI Emoji","Apple Color Emoji",serif';g.fillText("🛡️",W/2,66);
+  g.font="900 23px 'Segoe UI',system-ui,sans-serif";g.fillStyle=col;
+  g.fillText(fitText(g,s.big||"SHIELD ACTIVE",W-46),W/2,104);
+  g.font="500 13.5px 'Segoe UI',system-ui,sans-serif";g.fillStyle="#DDD7EA";
+  wrapText(g,stripTags(s.text||""),W-60,3).forEach((ln,i)=>g.fillText(fitText(g,ln,W-58),W/2,132+i*19));
+  if(s.score!=null){
+    const bw=W-72,bx=36,by=H-64;
+    g.fillStyle="rgba(255,255,255,.09)";rrPath(g,bx,by,bw,9,4.5);g.fill();
+    g.fillStyle=col;rrPath(g,bx,by,Math.max(8,bw*Math.min(100,s.score)/100),9,4.5);g.fill();
+    g.font="800 11px 'Segoe UI',system-ui,sans-serif";
+    g.textAlign="left";g.fillStyle="#9A94A6";g.fillText("RISK SCORE",bx,by-7);
+    g.textAlign="right";g.fillStyle=col;g.fillText(s.score+"/100",bx+bw,by-7);
+  }
+  g.textAlign="center";g.font="800 9.5px 'Segoe UI',system-ui,sans-serif";g.fillStyle="#6E6880";
+  g.fillText("AVASTLUXE • LIVE ABOVE ALL APPS",W/2,H-18);
+  g.restore();
+}
+function renderDocPip(){
+  const w=PIP.win;if(!w||!w.document)return;
+  const d=w.document,s=PIP.state||{big:"SHIELD ACTIVE",text:"",score:null};
+  const col=s.color||(s.kind==="safe"?"#00E5A0":s.kind==="scam"?"#FF4D6D":"#F6E27A");
+  let root=d.getElementById("pdroot");
+  if(!root){
+    d.body.style.margin="0";d.body.style.background="#0A0C13";
+    d.body.innerHTML='<div id="pdroot" style="box-sizing:border-box;min-height:100vh;padding:16px 18px;font-family:Segoe UI,system-ui,sans-serif;color:#F5F1E6;background:linear-gradient(160deg,#1c1526,#0A0C13 60%,#141021);border:2px solid #D4AF37;border-radius:18px"></div>';
+    root=d.getElementById("pdroot");
+  }
+  root.style.borderColor=col;
+  const sc=s.score;
+  root.innerHTML='<div style="text-align:center;font-size:34px">🛡️</div>'+
+    '<div style="text-align:center;font-weight:900;font-size:16px;letter-spacing:1.4px;color:'+col+'">'+esc(s.big||"SHIELD ACTIVE")+'</div>'+
+    '<div style="text-align:center;font-size:12px;color:#C9C3D6;margin-top:7px;line-height:1.5">'+esc(stripTags(s.text||""))+'</div>'+
+    (sc!=null?'<div style="height:8px;background:rgba(255,255,255,.09);border-radius:5px;margin-top:13px;overflow:hidden"><div style="height:100%;width:'+Math.min(100,sc)+'%;background:'+col+'"></div></div><div style="display:flex;justify-content:space-between;font-size:10px;letter-spacing:1px;color:#9A94A6;margin-top:5px"><span>RISK</span><span style="color:'+col+';font-weight:900">'+sc+'/100</span></div>':"")+
+    '<div style="text-align:center;font-size:9px;letter-spacing:2px;color:#6E6880;margin-top:16px">LIVE ABOVE ALL APPS</div>';
+}
+function setFloatUI(on){
+  const st=A$("apfloatst"),wz=A$("wzfloat"),btn=A$("apenable");
+  if(st){st.textContent=on?"floating above apps":"off";st.className=on?"granted":"prompt"}
+  if(wz){const no=PIP.supported===false;
+    wz.textContent=on?"✅ FLOATING":no?"❌ UNAVAILABLE":"APPROVE →";
+    wz.className="wzstat "+(on?"ok":no?"no":"wait")}
+  if(btn){btn.classList.toggle("on",on);
+    btn.textContent=on?"🛰️ FLOATING ABOVE ALL APPS — TAP TO STOP":"🛰️ RUN ABOVE ALL APPS — TAP TO START"}
+}
+function onPipLeave(){
+  PIP.on=false;PIP.mode=null;
+  if(PIP.loop){clearInterval(PIP.loop);PIP.loop=null}
+  try{if(PIP.video&&PIP.video.srcObject){PIP.video.srcObject.getTracks().forEach(t=>t.stop());PIP.video.srcObject=null}}catch(e){}
+  setFloatUI(false);
+}
+async function startFloatingShield(){
+  if(PIP.on)return true;
+  if(!PIP.canvas){
+    PIP.canvas=document.createElement("canvas");PIP.canvas.width=460;PIP.canvas.height=300;
+    PIP.ctx=PIP.canvas.getContext("2d");
+    PIP.video=document.createElement("video");
+    PIP.video.muted=true;PIP.video.playsInline=true;PIP.video.setAttribute("playsinline","");
+    PIP.video.style.cssText="position:fixed;width:1px;height:1px;opacity:0;left:-10px;top:-10px;pointer-events:none";
+    document.body.appendChild(PIP.video);
+    PIP.video.addEventListener("leavepictureinpicture",onPipLeave);
+    PIP.video.addEventListener("webkitpresentationmodechanged",e=>{if(e.presentationMode!=="picture-in-picture")onPipLeave()});
+  }
+  if(!PIP.state)PIP.state={kind:"safe",big:"SHIELD ACTIVE",text:"Watching links, taps, copied text and typed URLs",score:null};
+  pipDraw();
+  const mobile=matchMedia("(pointer:coarse)").matches||/Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+  const hasVideo=typeof HTMLVideoElement!=="undefined"&&!!HTMLVideoElement.prototype.requestPictureInPicture&&document.pictureInPictureEnabled!==false;
+  const hasWebKit=typeof HTMLVideoElement!=="undefined"&&!!HTMLVideoElement.prototype.webkitSetPresentationMode;
+  const hasDoc=!!(window.documentPictureInPicture&&window.documentPictureInPicture.requestPictureInPicture);
+  const order=mobile?["video","webkit","doc"]:["doc","video","webkit"];
+  const tryVideo=async()=>{if(!hasVideo)throw 0;
+    PIP.stream=PIP.canvas.captureStream(30);PIP.video.srcObject=PIP.stream;
+    await PIP.video.play();await PIP.video.requestPictureInPicture();PIP.mode="video"};
+  const tryWebKit=async()=>{if(!hasWebKit)throw 0;
+    PIP.stream=PIP.canvas.captureStream(30);PIP.video.srcObject=PIP.stream;
+    await PIP.video.play();await PIP.video.webkitSetPresentationMode("picture-in-picture");PIP.mode="webkit"};
+  const tryDoc=async()=>{if(!hasDoc)throw 0;
+    const w=await window.documentPictureInPicture.requestPictureInPicture({width:470,height:330});
+    PIP.win=w;PIP.mode="doc";
+    w.addEventListener("pagehide",onPipLeave);
+    renderDocPip()};
+  for(const m of order){
+    try{
+      if(m==="video")await tryVideo();
+      else if(m==="webkit")await tryWebKit();
+      else await tryDoc();
+      PIP.on=true;PIP.supported=true;
+      setFloatUI(true);localStorage.setItem("luxe_float_on","1");
+      if(PIP.mode==="video"||PIP.mode==="webkit"){if(PIP.loop)clearInterval(PIP.loop);
+        PIP.loop=setInterval(pipDraw,130)}
+      agentState("safe","🛰️ FLOATING ABOVE ALL APPS","The 🛡️ now floats on top of every app and website you use. Every verdict appears live inside it.");
+      return true;
+    }catch(e){}
+  }
+  PIP.supported=false;setFloatUI(false);
+  agentState(null,"🛰️ FLOATING NOT SUPPORTED HERE","This browser blocks picture-in-picture. Chrome/Edge/Samsung Internet support it — install the app and enable it there. In-tab shield still works.");
+  return false;
+}
+async function stopFloatingShield(){
+  try{
+    if(PIP.mode==="video"&&document.pictureInPictureElement)await document.exitPictureInPicture();
+    if(PIP.mode==="webkit"&&PIP.video)await PIP.video.webkitSetPresentationMode("inline");
+    if(PIP.mode==="doc"&&window.documentPictureInPicture&&window.documentPictureInPicture.close)window.documentPictureInPicture.close();
+    if(PIP.win&&!PIP.win.closed)PIP.win.close();
+  }catch(e){}
+  onPipLeave();
+  localStorage.removeItem("luxe_float_on");
+  agentState(null,"🛰️ FLOATING SHIELD OFF","Tap RUN ABOVE ALL APPS to float it over your other apps again.");
+}
+A$("apenable").onclick=()=>{PIP.on?stopFloatingShield():startFloatingShield()};
+A$("apperms").onclick=openWizard;
+A$("wzfloat").onclick=()=>{PIP.on?stopFloatingShield():startFloatingShield();paintWizard()};
+const _wd=A$("wzdone").onclick;
+A$("wzdone").onclick=()=>{_wd&&_wd();startFloatingShield()};
+if(localStorage.getItem("luxe_float_on")==="1"){
+  setTimeout(()=>logActivity("warn","🛰️ Floating shield needs one tap","This browser must be re-granted on every load — tap the shield → RUN ABOVE ALL APPS."),1600);
+}
+setFloatUI(false);
 </script>
 
 
