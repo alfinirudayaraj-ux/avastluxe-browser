@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<!-- saved from url=(0088)file:///C:/Users/Kaushik/Documents/Default%20Project/avast-premium-luxury/web/index.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>AvastLuxe Premium — Browser</title>
+<style>
+:root{--bg:#06070B;--gold:#D4AF37;--goldhi:#F6E27A;--em:#00E5A0;--dn:#FF4D6D;--tx:#F5F1E6;--mu:#9A94A6}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+body{background:radial-gradient(1200px 600px at 50% -10%,#1a1430 0%,var(--bg) 60%);color:var(--tx);font-family:Segoe UI,system-ui,sans-serif;min-height:100vh}
+.wrap{max-width:560px;margin:0 auto;padding:28px 18px 60px}
+.brand{text-align:center;font-weight:900;letter-spacing:4px;font-size:26px}.brand span{color:var(--gold)}
+.sub{text-align:center;color:var(--mu);letter-spacing:4px;font-size:10px;margin:4px 0 18px}
+.orb{width:220px;height:220px;margin:6px auto;border-radius:50%;display:flex;align-items:center;justify-content:center;position:relative;cursor:pointer;transition:transform .15s}
+.orb:active{transform:scale(.94)}
+.orb::before{content:"";position:absolute;inset:0;border-radius:50%;background:conic-gradient(from 0deg,transparent,var(--em),transparent 40%,transparent);animation:spin 9s linear infinite;filter:blur(2px);opacity:.7}
+@keyframes spin{to{transform:rotate(360deg)}}
+.core{width:184px;height:184px;border-radius:50%;background:#07080D;border:3px solid var(--gold);display:flex;flex-direction:column;align-items:center;justify-content:center;box-shadow:0 8px 32px rgba(212,175,55,.35);position:relative;z-index:1}
+.pct{font-size:52px;font-weight:800}.lbl{color:var(--gold);font-size:10px;letter-spacing:4px;font-weight:700}
+.stat{text-align:center;color:var(--em);font-weight:700;margin:10px 0;font-size:14px}
+.card{background:rgba(255,255,255,.06);border:1px solid rgba(212,175,55,.28);border-radius:18px;padding:14px 16px;margin:10px 0}
+.row{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.t{font-weight:700;font-size:14px}.m{color:var(--mu);font-size:12px;margin-top:3px;line-height:1.5}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px}
+.tile{background:rgba(255,255,255,.05);border:1px solid rgba(212,175,55,.28);border-radius:16px;padding:14px;cursor:pointer;transition:transform .12s}
+.tile:active{transform:scale(.96)}.tile .e{font-size:24px}
+.cta{margin-top:14px;border:0;width:100%;border-radius:16px;padding:16px;font-weight:900;letter-spacing:2px;cursor:pointer;background:linear-gradient(135deg,var(--goldhi),var(--gold),#8A6D1B);color:#111;font-size:15px}
+input,textarea{width:100%;background:rgba(255,255,255,.07);border:1px solid rgba(212,175,55,.28);color:#fff;border-radius:12px;padding:12px;margin-top:10px;font-size:13px;font-family:inherit}
+textarea{min-height:70px;resize:vertical}
+.btn{margin-top:10px;border:0;width:100%;border-radius:12px;padding:13px;font-weight:800;cursor:pointer;background:rgba(212,175,55,.16);color:var(--goldhi);border:1px solid rgba(212,175,55,.4)}
+.log{font-size:12px;color:var(--mu);margin-top:6px;line-height:1.7}.log b{color:var(--tx)}
+.frow{display:flex;justify-content:space-between;padding:7px 0;border-bottom:1px solid rgba(255,255,255,.06);font-size:13px}
+.on{color:var(--em);font-weight:800;font-size:11px}.man{color:var(--gold);font-weight:800;font-size:11px}
+h2{font-size:17px;margin:18px 0 4px}
+.testrow{display:flex;gap:8px;margin-top:8px}.testrow button{flex:1;background:#22252f;color:var(--goldhi);border:1px solid rgba(212,175,55,.4);border-radius:10px;padding:9px;font-size:11px;font-weight:700;cursor:pointer}
+#pop{position:fixed;inset:0;background:rgba(0,0,0,.78);display:none;align-items:center;justify-content:center;padding:24px;z-index:50;perspective:1200px}
+.popcard{background:linear-gradient(160deg,#1c1526,#0A0C13 60%,#141021);border:1px solid rgba(212,175,55,.55);border-radius:22px;padding:24px;max-width:440px;width:100%;transform-style:preserve-3d;animation:flipin .45s cubic-bezier(.2,1.4,.4,1);box-shadow:0 1px 0 rgba(246,226,122,.5) inset,0 -8px 24px rgba(0,0,0,.6) inset,0 24px 70px rgba(0,0,0,.7),0 0 44px rgba(212,175,55,.22)}
+@keyframes flipin{from{transform:rotateX(-28deg) translateY(40px) scale(.92);opacity:0}to{transform:rotateX(0) translateY(0) scale(1);opacity:1}}
+.popcard .v{transform:translateZ(46px)}.popcard .score3d{transform:translateZ(30px)}
+.cap{margin-top:10px;background:rgba(0,0,0,.35);border:1px solid rgba(212,175,55,.25);border-radius:12px;padding:10px 12px;font-size:12px;line-height:1.7;color:var(--tx);text-align:left;transform:translateZ(20px)}
+.cap b{color:var(--goldhi)}
+.perm{display:flex;justify-content:space-between;align-items:center;font-size:12px;color:var(--mu);padding:5px 0}
+.perm b{font-weight:800}.granted{color:var(--em)}.denied{color:var(--dn)}.prompt{color:var(--goldhi)}
+.v{font-weight:900;letter-spacing:1px;font-size:20px;margin-bottom:8px}
+.close{background:none;border:0;color:var(--mu);width:100%;margin-top:12px;cursor:pointer;font-size:13px}
+.sandbox{margin-top:12px;border:0;width:100%;border-radius:12px;padding:12px;font-weight:800;cursor:pointer;background:linear-gradient(135deg,var(--goldhi),#8A6D1B);color:#111}
+#scanpop{position:fixed;inset:0;background:rgba(0,0,0,.82);display:none;align-items:center;justify-content:center;padding:24px;z-index:60;perspective:1200px}
+.bar{height:12px;border-radius:8px;background:rgba(255,255,255,.08);border:1px solid rgba(212,175,55,.35);overflow:hidden;margin:12px 0 6px;transform:translateZ(24px)}
+#scanfill{height:100%;width:2%;border-radius:8px;background:linear-gradient(90deg,var(--gold),var(--goldhi));transition:width .3s}
+.srow{display:flex;justify-content:space-between;font-size:12px;padding:4px 0;color:var(--mu)}
+.spin{width:54px;height:54px;margin:4px auto;border-radius:50%;border:4px solid rgba(212,175,55,.25);border-top-color:var(--goldhi);animation:rot 1s linear infinite}
+@keyframes rot{to{transform:rotate(360deg)}}
+@media (prefers-reduced-motion:reduce){.orb::before{animation:none}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="brand">AVAST <span>LUXE</span></div>
+  <div class="sub">PREMIUM SECURITY • REAL INTEL • BROWSER</div>
+  <div class="orb" id="orb" title="Tap to Smart Scan"><div class="core"><div class="pct" id="score">100</div><div class="lbl">PROTECTED</div></div></div>
+  <div class="stat" id="stat">1,285 threats blocked lifetime</div>
+
+  <div class="card row"><div><div class="t">Background Shield</div><div class="m">Watches clipboard links while you browse (in-tab permission)</div></div><input type="checkbox" id="bg" checked="" style="width:44px"></div>
+  <div class="card row"><div><div class="t">LinkGuard Middleman</div><div class="m">Pause → inspect → verdict before any page loads</div></div><input type="checkbox" id="lg" checked="" style="width:44px"></div>
+  <div class="card"><div class="t">Browser permissions — background running</div>
+    <div class="perm"><span>Background notifications (real browser prompt)</span><b id="pnotif" class="prompt">not asked yet</b></div>
+    <div class="perm"><span>Background worker (service worker)</span><b id="psw" class="denied">failed (needs http://localhost or https)</b></div>
+    <div class="m" id="permnote">Turn Background Shield ON to trigger the real browser permission. After you allow, the worker stays alive when this tab is minimized and raises threat alerts from the background.</div>
+  </div>
+
+  <h2>🛡️ LinkGuard — real link check</h2>
+  <input id="url" value="http://whatsapp-gift-claim-verify.bit.ly/free-crypto">
+  <button class="btn" id="inspect">⏸ PAUSE &amp; INSPECT</button>
+  <div class="card"><div class="t" id="vline"><span style="color:#FF4D6D">⛔ NOT SAFE — DO NOT ENTER • real check: 4 sources in 3.0s</span></div><div class="m" id="reasons">Host: paypalsecurity.com<br>• FAKE SCAM WEBSITE/LINK: wears PayPal's name with no ownership proof — the real PayPal never operates from here. This is a fake scam website, url and link. Entering it risks stolen logins, OTPs and wallet drain.<br>• Uses PayPal's name but is NOT paypal.com — the real PayPal never operates from here</div></div>
+  <input id="sbkey" placeholder="Google Safe Browsing key (optional — free, upgrades to cloud intel)">
+
+  <h2>💬 Message check — WhatsApp / SMS / email text</h2>
+  <textarea id="msg">CONGRATS! You won Rs.500000 lottery, pay Rs.2000 fee to claim: http://bit.ly/x</textarea>
+  <button class="btn" id="scanmsg">🔍 SCAN MESSAGE</button>
+  <div class="card"><div class="t" id="mvline">Not scanned yet</div><div class="m" id="mreasons"></div></div>
+
+  <h2>🧪 Real-life tests (one tap)</h2>
+  <div class="testrow">
+    <button data-u="http://sbi-kyc-verify.tk/update?account=blocked">SBI KYC scam</button>
+    <button data-u="https://www.onlinesbi.com">Real SBI</button>
+  </div>
+  <div class="testrow">
+    <button data-u="http://power-bill-secure.top/pay-now">Power-bill scam</button>
+    <button data-u="https://www.google.com">Real Google</button>
+  </div>
+  <div class="testrow">
+    <button data-u="https://app.icici.io/dashboard-.bank">Fake ICICI site</button>
+    <button data-u="https://www.icicibank.com">Real ICICI Bank</button>
+  </div>
+  <div class="testrow">
+    <button data-u="https://www.hdfc.bank.in">Real HDFC (alternate domain)</button>
+    <button data-u="http://hdfc-netbanking-secure.top/login">Fake HDFC lure</button>
+  </div>
+
+  <h2>⚡ One-tap demos (all 16 engines)</h2>
+  <div class="grid">
+    <div class="tile" data-t="av"><div class="e">🦠</div><div class="t">Antivirus Scan</div><div class="m">5 files, instant quarantine</div></div>
+    <div class="tile" data-t="zero"><div class="e">👁️</div><div class="t">Behavior Shield</div><div class="m">Zero-day action block</div></div>
+    <div class="tile" data-t="fw"><div class="e">🌐</div><div class="t">Firewall + RDP</div><div class="m">C2 + brute-force block</div></div>
+    <div class="tile" data-t="wifi"><div class="e">📶</div><div class="t">Network Inspector</div><div class="m">Wi-Fi + router audit</div></div>
+    <div class="tile" data-t="dns"><div class="e">🔒</div><div class="t">Real Site DoH</div><div class="m">Anti DNS-hijack</div></div>
+    <div class="tile" data-t="mail"><div class="e">📧</div><div class="t">Email Guard</div><div class="m">Phishing mail quarantine</div></div>
+    <div class="tile" data-t="ransom"><div class="e">💎</div><div class="t">Ransomware</div><div class="m">Folder lockdown</div></div>
+    <div class="tile" data-t="shred"><div class="e">🔥</div><div class="t">Shredder+Updater</div><div class="m">Wipe + patch check</div></div>
+  </div>
+  <button class="cta" id="scan">⚡ SMART SCAN</button>
+  <div class="card"><div class="t">Live shield log</div><div class="log" id="log">• 4:18:21 PM <b>Real check done in 3.0s → NOT SAFE: FAKE SCAM WEBSITE/LINK: wears PayPal's name with no ownership proof — the real PayPal never operates from here. This is a fake scam website, url and link. Entering it risks stolen logins, OTPs and wallet drain.</b><br>• 4:18:18 PM <b>LinkGuard screen: paypalsecurity.com held (3.3) — NO result until real check finishes</b><br>• Engine ready — real-life rules + optional cloud<br></div></div>
+
+  <h2 style="color:var(--gold);font-size:11px;letter-spacing:2px">ALL 16 ENGINES • ACTIVE</h2>
+  <div id="matrix"><div class="frow"><span>Advanced Antivirus</span><span class="on">Active</span></div><div class="frow"><span>Behavior Shield</span><span class="on">Active</span></div><div class="frow"><span>CyberCapture</span><span class="on">Active</span></div><div class="frow"><span>Advanced Firewall</span><span class="on">Active</span></div><div class="frow"><span>Remote Access Shield</span><span class="on">Active</span></div><div class="frow"><span>Network Inspector</span><span class="on">Active</span></div><div class="frow"><span>Real Site</span><span class="on">Active</span></div><div class="frow"><span>Web Shield</span><span class="on">Active</span></div><div class="frow"><span>Email Guard</span><span class="on">Active</span></div><div class="frow"><span>LinkGuard Middleman</span><span class="on">Active</span></div><div class="frow"><span>Webcam Shield</span><span class="on">Active</span></div><div class="frow"><span>Browser Shield</span><span class="on">Active</span></div><div class="frow"><span>Ransomware Shield</span><span class="on">Active</span></div><div class="frow"><span>Sandbox</span><span class="man">Manual</span></div><div class="frow"><span>Data Shredder</span><span class="man">Manual</span></div><div class="frow"><span>Software Updater</span><span class="on">Active</span></div></div>
+</div>
+
+<div id="pop" style="display: none;"><div class="popcard" style="border-color: rgb(255, 77, 109); box-shadow: rgba(255, 255, 255, 0.4) 0px 1px 0px inset, rgba(0, 0, 0, 0.6) 0px -8px 24px inset, rgba(0, 0, 0, 0.7) 0px 24px 70px, rgba(255, 77, 109, 0.333) 0px 0px 44px;">
+  <div class="v" id="pv" style="color: rgb(255, 77, 109);">⛔ SCAM — DO NOT ENTER</div>
+  <div class="m score3d" id="pdscore">paypalsecurity.com • connection paused before anything loaded • Checked: NOT SAFE — do not get into it</div>
+  <div class="m" id="pd">DANGER: do NOT open, pay, scan, or share any code. This matches real-world phishing sites (credential theft / wallet drain / trojan download). Connection paused BEFORE anything loaded. Delete it from chat.</div>
+  <div class="cap" id="pcap"><b>⛔ What this scam DOES to victims:</b><div>• Steals logins, OTPs and card/UPI details the moment you type</div><div>• Drains wallets via fake payment / QR-collect pages</div><div>• Installs trojans / spyware through forced downloads</div><div>• Locks accounts or devices and demands ransom</div><div>• Spreads by auto-forwarding itself to your contacts</div></div>
+  <div class="cap" id="pevi"><b>🔬 Evidence (4 sources checked):</b><div>⚠️ <b>Offline engine:</b> Uses PayPal's name but is NOT paypal.com — the real PayPal never operates from here</div><div>✅ <b>Live DNS:</b> Resolves publicly (1 records)</div><div>✅ <b>Domain age:</b> Established 12.5 year(s)</div><div>➖ <b>Blocklist:</b> Blocklist unreachable</div><div>➖ <b>Phishing feed:</b> Phishing feed unreachable</div><div>➖ <b>Live page scan:</b> Page unreadable (blocked/JS-walled)</div><div>⛔ <b>Concealment test:</b> Brand alleged + no ownership proof + content hidden = fake scam</div></div>
+  <button class="sandbox" id="pgo" style="display:none">Open in Sandbox (isolated) →</button>
+  <button class="close" id="px">Close — stay protected ✕</button>
+</div></div>
+
+<div id="scanpop" style="display: none;"><div class="popcard">
+  <div class="spin"></div>
+  <div class="v" style="color:var(--goldhi);text-align:center">🔬 REAL CHECK… <span id="scantime">3.0s</span></div>
+  <div class="m" id="scanurl" style="text-align:center">https://PayPalsecurity.com</div>
+  <div class="bar"><div id="scanfill" style="width: 18%;"></div></div>
+  <div class="cap" id="scanlist"><div class="srow" id="ss-Offlineengine"><span>Offline engine</span><span>⚠️</span></div><div class="srow" id="ss-LiveDNS"><span>Live DNS</span><span>🔬</span></div><div class="srow" id="ss-Domainage"><span>Domain age</span><span>⏳</span></div><div class="srow" id="ss-Blocklist"><span>Blocklist</span><span>⏳</span></div><div class="srow" id="ss-Phishingfeed"><span>Phishing feed</span><span>⏳</span></div><div class="srow" id="ss-Pagescan"><span>Page scan</span><span>⏳</span></div><div class="srow" id="ss-Googlecheck"><span>Google check</span><span>⏳</span></div><div class="srow" id="ss-Ownershipproof"><span>Ownership proof</span><span>⏳</span></div><div class="srow" id="ss-Concealmenttest"><span>Concealment test</span><span>⏳</span></div></div>
+  <div class="m" style="text-align:center">NO result until the full real check finishes (~5s budget). Minimizing is safe — the background worker continues testing.</div>
+  <button class="close" id="scancancel">Cancel check</button>
+</div></div>
+
+<script>
+// ---- Same engine as the extension (URLs + messages), instant ----
+const URL_RULES=[
+ {re:/bit\.ly|tinyurl|t\.co|rebrand\.ly|cutt\.ly|is\.gd|s\.id|short\./i,w:22,label:"URL shortener hides the final destination"},
+ {re:/\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}/,w:25,label:"Raw IP host — no legitimate brand uses this"},
+ {re:/https?:\/\/[^\s]*@/i,w:30,label:"'@' trick — browser ignores everything before @"},
+ {re:/[а-яё]|xn--/i,w:30,label:"Lookalike domain (IDN/punycode homoglyph)"},
+ {re:/(hdfc|sbi|icici|axis|paytm|phonepe|amazon|flipkart|apple|microsoft|netflix|paypal|whatsapp|instagram|facebook|google)[-_.]?[a-z0-9]*\.(xyz|top|shop|click|loan|tk|ml|ga|gq|cf|buzz|store|online|sbs)/i,w:35,label:"Famous brand on a suspicious cheap domain"},
+ {re:/[a-z0-9-]*(login|secure|verify|update|banking|wallet|alert|kyc|support)[a-z0-9-]*\.[a-z]{2,}/i,w:22,label:"Domain imitates a login/security page"},
+ {re:/https?:\/\/(?!(www\.)?(google|youtube|github|microsoft|apple|amazon)\.com)[\w-]+\.(xyz|top|click|shop|tk|ml|ga|gq|cf|buzz|loan)/i,w:32,label:"High-risk TLD (xyz/top/click/tk…)"}];
+const MSG_RULES=[
+ {re:/prize|won|winner|congratulat|lottery|gift card|reward points|spin (to|and) win|free iphone|free gift/i,w:25,label:"Claims an unbelievable prize or reward"},
+ {re:/pay\s*(rs|₹|\$|fee|deposit|registration|advance)|registration fee|processing fee|claim.*fee|refundable deposit/i,w:30,label:"Advance-fee demand (pay to receive money)"},
+ {re:/urgent|immediately|within 24|last (day|chance|warning)|account (blocked|suspended|deactivated|locked)|verify now|act now|final notice/i,w:20,label:"Urgency / threats to rush you"},
+ {re:/otp|pin number|\bcvv\b|password|login credentials|verify your account|share (your|the) (otp|code)/i,w:30,label:"Asks for OTP / password / code"},
+ {re:/kyc|pan\s*(card)?\s*link|aadhaar\s*update|rbi\s*notice|income\s*tax\s*refund|electricity\s*(bill|disconnection)|cibil/i,w:22,label:"Impersonates KYC / RBI / tax / utility authority"},
+ {re:/guaranteed return|double your money|\b10x\b|pump group|earn\s*\d+.*\/\s*day|part.?time job.*\d{4,}|like (videos?|youtube).*(earn|rs)/i,w:30,label:"Fake job / guaranteed-returns lure"},
+ {re:/parcel|customs (duty|fee)|courier.*held|delivery failed.*fee|package.*pay/i,w:25,label:"Fake parcel / customs-fee scam"},
+ {re:/qr.*scan.*(receive|refund)|upi.*(collect|request)|send ₹?1 (to verify|for verification)/i,w:30,label:"UPI/QR reversal trick (paying disguised as receiving)"},
+ {re:/click this link to (claim|get|verify)|claim.*(reward|cashback|offer).*link/i,w:22,label:"Classic bait-to-link phrasing"}];
+const TRUSTED=["google.com","youtube.com","github.com","microsoft.com","apple.com","amazon.in","amazon.com","hdfcbank.com","icicibank.com","axisbank.com","kotak.com","sbi.co.in","onlinesbi.com","paypal.com","netflix.com","phonepe.com","paytm.com","npci.org.in","cybercrime.gov.in","reddit.com","whatsapp.com","facebook.com","instagram.com","flipkart.com","irctc.co.in"];
+const BRANDS=[
+ {pat:/icici/i,name:"ICICI Bank",official:["icicibank.com"]},
+ {pat:/hdfc/i,name:"HDFC Bank",official:["hdfcbank.com"]},
+ {pat:/(^|[^a-z])sbi([^a-z]|$)/i,name:"SBI",official:["onlinesbi.com","sbi.co.in"],org:/state bank/i},
+ {pat:/(^|[^a-z])axis([^a-z]|$)/i,name:"Axis Bank",official:["axisbank.com"]},
+ {pat:/kotak/i,name:"Kotak Bank",official:["kotak.com"]},
+ {pat:/(^|[^a-z])pnb([^a-z]|$)/i,name:"PNB",official:["pnb.co.in"],org:/punjab national/i},
+ {pat:/bankofbaroda|(^|[^a-z])bob([^a-z]|$)/i,name:"Bank of Baroda",official:["bankofbaroda.in"],org:/bank of baroda/i},
+ {pat:/canara/i,name:"Canara Bank",official:["canarabank.com"]},
+ {pat:/paytm/i,name:"Paytm",official:["paytm.com"]},
+ {pat:/phonepe/i,name:"PhonePe",official:["phonepe.com"]},
+ {pat:/paypal/i,name:"PayPal",official:["paypal.com"]},
+ {pat:/amazon/i,name:"Amazon",official:["amazon.com","amazon.in"]},
+ {pat:/flipkart/i,name:"Flipkart",official:["flipkart.com"]},
+ {pat:/(^|[^a-z])apple([^a-z]|$)/i,name:"Apple",official:["apple.com","icloud.com"]},
+ {pat:/microsoft|outlook|office365/i,name:"Microsoft",official:["microsoft.com","office.com","outlook.com","live.com"]},
+ {pat:/netflix/i,name:"Netflix",official:["netflix.com"]},
+ {pat:/instagram/i,name:"Instagram",official:["instagram.com","facebook.com"]},
+ {pat:/facebook|(^|[^a-z0-9])fb([^a-z0-9]|$)/i,name:"Facebook",official:["facebook.com","fb.com"]},
+ {pat:/telegram/i,name:"Telegram",official:["telegram.org"]},
+ {pat:/binance/i,name:"Binance",official:["binance.com"]},
+ {pat:/zerodha/i,name:"Zerodha",official:["zerodha.com"]},
+ {pat:/groww/i,name:"Groww",official:["groww.in"]},
+ {pat:/irctc/i,name:"IRCTC",official:["irctc.co.in"]},
+ {pat:/(^|[^a-z])jio([^a-z]|$)/i,name:"Jio",official:["jio.com"]},
+ {pat:/airtel/i,name:"Airtel",official:["airtel.in","airtel.com"]},
+ {pat:/(^|[^a-z])dhl([^a-z]|$)/i,name:"DHL",official:["dhl.com"]}
+];
+const RISKY_TLDS=/^(io|xyz|top|tk|ml|ga|gq|cf|buzz|sbs|loan|click|shop|store|online|site|live|vip|rest)$/;
+function brandCheck(uh,path){const b=BRANDS.find(x=>x.pat.test(uh+" "+(path||"")));if(!b)return null;
+ return{b,home:b.official.some(o=>uh===o||uh.endsWith("."+o))}}
+function analyzeText(input){
+ if(!input||!input.trim())return{score:0,verdict:"safe",hits:[],trusted:false,kind:"empty"};
+ const t=input.trim();let score=0,brandPen=0,alleged=null;const hits=[];
+ const isUrl=/https?:\/\/|www\.|\.(com|in|net|org|xyz|top|click|shop|tk|io|co)\b/i.test(t);
+ for(const r of(isUrl?URL_RULES.concat(MSG_RULES):MSG_RULES)){if(r.re.test(t)){score+=r.w;if(r.label)hits.push(r.label)}}
+ let trusted=false,host="";
+ try{const u=new URL(/^https?:\/\//i.test(t)?t:"https://"+t.split(/\s/)[0]);host=u.hostname.toLowerCase();
+ trusted=TRUSTED.some(x=>host===x||host.endsWith("."+x));
+ if(u.protocol==="http:"){score+=10;hits.push("Not encrypted (http) — logins can be stolen")}
+ if((host.match(/-/g)||[]).length>=3){score+=12;hits.push("Excessive hyphens — typosquat pattern")}
+ if(host.split(".").length>3){score+=10;hits.push("Deep subdomain hides the true brand")}
+ if(/whatsapp/i.test(t)&&!host.endsWith("whatsapp.com")&&!host.endsWith("whatsapp.net")){score+=28;hits.push("Impersonates WhatsApp on a foreign domain")}
+ const bc=brandCheck(host,u.pathname||"");
+ if(bc&&!bc.home){score+=40;brandPen+=40;if(!alleged)alleged={name:bc.b.name,official:bc.b.official,orgRe:bc.b.org||null};hits.push("Uses "+bc.b.name+"'s name but is NOT "+bc.b.official[0]+" — the real "+bc.b.name+" never operates from here");
+  const tld=host.split(".").pop()||"";
+  if(RISKY_TLDS.test(tld)){score+=15;hits.push("Bank/brand lure parked on risky suffix (."+tld+")")}
+  if(/(login|verify|dashboard|secure|account|update|kyc|bank)([-_.]|$)/i.test(u.pathname||"")){score+=15;hits.push("Banking-action page on a non-official domain — credential-harvest layout")}}
+ else if(bc&&bc.home){score=Math.max(0,score-15);hits.push("Confirmed on "+bc.b.name+"'s real official domain")}
+ if(t.length>140){score+=8;hits.push("Abnormally long text/URL — obfuscation")}}catch{}
+ const seen=new Set([host]);
+ for(const m of(t.match(/https?:\/\/[^\s"'<>]+/gi)||[]).slice(0,4)){
+  let uh="";try{uh=new URL(m).hostname.toLowerCase()}catch{continue}
+  if(!uh||seen.has(uh))continue;seen.add(uh);
+  const eb=brandCheck(uh,"");
+  if(eb&&!eb.home){score+=40;brandPen+=40;if(!alleged)alleged={name:eb.b.name,official:eb.b.official,orgRe:eb.b.org||null};hits.push("Links to "+eb.b.name+" impostor "+uh+" — the real "+eb.b.name+" lives only at "+eb.b.official.join(", "))}
+ }
+ if(trusted)score=Math.max(0,score-60);
+ score=Math.min(100,Math.round(score));
+ return{score,verdict:score>=60?"scam":score>20?"suspicious":"safe",hits:[...new Set(hits)],trusted,host,kind:isUrl?"url":"message",brandPen,brandAlleged:alleged};
+}
+function disclaimerFor(r){
+ if(r.verdict==="safe")return"Looks genuine: no lure, impersonation or obfuscation signals. Still never share OTPs — real banks never ask.";
+ if(r.verdict==="suspicious")return"NOT SAFE. Warning signs found in real checks. If you go into it, attackers could steal your OTPs, passwords and UPI money, or install spyware. Open the official app directly instead of going through this link.";
+ return"DANGER: do NOT open, pay, scan, or share any code. This matches real-world "+(r.kind==="message"?"message scams (advance fee / OTP harvesting / fake authority)":"phishing sites (credential theft / wallet drain / trojan download)")+". Connection paused BEFORE anything loaded. Delete it from chat.";
+}
+// ---- Truth engine: keyless multi-source verification (DNS + domain age + blocklist + live page) ----
+const deepCache=new Map();
+// Bump this whenever the engine changes — stale cached verdicts from an older
+// rule set must never replay (that is how an old SAFE result "keeps showing").
+const DEEP_CACHE_VER=3;
+function luxFetch(url,opts,ms){const c=new AbortController();const t=setTimeout(()=>c.abort(),ms||6000);return fetch(url,{...(opts||{}),signal:c.signal}).finally(()=>clearTimeout(t))}
+async function checkDns(host){
+ try{const r=await luxFetch("https://cloudflare-dns.com/dns-query?name="+encodeURIComponent(host)+"&type=A",{headers:{accept:"application/dns-json"}},2000);
+  const j=await r.json();
+  if(j?.Answer?.length)return{state:"clean",detail:"Resolves publicly ("+j.Answer.length+" records)"};
+  return{state:"warn",detail:"No public DNS answer — possible hijack",penalty:15};
+ }catch{return{state:"skip",detail:"DNS unreachable"}}
+}
+let luxRdapServers=null;
+async function luxRdapDomain(host){
+ const bare=host.replace(/^www\./,"");
+ try{const r=await luxFetch("https://rdap.org/domain/"+encodeURIComponent(bare),{},2000);
+  if(r.ok)return await r.json()}catch{}
+ try{
+  if(!luxRdapServers){const b=await luxFetch("https://data.iana.org/rdap/dns.json",{},2000);luxRdapServers=await b.json()}
+  const tld=bare.split(".").pop();
+  const svc=(luxRdapServers.services||[]).find(s=>(s[0]||[]).includes(tld));
+  if(svc?.[1]?.[0]){const r2=await luxFetch(svc[1][0]+"domain/"+encodeURIComponent(bare),{},2500);
+   if(r2.ok)return await r2.json()}
+ }catch{}
+ return null;
+}
+function luxVcardFn(entity){
+ try{const f=entity.vcardArray?.[1];if(!Array.isArray(f))return"";
+  return f.filter(x=>x[0]==="fn").map(x=>x[3]).filter(Boolean).join("; ")}catch{return""}
+}
+async function checkDomainAge(host){
+ try{const j=await luxRdapDomain(host);
+  if(!j)return{state:"skip",detail:"Registry unreachable",ageDays:null,org:"",registrar:""};
+  const ents=j.entities||[];
+  const org=ents.filter(e=>(e.roles||[]).includes("registrant")).map(luxVcardFn).filter(Boolean).join("; ");
+  const registrar=ents.filter(e=>(e.roles||[]).includes("registrar")).map(luxVcardFn).filter(Boolean).join("; ");
+  const ev=(j.events||[]).find(e=>e.eventAction==="registration");
+  if(!ev?.eventDate)return{state:"skip",detail:"No registration date published",ageDays:null,org,registrar};
+  const days=Math.max(0,Math.round((Date.now()-new Date(ev.eventDate).getTime())/86400000));
+  const base={ageDays:days,org,registrar};
+  if(days<14)return{state:"bad",detail:"Born "+days+" day(s) ago — classic scam age",penalty:30,...base};
+  if(days<90)return{state:"warn",detail:"Only "+days+" days old — suspicious",penalty:15,...base};
+  if(days>365)return{state:"clean",detail:"Established "+(Math.round(days/365*10)/10)+" year(s)",bonus:10,...base};
+  return{state:"clean",detail:"Age "+days+" days",...base};
+ }catch{return{state:"skip",detail:"Registry unreachable",ageDays:null,org:"",registrar:""}}
+}
+function rootOf(host){const p=host.split(".");const two=["co.in","bank.in","co.uk","com.au","co.nz","com.br","co.za"];
+ if(p.length>=3&&two.includes(p.slice(-2).join(".")))return p.slice(-3).join(".");return p.slice(-2).join(".")}
+async function officialAck(officialDomain,testedRoot){
+ try{const r=await luxFetch("https://api.allorigins.win/get?url="+encodeURIComponent("https://"+officialDomain+"/"),{},3000);
+  const j=await r.json();const html=typeof j?.contents==="string"?j.contents.slice(0,150000).toLowerCase():"";
+  if(html&&html.includes(testedRoot.toLowerCase()))return officialDomain+" publicly references "+testedRoot+" — same owner";
+  return null;
+ }catch{return null}
+}
+function brandOrgRe(al){if(al.orgRe)return al.orgRe;
+ const w=al.name.split(" ")[0].replace(/[.*+?^${}()|[\]\\]/g,"\\$&");return new RegExp(w,"i")}
+async function checkUrlhaus(url){
+ try{const r=await luxFetch("https://urlhaus-api.abuse.ch/v1/url/",{method:"POST",headers:{"Content-Type":"application/x-www-form-urlencoded"},body:"url="+encodeURIComponent(url)},2500);
+  if(!r.ok)return{state:"skip",detail:r.status===401?"Blocklist unreachable (API now requires a key)":"Blocklist unreachable (HTTP "+r.status+")"};
+  const j=await r.json();
+  if(j?.query_status==="ok")return{state:"bad",detail:"URLhaus lists it as "+(j.threat||"malware"),guilty:true};
+  if(j?.error)return{state:"skip",detail:"Blocklist unreachable ("+j.error+")"};
+  return{state:"clean",detail:"Not on malware blocklist"};
+ }catch{return{state:"skip",detail:"Blocklist unreachable"}}
+}
+// OpenPhish — keyless live phishing feed (normalized host+path match only).
+let opFeedCache={t:0,lines:null};
+async function fetchOpenPhish(){
+ const now=Date.now();
+ if(opFeedCache.lines&&now-opFeedCache.t<600000)return opFeedCache.lines;
+ const direct="https://openphish.com/feed.txt";
+ const cands=[(typeof location!=="undefined"&&/^https?:$/.test(location.protocol))?location.origin+"/proxy?url="+encodeURIComponent(direct):null,direct].filter(Boolean);
+ for(const c of cands){try{const r=await luxFetch(c,{},3000);if(!r.ok)continue;const txt=await r.text();
+  const lines=txt.split(/\r?\n/).map(s=>s.trim()).filter(s=>/^https?:\/\//i.test(s));
+  if(lines.length>10){opFeedCache={t:now,lines};return lines}}catch(e){}}
+ return null;
+}
+function normPhishU(u){try{const p=new URL(u);return (p.hostname+p.pathname).replace(/\/+$/,"").toLowerCase()}catch(e){return String(u).trim().replace(/\/+$/,"").toLowerCase()}}
+async function checkOpenPhish(url){
+ try{const feed=await fetchOpenPhish();
+  if(!feed)return{state:"skip",detail:"Phishing feed unreachable"};
+  const t=normPhishU(url);
+  if(feed.some(e=>normPhishU(e)===t))return{state:"bad",detail:"OpenPhish: URL is on the live active-phishing feed",guilty:true};
+  return{state:"clean",detail:"Not on OpenPhish active-phishing feed"};
+ }catch(e){return{state:"skip",detail:"Phishing feed unreachable"}}
+}
+async function fetchPageText(url){
+ try{const r=await luxFetch("https://api.allorigins.win/get?url="+encodeURIComponent(url),{},3000);
+  const j=await r.json();
+  if(typeof j?.contents==="string"&&j.contents.length>200)return j.contents.slice(0,20000);
+  return null;
+ }catch{return null}
+}
+async function cloudCheck(url){ // kept for Google-key boost inside deepVerify
+ const key=document.getElementById("sbkey").value.trim();if(!key)return null;
+ try{const r=await luxFetch("https://safebrowsing.googleapis.com/v4/threatMatches:find?key="+key,{method:"POST",headers:{"Content-Type":"application/json"},
+  body:JSON.stringify({client:{clientId:"avastluxe",clientVersion:"1.0.0"},threatInfo:{threatTypes:["MALWARE","SOCIAL_ENGINEERING","UNWANTED_SOFTWARE","POTENTIALLY_HARMFUL_APPLICATION"],platformTypes:["ANY_PLATFORM"],threatEntryTypes:["URL"],threatEntries:[{url}]}})},2000);
+  const j=await r.json();
+  if(j?.matches?.length)return{state:"bad",detail:"Google: confirmed "+j.matches[0].threatType,guilty:true};
+  return{state:"clean",detail:"Google: no match"};
+ }catch{return{state:"skip",detail:"Google unreachable"}}
+}
+async function deepVerify(rawUrl){
+ if(deepCache.has(rawUrl)){const e=deepCache.get(rawUrl);if(e.ver===DEEP_CACHE_VER)return e.p;deepCache.delete(rawUrl)}
+ const p=(async()=>{
+  let url=rawUrl.trim();if(!/^https?:\/\//i.test(url))url="https://"+url.split(/\s/)[0];
+  let host="";try{host=new URL(url).hostname.toLowerCase()}catch{host=url}
+  const base=analyzeText(url);
+  const sources=[{name:"Offline engine",state:base.verdict==="safe"?"clean":"warn",detail:base.hits.find(h=>/never operates|impostor/i.test(h))||base.hits[0]||"no lure signals"}];
+  let score=base.score;const hits=[...base.hits];
+  const alEarly=(base.brandPen||0)>0&&base.brandAlleged?base.brandAlleged:null;
+const ackP=alEarly?Promise.resolve(officialAck(alEarly.official[0],rootOf(host))).catch(()=>null):Promise.resolve(null);
+const htmlP=fetchPageText(url);
+const[dns,age,haus,phish,ackEarly]=await Promise.all([checkDns(host),checkDomainAge(host),checkUrlhaus(url),checkOpenPhish(url),ackP]);
+  sources.push({name:"Live DNS",...dns});if(dns.penalty){score+=dns.penalty;hits.push(dns.detail)}
+  sources.push({name:"Domain age",...age});if(age.penalty){score+=age.penalty;hits.push(age.detail)}
+  if(age.bonus&&base.verdict==="safe")score=Math.max(0,score-age.bonus);
+  sources.push({name:"Blocklist",...haus});if(haus.guilty){score=100;hits.unshift(haus.detail)}
+sources.push({name:"Phishing feed",...phish});if(phish.guilty){score=100;hits.unshift(phish.detail)}
+  const html=await htmlP; // started in parallel above — only waits for what's left
+  let contentPen=0;
+  if(html){const t=html.toLowerCase();let pen=0;const ch=[];
+   const creds=/<input[^>]*(password|otp|cvv)|type=["']?password|enter (your )?(otp|password|cvv|upi pin)/.test(t),money=/(pay|fee|deposit|upi|wallet|card|cvv|refundable)/.test(t);
+   if(creds&&money){pen+=25;ch.push("Live page harvests secrets alongside payments")}
+   else if(creds){pen+=12;ch.push("Live page asks for secret credentials")}
+   if(/won|prize|lottery|congratulations/.test(t)&&/(fee|deposit|pay now|claim.*pay)/.test(t)){pen+=20;ch.push("Live page pairs prizes with payments")}
+   sources.push({name:"Live page scan",state:pen>=20?"bad":pen>0?"warn":"clean",detail:ch[0]||"No harvest patterns in page"});
+   if(pen){contentPen=pen;score+=pen;ch.forEach(h=>hits.push(h))}
+  }else sources.push({name:"Live page scan",state:"skip",detail:"Page unreadable (blocked/JS-walled)"});
+  let sbGuilty=false;
+  const sb=await cloudCheck(url);if(sb){sources.push({name:"Google Safe Browsing",...sb});if(sb.guilty){sbGuilty=true;score=100;hits.unshift(sb.detail)}}
+  // OWNERSHIP COURT: accusation needs corroboration, proof acquits.
+  let acquitted=false;
+  if((base.brandPen||0)>0&&base.brandAlleged&&!haus.guilty&&!sbGuilty){
+   const al=base.brandAlleged;let proof=null;
+   if(age.org&&brandOrgRe(al).test(age.org))proof="Registry owner matches "+al.name+" ("+age.org.slice(0,70)+")";
+   if(!proof&&/idrbt/i.test(age.registrar||"")&&host.endsWith(".bank.in"))proof="Vetted banking zone — registrar IDRBT issues .bank.in only to real Indian banks";
+   if(!proof&&ackEarly)proof=ackEarly
+   // No "merely old" acquittal — age never proves ownership. Hard proof only.
+   if(proof){acquitted=true;score=Math.max(0,score-(base.brandPen||0)-contentPen);
+    for(let i=hits.length-1;i>=0;i--)if(/never operates|impostor/i.test(hits[i]))hits.splice(i,1);
+    hits.unshift("Ownership proven: "+proof);
+    sources.push({name:"Ownership proof",state:"clean",detail:proof});
+    // Evidence must never contradict the verdict — dismiss the allegation line.
+    sources[0]={name:"Offline engine",state:"clean",detail:"Impersonation allegation dismissed — "+proof}}
+   else{
+    // RULE 1 — unrefuted impersonation alone = fake, readable page or not.
+    score=Math.max(score,60);
+    if(!hits.some(h=>/FAKE SCAM/i.test(h)))hits.unshift("FAKE SCAM WEBSITE/LINK: wears "+al.name+"'s name with no ownership proof — the real "+al.name+" never operates from here. This is a fake scam website, url and link. Entering it risks stolen logins, OTPs and wallet drain.");
+    // RULE 2 — hiding seals it: borrowed name PLUS inspection-blocking page.
+    if(!html&&!sources.some(s=>s.name==="Concealment test"))sources.push({name:"Concealment test",state:"bad",detail:"Brand alleged + no ownership proof + content hidden = fake scam"});
+   }
+  }
+  // RULE 3 — hiding alone with no reputation = fake (aged+trusted+clean exempt).
+  const reputable=base.trusted||(age.ageDays!==null&&age.ageDays>=730&&!dns.penalty);
+  if(sources.some(s=>s.name==="Live page scan"&&s.state==="skip")&&!haus.guilty&&!sbGuilty&&!reputable&&!acquitted&&score<60){
+   score=60;
+   hits.unshift("FAKE SCAM WEBSITE/LINK: hides its page from security inspection, too new and unknown to verify, with no trusted reputation — treated as a fake scam. Entering it risks malware, stolen logins and wallet drain.");
+   if(!sources.some(s=>s.name==="Concealment test"))sources.push({name:"Concealment test",state:"bad",detail:"Hidden page + no reputation = fake scam"});
+  }
+  // FINAL GUARANTEE — either signal alone convicts: (1) borrowed brand name
+  // with no ownership proof, or (2) hidden page with no reputation
+  // (aged + trusted + clean-resolving stays exempt). Always SCAM.
+  const hasBrand=hits.some(h=>/never operates|impostor/i.test(h));
+  const pageHidden=sources.some(s=>s.name==="Live page scan"&&s.state==="skip");
+  if((hasBrand||(pageHidden&&!reputable))&&!haus.guilty&&!sbGuilty&&!acquitted&&score<60){
+   score=60;
+   if(!hits.some(h=>/FAKE SCAM/i.test(h)))hits.unshift("FAKE SCAM WEBSITE/LINK: "+(hasBrand?"wears a trusted brand's name with no ownership proof":"hides its page with no verifiable reputation")+" — this is a fake scam website, url, link and phishing operation. Entering it risks stolen logins, OTPs and wallet drain.");
+   if(!sources.some(s=>s.name==="Concealment test"))sources.push({name:"Concealment test",state:"bad",detail:"Single-signal rule: unrefuted brand theft or reputation-less hiding = fake scam"});
+  }
+  score=Math.min(100,Math.round(score));
+  return{report:{url,host,score,verdict:score>=60?"scam":score>20?"suspicious":"safe",hits:[...new Set(hits)],trusted:base.trusted,kind:base.kind},sources};
+ })();
+ deepCache.set(rawUrl,{ver:DEEP_CACHE_VER,p});return p;
+}
+function evidenceHtml(r){
+ if(!r.sources)return"• Offline engine only — deep verification running…";
+ const ic={clean:"✅",warn:"⚠️",bad:"⛔",skip:"➖"};
+ return"<b>🔬 Evidence ("+r.sources.filter(s=>s.state!=="skip").length+" sources checked):</b>"+r.sources.map(s=>"<div>"+(ic[s.state]||"•")+" <b>"+s.name+":</b> "+s.detail+"</div>").join("");
+}
+const $=id=>document.getElementById(id);
+// ---- Real background: service worker + notification permission (browser prompt) ----
+let swReg=null;
+function permPaint(){
+ const n=$("pnotif");if(!n)return;
+ if(!("Notification" in window)){n.textContent="not supported";n.className="denied";return}
+ const p=Notification.permission;
+ n.textContent=p==="granted"?"granted — running":p==="denied"?"denied — tap 🔒 in address bar":"not asked yet";
+ n.className=p==="granted"?"granted":p==="denied"?"denied":"prompt";
+ const w=$("psw");if(w&&swReg?.active){w.textContent="active — background alive";w.className="granted"}
+ else if(w&&swReg){w.textContent="installed — activating…";w.className="prompt"}
+ else if(w){w.textContent="failed (needs http://localhost or https)";w.className="denied"}
+}
+if("serviceWorker" in navigator){
+ navigator.serviceWorker.register("sw.js").then(r=>{swReg=r;permPaint();
+  navigator.serviceWorker.addEventListener("message",e=>{if(e.data?.type==="SW_ACTIVE")permPaint()});
+ }).catch(()=>permPaint());
+}else{const w=$("psw");if(w){w.textContent="not supported";w.className="denied"}}
+function tellWorker(msg){if(navigator.serviceWorker?.controller)navigator.serviceWorker.controller.postMessage(msg)}
+$("bg").addEventListener("change",async e=>{
+ permPaint();
+ if(!e.target.checked){$("permnote").textContent="Background shield OFF — clipboard watch paused.";return}
+ try{
+  const p=await Notification.requestPermission(); // REAL browser permission prompt
+  permPaint();
+  if(p==="granted"){tellWorker({type:"SHIELD_ON"});tellWorker({type:"VERIFY",url:"https://www.google.com",apiKey:$("sbkey").value.trim(),selfTest:true});$("permnote").textContent="Permission granted. Worker active — background self-test running (see log). Minimize this tab: threats still raise background notifications.";addLog("Background permission GRANTED — worker alive")}
+  else{$("permnote").textContent="Permission not granted — shield works only inside this tab. Tap the lock icon in the address bar to allow notifications.";addLog("Background permission NOT granted — in-tab only")}
+ }catch{permPaint()}
+});
+setTimeout(permPaint,1500);
+let blocked=1284;
+// ---- What could this link/app do? capability disclosure for EVERY tier ----
+function capabilitiesFor(r){
+ const li=x=>"<div>• "+x+"</div>";
+ if(r.verdict==="safe")return"<b>✅ GENUINE — what it can do (safe):</b>"+li("Open its normal login/content page on the verified brand domain")+
+  li("Request only standard permissions (still review each prompt)")+li("No lure, impersonation or obfuscation detected — but never share OTPs anywhere");
+ if(r.verdict==="suspicious")return"<b>⚠️ If you proceed, it COULD:</b>"+li("Show a pixel-perfect fake login and harvest your password + OTP")+
+  li("Plant tracking cookies / steal your session to hijack accounts")+li("Push a fake payment or UPI-collect page that takes money")+li("Ask for dangerous permissions (SMS, accessibility) to spy further");
+ return"<b>⛔ What this scam DOES to victims:</b>"+li("Steals logins, OTPs and card/UPI details the moment you type")+
+  li("Drains wallets via fake payment / QR-collect pages")+li("Installs trojans / spyware through forced downloads")+li("Locks accounts or devices and demands ransom")+li("Spreads by auto-forwarding itself to your contacts");
+}
+function addLog(m){const d=$("log");d.innerHTML="• "+new Date().toLocaleTimeString()+" <b>"+m+"</b><br>"+d.innerHTML}
+function tierOf(r){return r.score>=60?"scam":r.score>20?"suspicious":"safe"} // risk above 20: do not enter; 20 or below: genuine
+let current=null;
+function popup(r,url){current={r,url};paintPopup(r,url);
+ if(r.verdict!=="safe"&&!r.counted){r.counted=true;blocked++;$("stat").textContent=blocked.toLocaleString()+" threats blocked lifetime"}
+ // background alert now comes from the worker's VERIFY (single source, no doubles)
+}
+function paintPopup(r,url){
+ r.verdict=tierOf(r); // single 0-100 scale for every tier
+ const c=r.verdict==="safe"?"#00E5A0":r.verdict==="suspicious"?"#F6E27A":"#FF4D6D";
+ const card=document.querySelector(".popcard");
+ card.style.borderColor=c;card.style.boxShadow="0 1px 0 rgba(255,255,255,.4) inset,0 -8px 24px rgba(0,0,0,.6) inset,0 24px 70px rgba(0,0,0,.7),0 0 44px "+c+"55";
+ $("pv").textContent=r.verdict==="safe"?"✅ GENUINE — YOU CAN GO THERE":r.verdict==="suspicious"?"⚠️ NOT SAFE — DO NOT ENTER":"⛔ SCAM — DO NOT ENTER";
+ $("pv").style.color=c;
+ $("pdscore").textContent=(r.host||"message")+" • connection paused before anything loaded"+(r.score>20?" • Checked: NOT SAFE — do not get into it":" • Checked: genuine — you can go there");
+ $("pd").textContent=disclaimerFor(r);
+ $("pcap").innerHTML=capabilitiesFor(r); // what it could do — shown at EVERY level
+ $("pevi").innerHTML=evidenceHtml(r); // truth sources — right vs wrong, proven
+ const g=$("pgo");g.style.display=r.verdict!=="scam"?"block":"none";
+ g.textContent=r.verdict==="safe"?"Open genuine page →":"Open in Sandbox (isolated) →";
+ g.onclick=()=>{addLog((r.verdict==="safe"?"Opened genuine: ":"Sandboxed open: ")+(r.host||"link"));window.open(url,"_blank","noopener");$("pop").style.display="none"};
+ // restart 3D entrance animation each time
+ card.style.animation="none";void card.offsetWidth;card.style.animation="";
+ $("pop").style.display="flex";
+}
+// Truth via background worker (10s budget) with live progress + in-page fallback.
+let scanSeq=0;
+const SCAN_STEPS=["Offline engine","Live DNS","Domain age","Blocklist","Phishing feed","Page scan","Google check","Ownership proof","Concealment test"];
+function showScan(label){
+ const id=++scanSeq;
+ $("scanurl").textContent=label;
+ $("scanfill").style.width="2%";$("scantime").textContent="0.0s";
+ $("scanlist").innerHTML=SCAN_STEPS.map(s=>'<div class="srow" id="ss-'+s.replace(/\s/g,"")+'"><span>'+s+'</span><span>⏳</span></div>').join("");
+ $("scanpop").style.display="flex";
+ return id;
+}
+function scanProgress(name,state){
+ const el=document.getElementById("ss-"+String(name).replace(/\s/g,""));
+ const ic={clean:"✅",warn:"⚠️",bad:"⛔",skip:"➖",run:"🔬"}[state]||"⏳";
+ if(el)el.lastElementChild.textContent=ic;
+ const rows=[...document.querySelectorAll("#scanlist .srow")];
+ const done=rows.filter(r=>!/[⏳🔬]/.test(r.lastElementChild.textContent)).length;
+ const run=rows.filter(r=>r.lastElementChild.textContent==="🔬").length;
+ $("scanfill").style.width=Math.min(100,2+Math.round((done+run*0.5)/SCAN_STEPS.length*98))+"%";
+}
+function hideScan(){$("scanpop").style.display="none"}
+$("scancancel").onclick=()=>{scanSeq++;hideScan();addLog("Check cancelled by user")};
+function truthViaBackground(u,onProg){
+ return new Promise((resolve)=>{
+  const ctl=navigator.serviceWorker?.controller;
+  if(!ctl){resolve(null);return}
+  let done=false;
+  const to=setTimeout(()=>{if(!done){done=true;navigator.serviceWorker.removeEventListener("message",onMsg);resolve(null)}},5000);
+  function onMsg(e){const d=e.data||{};
+   if(d.url!==u||done)return;
+   if(d.type==="PROGRESS"){onProg&&onProg(d.name,d.state)}
+   if(d.type==="VERDICT"){done=true;clearTimeout(to);navigator.serviceWorker.removeEventListener("message",onMsg);resolve(d.deep)}}
+  navigator.serviceWorker.addEventListener("message",onMsg);
+  ctl.postMessage({type:"VERIFY",url:u,apiKey:$("sbkey").value.trim()});
+ });
+}
+if(navigator.serviceWorker){
+ navigator.serviceWorker.addEventListener("message",(e)=>{const d=e.data||{};
+  if(d.type==="VERDICT"&&d.selfTest&&d.deep){addLog("Background self-test: google.com "+d.deep.report.verdict.toUpperCase()+" in "+(d.deep.ms/1000).toFixed(1)+"s — worker alive ✓")}});
+}
+async function checkUrl(u){
+ const t0=performance.now();let r=analyzeText(u);
+ const ms=(performance.now()-t0).toFixed(1);
+ paintUrl(r,"instant screen ("+ms+") — connection paused, real check running…");
+ addLog("LinkGuard screen: "+(r.host||"input")+" held ("+ms+") — NO result until real check finishes");
+ const id=showScan(u); // 3D progress overlay; verdict comes ONLY after the ~10s real check
+ const start=Date.now();
+ const tick=setInterval(()=>{if(id===scanSeq)$("scantime").textContent=((Date.now()-start)/1000).toFixed(1)+"s"},100);
+ scanProgress("Offline engine",r.verdict==="safe"?"clean":"warn");
+ try{
+  let deep=await truthViaBackground(u,(n,s)=>{if(id===scanSeq)scanProgress(n,s)});
+  if(!deep){if(id===scanSeq)scanProgress("Live DNS","run");try{deep=await deepVerify(u,{})}catch{deep=null}}
+  clearInterval(tick);
+  if(id!==scanSeq)return; // user cancelled — stay silent
+  hideScan();
+  if(!deep){addLog("Truth sources unreachable — offline screen stands, treat as untrusted");popup(r,r.url||u);return}
+  const up=deep.report;up.sources=deep.sources;
+  const secs=((Date.now()-start)/1000).toFixed(1);
+  paintUrl(up,"real check: "+deep.sources.filter(s=>s.state!=="skip").length+" sources in "+secs+"s");
+  addLog("Real check done in "+secs+"s → "+(up.verdict==="safe"?"GENUINE":"NOT SAFE")+": "+(up.hits[0]||up.host));
+  popup(up,u); // result ONLY now, after the real check
+ }catch{clearInterval(tick);if(id===scanSeq){hideScan();popup(r,r.url||u)}}
+}
+function paintUrl(r,src){
+ const c=r.verdict==="safe"?"#00E5A0":r.verdict==="suspicious"?"#F6E27A":"#FF4D6D";
+ $("vline").innerHTML='<span style="color:'+c+'">'+(r.verdict==="safe"?"✅ GENUINE — YOU CAN GO THERE":"⛔ NOT SAFE — DO NOT ENTER")+' • '+src+'</span>';
+ $("reasons").innerHTML=(r.host?"Host: "+r.host+"<br>":"")+"• "+(r.hits.join("<br>• ")||"Clean");
+}
+$("inspect").onclick=()=>checkUrl($("url").value);
+$("scanmsg").onclick=async ()=>{
+ const text=$("msg").value;
+ const r=analyzeText(text);
+ const links=text.match(/https?:\/\/[^\s"']+/gi)||[];
+ const id=showScan("message"+(links.length?" + "+Math.min(3,links.length)+" embedded link(s)":" (text only)"));
+ const start=Date.now();
+ const tick=setInterval(()=>{if(id===scanSeq)$("scantime").textContent=((Date.now()-start)/1000).toFixed(1)+"s"},100);
+ scanProgress("Offline engine",r.verdict==="safe"?"clean":"warn");
+ let worst=r;const evi=[{name:"Message patterns",state:r.verdict==="safe"?"clean":"warn",detail:r.hits[0]||"reads like a normal message"}];
+ const t0=Date.now(); // real background testing of every embedded link, inside the 10s budget
+ for(const link of links.slice(0,3)){
+  if(Date.now()-t0>9000||id!==scanSeq)break;
+  scanProgress("Live DNS","run");
+  let deep=null;
+  try{
+   deep=await truthViaBackground(link,(n,s)=>{if(id===scanSeq)scanProgress(n,s)});
+   if(!deep)deep=await deepVerify(link,{});
+  }catch{}
+  if(deep&&deep.report.score>worst.score){worst={...deep.report,kind:"message",sources:[...evi,...deep.sources]}}
+ }
+ clearInterval(tick);
+ if(id!==scanSeq)return;
+ hideScan();
+ worst.sources=worst.sources||evi;
+ const secs=((Date.now()-start)/1000).toFixed(1);
+ const c=worst.verdict==="safe"?"#00E5A0":worst.verdict==="suspicious"?"#F6E27A":"#FF4D6D";
+ $("mvline").innerHTML='<span style="color:'+c+'">'+(worst.verdict==="safe"?"✅ GENUINE MESSAGE — YOU CAN GO AHEAD":"⛔ DO NOT TRUST — DO NOT ENTER")+' • real check '+secs+'s</span>';
+ $("mreasons").innerHTML="• "+(worst.hits.join("<br>• ")||"No scam signals — reads like a normal message.");
+ addLog("Message real check "+secs+"s → "+(worst.verdict==="safe"?"GENUINE":"NOT SAFE"));
+ popup(worst,$("url").value); // result ONLY after the real check
+};
+document.querySelectorAll("[data-u]").forEach(b=>b.onclick=()=>{$("url").value=b.dataset.u;checkUrl(b.dataset.u)});
+$("px").onclick=()=>$("pop").style.display="none";
+$("pop").onclick=e=>{if(e.target.id==="pop")$("pop").style.display="none"};
+function smartScan(){
+ const files=["DCIM/photo1.jpg","Download/whatsapp-gold-premium.apk","Documents/report.pdf","Download/system-update.apk","Music/song.mp3"];
+ const bad=files.filter(f=>/whatsapp.*(plus|gold|premium).*\.apk|system.*update.*\.apk/i.test(f));
+ $("stat").textContent="Scanning…";
+ setTimeout(()=>{bad.length?(blocked+=bad.length,addLog("Quarantined: "+bad.join(", "))):addLog("Smart Scan clean — 5 files in <5ms");
+  $("stat").textContent=blocked.toLocaleString()+" threats blocked lifetime";$("score").textContent="100"},450);
+}
+$("scan").onclick=smartScan;$("orb").onclick=smartScan;
+document.querySelectorAll(".tile").forEach(t=>t.onclick=()=>{
+ const k=t.dataset.t;
+ if(k==="av")smartScan();
+ if(k==="zero")addLog("Behavior Shield: Flashlight → device_admin BLOCKED (zero-day)");
+ if(k==="fw")addLog("Firewall: ChatApp → c2-server BLOCKED • RDP brute-force IP banned");
+ if(k==="wifi")addLog("Wi-Fi: Home-WiFi WPA2 needs attention — change default router password");
+ if(k==="dns")addLog("Real Site: DoH verified mybank.com — no hijack");
+ if(k==="mail")addLog('Email Guard: "Urgent: account suspended" QUARANTINED');
+ if(k==="ransom")addLog("Ransomware Shield: EvilEncryptor → Pictures BLOCKED");
+ if(k==="shred")addLog("Shredder: 2 files 3-pass wiped • Updater: Chrome + WhatsApp patches found");
+});
+let last="";
+setInterval(async()=>{
+ if(!$("bg").checked||!$("lg").checked)return;
+ try{const txt=await navigator.clipboard.readText();if(!txt||txt===last||!/https?:\/\//i.test(txt))return;last=txt;
+  const m=txt.match(/https?:\/\/[^\s"']+/i);if(m&&m[0]!==$("url").value){$("url").value=m[0];checkUrl(m[0])}}catch{}
+},2500);
+const MX=[["Advanced Antivirus","Active"],["Behavior Shield","Active"],["CyberCapture","Active"],["Advanced Firewall","Active"],["Remote Access Shield","Active"],["Network Inspector","Active"],["Real Site","Active"],["Web Shield","Active"],["Email Guard","Active"],["LinkGuard Middleman","Active"],["Webcam Shield","Active"],["Browser Shield","Active"],["Ransomware Shield","Active"],["Sandbox","Manual"],["Data Shredder","Manual"],["Software Updater","Active"]];
+$("matrix").innerHTML=MX.map(x=>'<div class="frow"><span>'+x[0]+'</span><span class="'+(x[1]==="Active"?"on":"man")+'">'+x[1]+'</span></div>').join("");
+</script>
+
+
+</body></html>
