@@ -3,6 +3,13 @@
 <html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>AvastLuxe Premium — Browser</title>
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#06070B">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="AvastLuxe">
+<link rel="apple-touch-icon" href="icon-192.png">
+<link rel="icon" type="image/png" href="icon-192.png">
 <style>
 :root{--bg:#06070B;--gold:#D4AF37;--goldhi:#F6E27A;--em:#00E5A0;--dn:#FF4D6D;--tx:#F5F1E6;--mu:#9A94A6}
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
@@ -50,6 +57,47 @@ h2{font-size:17px;margin:18px 0 4px}
 .spin{width:54px;height:54px;margin:4px auto;border-radius:50%;border:4px solid rgba(212,175,55,.25);border-top-color:var(--goldhi);animation:rot 1s linear infinite}
 @keyframes rot{to{transform:rotate(360deg)}}
 @media (prefers-reduced-motion:reduce){.orb::before{animation:none}}
+
+/* ════════════ AGENT LAYER ════════════ */
+#agentfab{position:fixed;right:14px;bottom:18px;width:58px;height:58px;border-radius:50%;z-index:90;display:flex;align-items:center;justify-content:center;cursor:pointer;user-select:none;-webkit-user-select:none;touch-action:none;background:radial-gradient(circle at 35% 30%,#1b2030,#07080D);border:2px solid var(--gold);box-shadow:0 6px 22px rgba(0,0,0,.65),0 0 18px rgba(212,175,55,.35);transition:transform .15s,border-color .3s,box-shadow .3s}
+#agentfab:active{transform:scale(.9)}
+#agentfab .shield{font-size:26px;filter:drop-shadow(0 0 6px rgba(246,226,122,.55));pointer-events:none}
+#agentfab .pip{position:absolute;top:-3px;right:-3px;width:14px;height:14px;border-radius:50%;background:var(--em);border:2px solid #06070B;display:none}
+#agentfab.working{border-color:var(--goldhi);animation:fabout .7s ease-in-out infinite alternate}
+@keyframes fabout{to{box-shadow:0 6px 22px rgba(0,0,0,.65),0 0 30px rgba(246,226,122,.8)}}
+#agentfab.safe{border-color:var(--em);box-shadow:0 6px 22px rgba(0,0,0,.65),0 0 24px rgba(0,229,160,.55)}
+#agentfab.scam{border-color:var(--dn);box-shadow:0 6px 22px rgba(0,0,0,.65),0 0 26px rgba(255,77,109,.7);animation:fabout .35s ease-in-out infinite alternate}
+#agentfab .badge{position:absolute;top:-8px;left:-10px;min-width:22px;height:20px;border-radius:10px;background:var(--dn);color:#fff;font-size:11px;font-weight:900;display:none;align-items:center;justify-content:center;padding:0 5px;border:2px solid #06070B}
+#agentfab .lbl{position:absolute;bottom:-16px;right:-4px;font-size:8px;letter-spacing:2px;color:var(--mu);font-weight:800;white-space:nowrap}
+#agentpanel{position:fixed;right:12px;bottom:88px;width:min(320px,calc(100vw - 24px));max-height:70vh;overflow:auto;background:linear-gradient(160deg,#1c1526,#0A0C13 60%,#141021);border:1px solid rgba(212,175,55,.5);border-radius:18px;padding:16px;z-index:91;display:none;box-shadow:0 24px 70px rgba(0,0,0,.8)}
+#agentpanel h3{font-size:13px;letter-spacing:2px;color:var(--goldhi);margin-bottom:8px}
+.apx{background:none;border:0;color:var(--mu);float:right;cursor:pointer;font-size:15px;padding:0 4px}
+#agentresult{font-size:12px;line-height:1.65;color:var(--tx);margin:8px 0}
+#agentresult .big{font-weight:900;font-size:15px;letter-spacing:1px;display:block;margin-bottom:4px}
+.aprow{display:flex;justify-content:space-between;align-items:center;font-size:11px;color:var(--mu);padding:6px 0;border-bottom:1px solid rgba(255,255,255,.06)}
+.apbtn{border:0;width:100%;border-radius:10px;padding:10px;font-weight:800;cursor:pointer;font-size:11px;letter-spacing:1px;margin-top:8px;background:rgba(212,175,55,.16);color:var(--goldhi);border:1px solid rgba(212,175,55,.4)}
+.apbtn.go{background:linear-gradient(135deg,var(--goldhi),#8A6D1B);color:#111;border:0}
+.apbtn.dn{background:rgba(255,77,109,.14);color:var(--dn);border:1px solid rgba(255,77,109,.4)}
+#wizard{position:fixed;inset:0;background:rgba(0,0,0,.88);z-index:100;display:none;align-items:center;justify-content:center;padding:18px}
+.wzcard{background:linear-gradient(160deg,#1c1526,#0A0C13 60%,#141021);border:1px solid rgba(212,175,55,.55);border-radius:20px;padding:20px;max-width:380px;width:100%;box-shadow:0 24px 70px rgba(0,0,0,.8)}
+.wzcard h2{margin:0 0 4px;color:var(--goldhi);font-size:16px}
+.wzstep{display:flex;gap:10px;align-items:flex-start;padding:10px 0;border-bottom:1px solid rgba(255,255,255,.06)}
+.wzstep .e{font-size:20px}
+.wzstep .t{font-weight:800;font-size:12px}
+.wzstep .m{color:var(--mu);font-size:11px;margin-top:2px;line-height:1.5}
+.wzstat{font-size:10px;font-weight:900;letter-spacing:1px;white-space:nowrap}
+.wzstat.ok{color:var(--em)}.wzstat.wait{color:var(--goldhi)}.wzstat.no{color:var(--dn)}
+#interdict{position:fixed;inset:0;background:rgba(3,4,8,.96);z-index:95;display:none;align-items:center;justify-content:center;padding:20px}
+.intcard{max-width:400px;width:100%;text-align:center}
+.intcard .icn{font-size:56px;animation:intpulse 1s ease-in-out infinite alternate}
+@keyframes intpulse{to{transform:scale(1.08)}}
+.intcard h1{font-size:20px;letter-spacing:2px;margin:6px 0}
+.intcard .sub{color:var(--mu);font-size:12px;line-height:1.7;margin-bottom:10px}
+.intcard ul{text-align:left;font-size:12px;color:var(--tx);line-height:1.8;margin:0 0 12px;padding-left:18px}
+.intcard .urlbox{background:rgba(0,0,0,.5);border:1px solid rgba(255,255,255,.12);border-radius:10px;padding:8px;font-size:11px;color:var(--mu);word-break:break-all;margin-bottom:10px}
+.instbadge{position:fixed;left:12px;bottom:14px;background:rgba(10,12,19,.95);border:1px solid rgba(212,175,55,.45);border-radius:12px;padding:8px 12px;font-size:11px;color:var(--tx);z-index:88;display:none;max-width:70vw;box-shadow:0 12px 30px rgba(0,0,0,.7)}
+.instbadge b{color:var(--goldhi)}
+#screenvid{position:fixed;width:2px;height:2px;opacity:0;pointer-events:none;left:-10px;top:-10px}
 </style>
 </head>
 <body>
@@ -133,6 +181,46 @@ h2{font-size:17px;margin:18px 0 4px}
   <div class="m" style="text-align:center">NO result until the full real check finishes (~5s budget). Minimizing is safe — the background worker continues testing.</div>
   <button class="close" id="scancancel">Cancel check</button>
 </div></div>
+
+<video id="screenvid" playsinline muted></video>
+
+<!-- ═══════════ FIRST-RUN PERMISSION WIZARD ═══════════ -->
+<div id="wizard"><div class="wzcard">
+  <h2>🛡️ Enable Shield Agent</h2>
+  <div class="m" style="color:var(--mu);font-size:11px;margin-bottom:6px">Grant these once — the agent then watches links, messages and on-screen text, and blocks scams before they open.</div>
+  <div class="wzstep"><div class="e">🔔</div><div style="flex:1"><div class="t">Background alerts</div><div class="m">Real browser permission. Threat verdicts arrive as notifications even when this tab is minimized.</div></div><div class="wzstat wait" id="wznotif">ALLOW →</div></div>
+  <div class="wzstep"><div class="e">📋</div><div style="flex:1"><div class="t">Clipboard link watch</div><div class="m">Scans any link you copy from WhatsApp/SMS/email — result appears on the floating shield.</div></div><div class="wzstat wait" id="wzclip">ALLOW →</div></div>
+  <div class="wzstep"><div class="e">👁️</div><div style="flex:1"><div class="t">On-screen text scan</div><div class="m">Optional. Uses screen-capture + on-device OCR to read messages/URLs visible on screen and flag scams. Nothing leaves your phone.</div></div><div class="wzstat wait" id="wzscreen">ALLOW →</div></div>
+  <div class="wzstep" style="border:0"><div class="e">📲</div><div style="flex:1"><div class="t">Install as app (icon on home screen)</div><div class="m">Makes the shield a real icon on your phone screen, opens fullscreen like a native app.</div></div><div class="wzstat wait" id="wzinstall">TAP →</div></div>
+  <button class="apbtn go" id="wzdone" style="margin-top:12px">✅ START SHIELD AGENT</button>
+  <button class="close" id="wzskip" style="margin-top:6px">Not now — run in-tab only</button>
+</div></div>
+
+<!-- ═══════════ NAVIGATION INTERCEPTOR (wrong tap = stopped BEFORE load) ═══════════ -->
+<div id="interdict"><div class="intcard">
+  <div class="icn" id="inticon">🛑</div>
+  <h1 id="inttitle" style="color:var(--dn)">STOPPED — SCAM LINK</h1>
+  <div class="urlbox" id="inturl"></div>
+  <div class="sub" id="intsub">AvastLuxe stopped that tap before anything loaded. Real check running…</div>
+  <ul id="intlist"></ul>
+  <div id="intactions"></div>
+</div></div>
+
+<!-- ═══════════ FLOATING SHIELD ICON ═══════════ -->
+<div id="agentfab" title="Shield Agent"><span class="shield">🛡️</span><span class="pip"></span><span class="badge">0</span><span class="lbl">SHIELD</span></div>
+<div id="agentpanel">
+  <button class="apx" id="apclose">✕</button>
+  <h3>🛡️ SHIELD AGENT</h3>
+  <div id="agentresult"><span class="big" style="color:var(--em)">ACTIVE — PROTECTED</span>Watching copied links, taps and typed URLs. Drag me anywhere; tap me for the last verdict.</div>
+  <div class="aprow"><span>Background alerts</span><b id="apnotif" class="prompt">not asked</b></div>
+  <div class="aprow"><span>Background worker</span><b id="apsw" class="denied">checking…</b></div>
+  <div class="aprow"><span>Clipboard watch</span><b id="apclip" class="prompt">off</b></div>
+  <div class="aprow"><span>On-screen text scan</span><b id="apscreen" class="prompt">off</b></div>
+  <button class="apbtn go" id="apenable">⚙️ GRANT PERMISSIONS</button>
+  <button class="apbtn" id="apscreenbtn">👁️ START/STOP SCREEN SCAN</button>
+  <button class="apbtn" id="aptest">⚡ RUN SPEED TEST</button>
+</div>
+<div class="instbadge" id="instbadge"></div>
 
 <script>
 // ---- Same engine as the extension (URLs + messages), instant ----
@@ -599,6 +687,339 @@ setInterval(async()=>{
 },2500);
 const MX=[["Advanced Antivirus","Active"],["Behavior Shield","Active"],["CyberCapture","Active"],["Advanced Firewall","Active"],["Remote Access Shield","Active"],["Network Inspector","Active"],["Real Site","Active"],["Web Shield","Active"],["Email Guard","Active"],["LinkGuard Middleman","Active"],["Webcam Shield","Active"],["Browser Shield","Active"],["Ransomware Shield","Active"],["Sandbox","Manual"],["Data Shredder","Manual"],["Software Updater","Active"]];
 $("matrix").innerHTML=MX.map(x=>'<div class="frow"><span>'+x[0]+'</span><span class="'+(x[1]==="Active"?"on":"man")+'">'+x[1]+'</span></div>').join("");
+</script>
+
+<script>
+// ═══════════════════════════════════════════════════════════════════════════
+// SHIELD AGENT — background protector layer (added on top of the engine above)
+// Instant (<1ms) offline screening everywhere + fast multi-source verify,
+// floating shield icon, tap interception, clipboard + typing + screen watch.
+// ═══════════════════════════════════════════════════════════════════════════
+const A$=id=>document.getElementById(id);
+const AG={notif:"default",clip:false,screenOn:false,tess:null,tessState:"idle",lastFrame:0,ocrBusy:false,blocked:0,scanCount:0,deferred:null,dragging:false,dragMoved:false};
+
+// ── 1. Fast state paint on the floating shield ─────────────────────────────
+function agentState(kind,big,text,color){
+ const fab=A$("agentfab");
+ fab.classList.remove("working","safe","scam");
+ if(kind)fab.classList.add(kind);
+ const c=color||(kind==="scam"?"#FF4D6D":kind==="safe"?"#00E5A0":"#F6E27A");
+ A$("agentresult").innerHTML='<span class="big" style="color:'+c+'">'+big+'</span>'+text;
+ if(kind==="scam"){AG.blocked++;const b=fab.querySelector(".badge");b.style.display="flex";b.textContent=AG.blocked}
+ fab.querySelector(".pip").style.display=kind?"block":"none";
+ AG.scanCount++;
+}
+function agentNotify(title,body){
+ try{if("Notification" in window&&Notification.permission==="granted")new Notification(title,{body:body,icon:"icon-192.png",tag:"lux-agent"})}catch(e){}
+}
+function haptic(ms){try{if(navigator.vibrate)navigator.vibrate(ms)}catch(e){}}
+
+// ── 2. Hook the engine's verdicts so every result also lands on the shield ─
+const _paintPopup=paintPopup;
+paintPopup=function(r,url){
+ _paintPopup(r,url);
+ agentState(r.verdict==="safe"?"safe":r.verdict==="scam"?"scam":null,
+  r.verdict==="safe"?"✅ GENUINE":r.verdict==="suspicious"?"⚠️ NOT SAFE":"⛔ SCAM — BLOCKED",
+  "<b>"+(r.host||"message")+"</b> • risk "+(r.score||0)+"/100<br>"+(r.hits&&r.hits[0]?r.hits[0]:"clean"));
+ if(r.verdict==="scam"){haptic([40,60,40]);agentNotify("⛔ SCAM stopped",(r.host||"link")+" — risk "+(r.score||0)+"/100. Do not enter.")}
+};
+const _paintUrl=paintUrl;
+paintUrl=function(r,src){
+ _paintUrl(r,src);
+ if(!A$("pop")||A$("pop").style.display==="none"){
+  agentState(r.verdict==="safe"?"safe":r.verdict==="scam"?"scam":null,
+   r.verdict==="safe"?"✅ GENUINE":r.verdict==="suspicious"?"⚠️ NOT SAFE":"⛔ SCAM",
+   (r.host||"")+" • "+src);
+ }
+};
+
+// ── 3. TAP INTERCEPTOR — wrong tap is stopped BEFORE anything loads ────────
+function evidenceLines(sources){
+ const ic={clean:"✅",warn:"⚠️",bad:"⛔",skip:"➖"};
+ return (sources||[]).filter(s=>s.state!=="skip").slice(0,6).map(s=>"<li>"+(ic[s.state]||"•")+" <b>"+s.name+":</b> "+s.detail+"</li>");
+}
+// instant screen is SYNCHRONOUS — the tap is stopped in the same tick,
+// before the browser can navigate anywhere; deep verify runs after.
+function interceptNow(url,how){
+ const t0=performance.now();
+ const r=analyzeText(url);            // instant screen — <1ms, always
+ const ms=(performance.now()-t0).toFixed(1);
+ if(r.verdict==="safe"){              // genuine → let the user straight through
+  agentState("safe","✅ GENUINE",r.host||url+" • instant check "+ms+"ms");
+  return true;
+}
+ // SCAM / SUSPICIOUS → block immediately
+ A$("interdict").style.display="flex";
+ A$("inticon").textContent=r.verdict==="scam"?"🛑":"⚠️";
+ A$("inttitle").textContent=r.verdict==="scam"?"STOPPED — SCAM LINK":"PAUSED — SUSPICIOUS LINK";
+ A$("inttitle").style.color=r.verdict==="scam"?"#FF4D6D":"#F6E27A";
+ A$("inturl").textContent=url;
+ A$("intsub").textContent="Blocked in "+ms+"ms (offline engine) — the page was never loaded. Real multi-source check running…";
+ A$("intlist").innerHTML="<li>Engine: "+(r.hits[0]||"suspicious signals")+"</li>";
+ A$("intactions").innerHTML='<button class="apbtn go" id="intback">↩ GO BACK — STAY SAFE</button>';
+ A$("intback").onclick=()=>{A$("interdict").style.display="none";how!=="typed"&&history.length>1?history.back():0};
+ haptic([50,40,50]);
+ // fast deep verify (~2-4s) in background; shield + interstitial update when done
+ (async()=>{try{
+  let deep=await truthViaBackground(url,null);
+  if(!deep)deep=await deepVerify(url,{});
+  if(deep){
+   const up=deep.report;up.sources=deep.sources;
+   const secs=deep.ms?deep.ms/1000:((performance.now()-t0)/1000);
+   paintUrl(up,"real check: "+deep.sources.filter(s=>s.state!=="skip").length+" sources in "+secs.toFixed(1)+"s");
+   if(A$("interdict").style.display==="flex"){
+    A$("intsub").textContent="Real check finished ("+secs.toFixed(1)+"s, "+deep.sources.filter(s=>s.state!=="skip").length+" sources). "+disclaimerFor(up);
+    A$("intlist").innerHTML=evidenceLines(deep.sources).join("")||"<li>No red flags found in live sources</li>";
+    if(up.verdict==="safe"){ // real check acquits → now allow through
+     A$("inticon").textContent="✅";A$("inttitle").textContent="GENUINE — CLEARED";A$("inttitle").style.color="#00E5A0";
+     A$("intactions").innerHTML='<button class="apbtn go" id="intgo">✓ CONTINUE TO SITE</button><button class="apbtn dn" id="intback2">↩ STAY HERE</button>';
+     A$("intgo").onclick=()=>{A$("interdict").style.display="none";location.href=url};
+     A$("intback2").onclick=()=>{A$("interdict").style.display="none"};
+     agentState("safe","✅ CLEARED",(up.host||"")+" — genuine after real check");
+    }else{
+     A$("intactions").innerHTML='<button class="apbtn go" id="intback3">↩ GO BACK — STAY SAFE</button><button class="apbtn dn" id="intforce">⚠️ OPEN ANYWAY (risk)</button>';
+     A$("intback3").onclick=()=>{A$("interdict").style.display="none"};
+     A$("intforce").onclick=()=>{A$("interdict").style.display="none";window.open(url,"_blank","noopener")};
+     agentState(up.verdict==="scam"?"scam":null,"⛔ "+up.verdict.toUpperCase(),"<b>"+(up.host||"")+"</b> • risk "+up.score+"/100<br>"+(up.hits[0]||""));
+    }
+   }
+  }
+ }catch(e){}})();
+ return false;
+}
+// every link tap on this page (capture phase — stops the tap in the same tick)
+document.addEventListener("click",(e)=>{
+ const a=e.target.closest&&e.target.closest("a[href]");
+ if(!a)return;
+ const href=a.getAttribute("href")||"";
+ if(!/^https?:/i.test(href))return;      // mailto:, #anchors → untouched
+ if(new URL(href,location.href).host===location.host)return; // own pages pass
+ const ok=interceptNow(href,"tap");
+ if(!ok){e.preventDefault();e.stopPropagation();return}
+},true);
+// window.open is guarded too (popups, sandbox opens, target=_blank)
+const _open=window.open.bind(window);
+window.open=function(u){ if(typeof u==="string"&&/^https?:/i.test(u)&&new URL(u,location.href).host!==location.host){
+  if(!interceptNow(u,"popup"))return null;return _open(u,"_blank","noopener")} return _open.apply(window,arguments)};
+// form submits with external action are screened (sync — blocked same tick)
+document.addEventListener("submit",(e)=>{
+ const f=e.target;const act=f.getAttribute("action")||"";
+ if(!/^https?:/i.test(act))return;
+ if(new URL(act,location.href).host===location.host)return;
+ if(!interceptNow(act,"form")){e.preventDefault();e.stopPropagation()}
+},true);
+
+// ── 4. TYPING WATCH — instant screen of whatever is being typed ────────────
+let typeT=null;
+document.addEventListener("input",e=>{
+ const el=e.target;if(!el||!/^(INPUT|TEXTAREA)$/.test(el.tagName))return;
+ const v=el.value.trim();if(v.length<6)return;
+ clearTimeout(typeT);
+ typeT=setTimeout(()=>{
+  const t0=performance.now();
+  const r=analyzeText(v);
+  const ms=(performance.now()-t0).toFixed(2);
+  if(r.verdict!=="safe"){
+   agentState(r.verdict==="scam"?"scam":null,"⚠️ TYPED TEXT LOOKS "+r.verdict.toUpperCase(),"<b>Instant screen:</b> "+(r.hits[0]||"risky wording")+" <span style='color:#9A94A6'>("+r.score+"/100, "+ms+"ms)</span>");
+   if(r.verdict==="scam")haptic(40);
+  }else if(r.score>0){
+   agentState(null,"🔎 TYPED TEXT SCREENED","minor signals ("+r.score+"/100) — clear");
+  }
+ },300); // debounce: scans the moment you pause typing
+},true);
+
+// ── 5. CLIPBOARD WATCH — background poll, instant verdict on the shield ────
+let lastClip="";
+(async function clipLoop(){
+ try{
+  if(A$("bg")&&A$("bg").checked&&navigator.clipboard&&navigator.permissions){
+   const st=await navigator.permissions.query({name:"clipboard-read"}).catch(()=>null);
+   AG.clip=st&&st.state==="granted";
+   const el=A$("apclip");
+   if(el){el.textContent=AG.clip?"watching":"needs permission";el.className=AG.clip?"granted":"prompt"}
+  }
+  if(AG.clip){
+   const txt=await navigator.clipboard.readText();
+   if(txt&&txt!==lastClip&&/https?:\/\/|www\.|\.[a-z]{2,}\//i.test(txt)){
+    lastClip=txt;
+    const m=txt.match(/https?:\/\/[^\s"']+/i)||txt.match(/www\.[^\s"']+/i);
+    if(m){
+     const tc=performance.now();
+     const r=analyzeText(m[0]);
+     const cms=(performance.now()-tc).toFixed(2);
+     if(r.verdict!=="safe"){ // INSTANT verdict on shield, then real check in background
+      agentState(r.verdict==="scam"?"scam":null,"⛔ COPIED LINK — "+r.verdict.toUpperCase(),"<b>"+m[0]+"</b><br>"+(r.hits[0]||"")+" • instant "+cms+"ms — real check running…");
+      haptic([40,60,40]);
+      deepVerify(m[0],{}).then(d=>{
+       if(!d)return;
+       const up=d.report;
+       agentState(up.verdict==="safe"?"safe":up.verdict==="scam"?"scam":null,
+        up.verdict==="safe"?"✅ COPIED LINK CLEARED":"⛔ COPIED LINK — "+up.verdict.toUpperCase(),
+        "<b>"+(up.host||m[0])+"</b> • risk "+up.score+"/100 ("+d.sources.filter(s=>s.state!=="skip").length+" sources in "+(d.ms/1000).toFixed(1)+"s)<br>"+(up.hits[0]||""));
+       if(up.verdict!=="safe")agentNotify("⛔ Copied link is "+up.verdict,(up.host||"")+" — risk "+up.score+"/100");
+      }).catch(()=>{});
+     }else agentState("safe","✅ COPIED LINK GENUINE",m[0]);
+    }
+   }
+  }
+ }catch(e){}
+ setTimeout(clipLoop,2000); // every 2s — light, no UI jank
+})();
+
+// ── 6. ON-SCREEN TEXT SCAN — screen capture + on-device OCR (Tesseract) ────
+function loadTesseract(){
+ return new Promise((resolve,reject)=>{
+  if(window.Tesseract)return resolve(window.Tesseract);
+  const s=document.createElement("script");
+  s.src="https://cdn.jsdelivr.net/npm/tesseract.js@5.1.1/dist/tesseract.min.js";
+  s.onload=()=>resolve(window.Tesseract);s.onerror=reject;
+  document.head.appendChild(s);
+ });
+}
+async function startScreenScan(){
+ agentState("working","👁️ SCREEN SCAN STARTING","Loading on-device OCR (one-time, few MB)…");
+ try{
+  const stream=await navigator.mediaDevices.getDisplayMedia({video:{frameRate:0.4},audio:false});
+  const vid=A$("screenvid");vid.srcObject=stream;await vid.play();
+  const T=await loadTesseract();
+  if(!AG.tess){
+   agentState("working","👁️ OCR WARMING UP","First page takes ~5s, then continuous…");
+   AG.tess=await T.createWorker("eng",1,{logger:m=>{if(m.status==="recognizing text")agentState("working","👁️ SCREEN SCAN ACTIVE","Reading screen… "+Math.round((m.progress||0)*100)+"%")}});
+  }
+  AG.screenOn=true;
+  A$("apscreen").textContent="active";A$("apscreen").className="granted";
+  agentState("safe","👁️ SCREEN SCAN ACTIVE","Watching messages/URLs on screen. Scams appear here + as notifications.");
+  const cvs=document.createElement("canvas");const seen=new Set();
+  const tick=async()=>{
+   if(!AG.screenOn)return;
+   if(!AG.ocrBusy&&vid.videoWidth){
+    AG.ocrBusy=true;
+    try{
+     const w=720;const h=Math.round(vid.videoHeight*(w/vid.videoWidth));
+     cvs.width=w;cvs.height=h;
+     const g=cvs.getContext("2d");g.drawImage(vid,0,0,w,h);
+     const {data:{text}}=await AG.tess.recognize(cvs);
+     const urls=text.match(/https?:\/\/[^\s"'<>]+|(?:www|[a-z0-9-]+)\.[a-z]{2,}(?:\/[^\s"'<>]*)?/gi)||[];
+     const uniq=[...new Set(urls.map(u=>u.replace(/[.,;:)\]]+$/,"")))].filter(u=>u.length>6).slice(0,5);
+     for(const u of uniq){
+      if(seen.has(u))continue;seen.add(u);
+      const r=analyzeText(u);
+      if(r.verdict!=="safe"){
+       agentState(r.verdict==="scam"?"scam":null,"⛔ ON SCREEN — "+r.verdict.toUpperCase(),"<b>"+u+"</b><br>"+(r.hits[0]||"")+" • instant screen — real check running…");
+       haptic([50,40,50]);
+       agentNotify("⛔ Scam on screen",u+" — "+(r.hits[0]||r.verdict));
+       deepVerify(/^https?:/i.test(u)?u:"http://"+u,{}).then(d=>{
+        if(d&&d.report.verdict!=="safe")agentNotify("⛔ Confirmed "+d.report.verdict,(d.report.host||u)+" — risk "+d.report.score+"/100");
+       }).catch(()=>{});
+      }
+     }
+    }catch(e){}
+    AG.ocrBusy=false;
+   }
+   setTimeout(tick,1500); // fast cadence, skips frames while busy
+  };
+  tick();
+  stream.getVideoTracks()[0].addEventListener("ended",stopScreenScan);
+ }catch(e){
+  AG.screenOn=false;
+  A$("apscreen").textContent="blocked";A$("apscreen").className="denied";
+  agentState(null,"👁️ SCREEN SCAN UNAVAILABLE","Your browser blocked screen capture. Use clipboard + tap watch instead — they are always on.");
+ }
+}
+function stopScreenScan(){
+ AG.screenOn=false;
+ const v=A$("screenvid");if(v&&v.srcObject){v.srcObject.getTracks().forEach(t=>t.stop());v.srcObject=null}
+ A$("apscreen").textContent="off";A$("apscreen").className="prompt";
+ agentState(null,"👁️ SCREEN SCAN OFF","Tap the shield → START/STOP SCREEN SCAN to re-enable.");
+}
+
+// ── 7. PERMISSION WIZARD ───────────────────────────────────────────────────
+function paintWizard(){
+ const n=A$("wznotif"),c=A$("wzclip"),s=A$("wzscreen"),i=A$("wzinstall");
+ const p=("Notification" in window)?Notification.permission:"unsupported";
+ n.textContent=p==="granted"?"✅ ON":p==="denied"?"❌ BLOCKED":"ALLOW →";
+ n.className="wzstat "+(p==="granted"?"ok":p==="denied"?"no":"wait");
+ c.textContent=AG.clip?"✅ ON":"ALLOW →";c.className="wzstat "+(AG.clip?"ok":"wait");
+ s.textContent=AG.screenOn?"✅ ON":"ALLOW →";s.className="wzstat "+(AG.screenOn?"ok":"wait");
+ i.textContent=AG.deferred?"INSTALL →":"add via browser menu";i.className="wzstat "+(AG.deferred?"wait":"no");
+}
+A$("wznotif").onclick=async()=>{
+ try{const p=await Notification.requestPermission();AG.notif=p;paintWizard();
+  if(p==="granted"){tellWorker({type:"SHIELD_ON"});agentState("safe","🔔 BACKGROUND ALERTS ON","Shield now warns you even when this tab is minimized.")}
+ }catch(e){}
+};
+A$("wzclip").onclick=async()=>{
+ try{
+  if(navigator.clipboard&&navigator.clipboard.readText)await navigator.clipboard.readText();
+  AG.clip=true;paintWizard();
+  const el=A$("apclip");if(el){el.textContent="watching";el.className="granted"}
+ }catch(e){const el=A$("apclip");if(el){el.textContent="blocked";el.className="denied"}}
+};
+A$("wzscreen").onclick=()=>{paintWizard();startScreenScan();paintWizard()};
+A$("wzinstall").onclick=()=>{if(AG.deferred){AG.deferred.prompt();AG.deferred.userChoice.then(()=>{AG.deferred=null;paintWizard()})}else{A$("instbadge").innerHTML="<b>Install:</b> tap ⋮ in your browser → <b>Add to Home screen</b> — the 🛡️ icon appears on your phone.";A$("instbadge").style.display="block";setTimeout(()=>A$("instbadge").style.display="none",9000)}};
+window.addEventListener("beforeinstallprompt",e=>{e.preventDefault();AG.deferred=e;paintWizard()});
+function openWizard(){paintWizard();A$("wizard").style.display="flex"}
+A$("wzdone").onclick=()=>{
+ A$("wizard").style.display="none";
+ localStorage.setItem("luxe_agent_on","1");
+ tellWorker({type:"SHIELD_ON"});
+ agentState("safe","🛡️ SHIELD AGENT ACTIVE","Watching links, taps, copied text and typed URLs. Tap me anytime.");
+};
+A$("wzskip").onclick=()=>{A$("wizard").style.display="none";localStorage.setItem("luxe_agent_on","1")};
+setTimeout(()=>{if(!localStorage.getItem("luxe_agent_on"))openWizard()},900);
+
+// ── 8. FLOATING SHIELD: tap panel, drag anywhere ───────────────────────────
+const fab=A$("agentfab");
+A$("apclose").onclick=()=>A$("agentpanel").style.display="none";
+A$("apenable").onclick=openWizard;
+A$("apscreenbtn").onclick=()=>{AG.screenOn?stopScreenScan():startScreenScan()};
+A$("aptest").onclick=async()=>{
+ agentState("working","⚡ SPEED TEST RUNNING","Checking google.com through the real engine…");
+ const t0=performance.now();
+ const inst=analyzeText("https://www.google.com");
+ const t1=performance.now();
+ deepVerify("https://www.google.com",{}).then(d=>{
+  const deepMs=d?d.ms:(performance.now()-t1);
+  agentState("safe","⚡ SPEED OK","Offline screen: <b>"+(t1-t0).toFixed(2)+"ms</b> ("+inst.verdict.toUpperCase()+")<br>Real multi-source check: <b>"+(deepMs/1000).toFixed(1)+"s</b>"+(d?" • "+d.sources.filter(s=>s.state!=="skip").length+" live sources":""));
+ }).catch(()=>{agentState(null,"⚡ TEST DONE","Offline: "+(t1-t0).toFixed(2)+"ms — live sources unreachable right now")});
+};
+let dragX=0,dragY=0,fabX=0,fabY=0;
+fab.addEventListener("pointerdown",e=>{
+ AG.dragging=true;AG.dragMoved=false;
+ dragX=e.clientX;dragY=e.clientY;
+ const r=fab.getBoundingClientRect();fabX=r.left;fabY=r.top;
+ fab.setPointerCapture&&fab.setPointerCapture(e.pointerId);
+});
+fab.addEventListener("pointermove",e=>{
+ if(!AG.dragging)return;
+ const dx=e.clientX-dragX,dy=e.clientY-dragY;
+ if(Math.abs(dx)+Math.abs(dy)>6)AG.dragMoved=true;
+ if(AG.dragMoved){
+  const nx=Math.max(4,Math.min(window.innerWidth-62,fabX+dx));
+  const ny=Math.max(4,Math.min(window.innerHeight-62,fabY+dy));
+  fab.style.right="auto";fab.style.bottom="auto";
+  fab.style.left=nx+"px";fab.style.top=ny+"px";
+ }
+});
+fab.addEventListener("pointerup",()=>{
+ AG.dragging=false;
+ if(!AG.dragMoved){
+  const p=A$("agentpanel");
+  p.style.display=p.style.display==="flex"?"none":"flex";
+ }
+});
+
+// ── 9. Keep the worker warm + first paint ──────────────────────────────────
+setInterval(()=>{try{tellWorker({type:"PING"})}catch(e){}},20000);
+if("Notification" in window)AG.notif=Notification.permission;
+if(navigator.serviceWorker){
+ navigator.serviceWorker.addEventListener("message",e=>{
+  if(e.data&&e.data.type==="PONG"){
+   const el=A$("apsw");if(el){el.textContent="active — background alive";el.className="granted"}
+  }
+ });
+}
+agentState("safe","🛡️ SHIELD AGENT READY","Tap for permissions — enable background alerts, clipboard watch and (optionally) on-screen scan.");
 </script>
 
 
