@@ -158,6 +158,45 @@ h2{font-size:17px;margin:18px 0 4px}
 .apbtn[disabled]{opacity:.45;cursor:not-allowed}
 .apgrid{display:grid;grid-template-columns:1fr 1fr;gap:7px}
 .apgrid .apbtn{margin-top:0}
+
+/* ════════════ LINKGUARD — THE PICTURE ════════════ */
+#lghero{--lgc:#F6E27A;display:flex;gap:15px;align-items:center;background:linear-gradient(150deg,rgba(212,175,55,.12),rgba(10,12,19,.92) 55%,rgba(20,16,33,.96));border:1px solid rgba(212,175,55,.42);border-radius:20px;padding:15px;margin-top:8px;box-shadow:0 18px 44px rgba(0,0,0,.6);transition:border-color .4s}
+#lghero.scanning{border-color:color-mix(in srgb,var(--lgc) 55%,transparent)}
+.lgart{position:relative;width:116px;height:116px;flex:0 0 auto;display:grid;place-items:center}
+.lgring{position:absolute;inset:0;border-radius:50%;pointer-events:none;
+  background:conic-gradient(from 0deg,transparent 0 205deg,rgba(246,226,122,.12) 248deg,var(--lgc) 336deg,transparent 360deg);
+  -webkit-mask:radial-gradient(circle,transparent 0 59%,#000 60%);mask:radial-gradient(circle,transparent 0 59%,#000 60%);
+  animation:lgspin 1.25s linear infinite;opacity:.5;transition:opacity .35s,border-color .35s}
+#lghero.scanning .lgring{opacity:1}
+@keyframes lgspin{to{transform:rotate(360deg)}}
+.lgart::after{content:"";position:absolute;inset:13px;border-radius:50%;border:1px dashed rgba(255,255,255,.15);animation:lgspin 11s linear infinite reverse;pointer-events:none}
+.lgcore{position:relative;width:74px;height:74px;border-radius:50%;display:grid;place-items:center;font-size:33px;line-height:1;background:radial-gradient(circle at 34% 28%,rgba(255,255,255,.16),rgba(0,0,0,.55));border:2px solid var(--lgc);box-shadow:0 0 26px -5px var(--lgc),inset 0 0 18px rgba(0,0,0,.6);transition:border-color .4s,box-shadow .4s}
+.lgpip{position:absolute;top:-3px;right:-7px;font-size:7.5px;font-weight:900;letter-spacing:1.4px;padding:3px 6px;border-radius:8px;background:var(--lgc);color:#0A0C13;animation:lgblink 1.4s ease-in-out infinite;z-index:2}
+@keyframes lgblink{50%{opacity:.35}}
+.lginfo{flex:1;min-width:0;text-align:center}
+.lgverdict{font-weight:900;font-size:14px;letter-spacing:1.1px;color:var(--lgc);line-height:1.3;text-transform:uppercase;text-shadow:0 0 20px color-mix(in srgb,var(--lgc) 45%,transparent)}
+.lgauge svg{width:100%;max-width:238px;height:auto;display:block;margin:1px auto 0;overflow:visible}
+.gtrack{fill:none;stroke:rgba(255,255,255,.08);stroke-width:13;stroke-linecap:round}
+.gfill{fill:none;stroke:url(#lggrad);stroke-width:13;stroke-linecap:round;stroke-dasharray:270.2;stroke-dashoffset:270.2;transition:stroke-dashoffset .8s cubic-bezier(.25,1,.35,1)}
+.gneedle{transform-box:view-box;transform-origin:100px 104px;transition:transform .8s cubic-bezier(.25,1,.35,1)}
+.gneedle line{stroke:#F5F1E6;stroke-width:3.4;stroke-linecap:round}
+.gneedle circle{fill:#F5F1E6;stroke:rgba(0,0,0,.55);stroke-width:1.6}
+.gt{fill:#6E6880;font-size:8.5px;font-weight:800;letter-spacing:1.4px}
+.lgscore{display:flex;align-items:baseline;justify-content:center;gap:6px;margin-top:-6px}
+.lgscore b{font-size:28px;font-weight:900;color:var(--lgc);font-variant-numeric:tabular-nums;line-height:1}
+.lgscore span{font-size:8.5px;letter-spacing:2px;color:#9A94A6;font-weight:800}
+.lgtiming{font-size:10px;color:#9A94A6;letter-spacing:.4px;margin-top:3px}
+.lgchips{display:flex;flex-wrap:wrap;gap:6px;margin-top:9px;min-height:27px;align-items:flex-start}
+.lgc{display:inline-flex;align-items:center;gap:5px;font-size:9.5px;font-weight:800;letter-spacing:.35px;padding:5px 9px;border-radius:20px;border:1px solid;background:rgba(0,0,0,.45);animation:lgpop .26s cubic-bezier(.2,1.3,.5,1);max-width:100%}
+@keyframes lgpop{from{opacity:0;transform:translateY(-6px) scale(.86)}to{opacity:1;transform:none}}
+.lgc b{font-weight:900;white-space:nowrap}
+.lgc span{opacity:.78;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.lgc.run{color:#9A94A6;border-color:#9A94A666}
+.lgc.clean{color:#00E5A0;border-color:#00E5A066}
+.lgc.warn{color:#F6E27A;border-color:#F6E27A66}
+.lgc.bad{color:#FF4D6D;border-color:#FF4D6D66;box-shadow:0 0 12px -5px #FF4D6D}
+.lgc.skip{color:#6E6880;border-color:#6E688066}
+@media(max-width:430px){#lghero{flex-direction:column;text-align:center}.lgart{width:104px;height:104px}}
 </style>
 </head>
 <body>
@@ -176,6 +215,34 @@ h2{font-size:17px;margin:18px 0 4px}
   </div>
 
   <h2>🛡️ LinkGuard — real link check</h2>
+
+  <!-- ═══════════ LINKGUARD LIVE PICTURE ═══════════ -->
+  <div id="lghero">
+    <div class="lgart" id="lgart">
+      <div class="lgring"></div>
+      <div class="lgcore" id="lgcore">🛡️</div>
+      <div class="lgpip" id="lgpip">LIVE</div>
+    </div>
+    <div class="lginfo">
+      <div class="lgverdict" id="lgverdict">READY — PASTE OR TAP A LINK</div>
+      <div class="lgauge">
+        <svg viewBox="0 0 200 132" aria-hidden="true">
+          <defs><linearGradient id="lggrad" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0" stop-color="#00E5A0"/><stop offset=".5" stop-color="#F6E27A"/><stop offset="1" stop-color="#FF4D6D"/>
+          </linearGradient></defs>
+          <path d="M14 104 A86 86 0 0 1 186 104" class="gtrack"/>
+          <path d="M14 104 A86 86 0 0 1 186 104" class="gfill" id="gfill"/>
+          <g class="gneedle" id="gneedle"><line id="gneedleline" x1="100" y1="104" x2="100" y2="34"/><circle cx="100" cy="104" r="7"/></g>
+          <text x="16" y="128" class="gt" text-anchor="start">GENUINE</text>
+          <text x="184" y="128" class="gt" text-anchor="end">SCAM</text>
+        </svg>
+      </div>
+      <div class="lgscore"><b id="lgscore">0</b><span>RISK / 100</span></div>
+      <div class="lgtiming" id="lgtiming">instant engine armed • 10 live sources idle</div>
+    </div>
+  </div>
+  <div class="lgchips" id="lgchips"><span class="lgc run">🔬 engines armed — waiting for a link</span></div>
+
   <input id="url" value="http://whatsapp-gift-claim-verify.bit.ly/free-crypto">
   <button class="btn" id="inspect">⏸ PAUSE &amp; INSPECT</button>
   <div class="card"><div class="t" id="vline"><span style="color:#FF4D6D">⛔ NOT SAFE — DO NOT ENTER • real check: 4 sources in 3.0s</span></div><div class="m" id="reasons">Host: paypalsecurity.com<br>• FAKE SCAM WEBSITE/LINK: wears PayPal's name with no ownership proof — the real PayPal never operates from here. This is a fake scam website, url and link. Entering it risks stolen logins, OTPs and wallet drain.<br>• Uses PayPal's name but is NOT paypal.com — the real PayPal never operates from here</div></div>
@@ -297,7 +364,7 @@ h2{font-size:17px;margin:18px 0 4px}
 <script>
 // ---- Same engine as the extension (URLs + messages), instant ----
 const URL_RULES=[
- {re:/bit\.ly|tinyurl|t\.co|rebrand\.ly|cutt\.ly|is\.gd|s\.id|short\./i,w:22,label:"URL shortener hides the final destination"},
+ {re:/(^|[^a-z0-9])(bit\.ly|tinyurl\.com|t\.co|goo\.gl|rebrand\.ly|cutt\.ly|is\.gd|s\.id|ow\.ly|buff\.ly|rb\.gy|tiny\.cc|shorturl\.at)([^a-z0-9]|$)/i,w:22,label:"URL shortener hides the final destination"},
  {re:/\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}/,w:25,label:"Raw IP host — no legitimate brand uses this"},
  {re:/https?:\/\/[^\s]*@/i,w:30,label:"'@' trick — browser ignores everything before @"},
  {re:/[а-яё]|xn--/i,w:30,label:"Lookalike domain (IDN/punycode homoglyph)"},
@@ -344,6 +411,17 @@ const BRANDS=[
  {pat:/(^|[^a-z])dhl([^a-z]|$)/i,name:"DHL",official:["dhl.com"]}
 ];
 const RISKY_TLDS=/^(io|xyz|top|tk|ml|ga|gq|cf|buzz|sbs|loan|click|shop|store|online|site|live|vip|rest)$/;
+// Every domain an attacker could credibly pretend to be.
+const OFFICIALS=[...new Set(TRUSTED.concat(BRANDS.flatMap(b=>b.official)))];
+function lev(a,b){ // Levenshtein, bounded — catches paypa1 / g00gle / hdfc-netbankin
+ const m=a.length,n=b.length;if(!m)return n;if(!n)return m;
+ let prev=new Array(n+1),cur=new Array(n+1);
+ for(let j=0;j<=n;j++)prev[j]=j;
+ for(let i=1;i<=m;i++){cur[0]=i;
+  for(let j=1;j<=n;j++){const c=a.charCodeAt(i-1)===b.charCodeAt(j-1)?0:1;
+   cur[j]=Math.min(prev[j]+1,cur[j-1]+1,prev[j-1]+c)}
+  const t=prev;prev=cur;cur=t}
+ return prev[n]}
 function brandCheck(uh,path){const b=BRANDS.find(x=>x.pat.test(uh+" "+(path||"")));if(!b)return null;
  return{b,home:b.official.some(o=>uh===o||uh.endsWith("."+o))}}
 function analyzeText(input){
@@ -364,7 +442,19 @@ function analyzeText(input){
   if(RISKY_TLDS.test(tld)){score+=15;hits.push("Bank/brand lure parked on risky suffix (."+tld+")")}
   if(/(login|verify|dashboard|secure|account|update|kyc|bank)([-_.]|$)/i.test(u.pathname||"")){score+=15;hits.push("Banking-action page on a non-official domain — credential-harvest layout")}}
  else if(bc&&bc.home){score=Math.max(0,score-15);hits.push("Confirmed on "+bc.b.name+"'s real official domain")}
- if(t.length>140){score+=8;hits.push("Abnormally long text/URL — obfuscation")}}catch{}
+ if(t.length>140){score+=8;hits.push("Abnormally long text/URL — obfuscation")}
+ // Typosquat / homoglyph forgery: a domain one or two edits from a real one.
+ if(host&&!trusted&&/^[\w.-]+$/.test(host)){
+  let near=null,nd=99;
+  for(const o of OFFICIALS){
+   if(host===o||host.endsWith("."+o)||o.endsWith("."+host))continue;
+   const d=lev(host,o),lim=o.length>=10?2:1;
+   if(d<=lim&&d<nd){nd=d;near=o}
+  }
+  if(near){score+=25;hits.push("Typosquat of "+near+" — this host is only "+nd+" character edit(s) away from the real one")}
+ }
+ if(host&&/^\d{1,3}(\.\d{1,3}){3}$/.test(host)){score+=15;hits.push("Host is a raw IP address — no verified brand operates from one")}
+ }catch{}
  const seen=new Set([host]);
  for(const m of(t.match(/https?:\/\/[^\s"'<>]+/gi)||[]).slice(0,4)){
   let uh="";try{uh=new URL(m).hostname.toLowerCase()}catch{continue}
@@ -385,25 +475,66 @@ function disclaimerFor(r){
 const deepCache=new Map();
 // Bump this whenever the engine changes — stale cached verdicts from an older
 // rule set must never replay (that is how an old SAFE result "keeps showing").
-const DEEP_CACHE_VER=3;
+const DEEP_CACHE_VER=4;
 function luxFetch(url,opts,ms){const c=new AbortController();const t=setTimeout(()=>c.abort(),ms||6000);return fetch(url,{...(opts||{}),signal:c.signal}).finally(()=>clearTimeout(t))}
+const LG_BUDGET=3200;          // hard cap — never leave the user waiting past this
+const lgDelay=ms=>new Promise(r=>setTimeout(r,ms));
 async function checkDns(host){
- try{const r=await luxFetch("https://cloudflare-dns.com/dns-query?name="+encodeURIComponent(host)+"&type=A",{headers:{accept:"application/dns-json"}},2000);
+ try{const r=await luxFetch("https://cloudflare-dns.com/dns-query?name="+encodeURIComponent(host)+"&type=A",{headers:{accept:"application/dns-json"}},1600);
   const j=await r.json();
-  if(j?.Answer?.length)return{state:"clean",detail:"Resolves publicly ("+j.Answer.length+" records)"};
-  return{state:"warn",detail:"No public DNS answer — possible hijack",penalty:15};
- }catch{return{state:"skip",detail:"DNS unreachable"}}
+  const ips=(j?.Answer||[]).filter(a=>a.type===1).map(a=>a.data);
+  if(j?.Answer?.length)return{state:"clean",detail:"Resolves publicly ("+j.Answer.length+" records)",ips};
+  return{state:"warn",detail:"No public DNS answer — possible hijack",penalty:15,ips:[]};
+ }catch{return{state:"skip",detail:"DNS unreachable",ips:null}}
+}
+// A SECOND, independent resolver. Providers disagreeing = DNS hijack in progress.
+async function checkDns2(host){
+ try{const r=await luxFetch("https://dns.google/resolve?name="+encodeURIComponent(host)+"&type=A",{},1600);
+  const j=await r.json();
+  const ips=(j?.Answer||[]).filter(a=>a.type===1).map(a=>a.data);
+  if(ips.length)return{state:"clean",detail:"Google DoH agrees ("+ips.length+" records)",ips};
+  return{state:"warn",detail:"Google DoH: no public answer",ips:[]};
+ }catch{return{state:"skip",detail:"Google DoH unreachable",ips:null}}
+}
+// Certificate Transparency — age of the FIRST certificate ever issued for this host.
+async function checkCT(host){
+ try{const r=await luxFetch("https://crt.sh/?q="+encodeURIComponent("%."+host)+"&output=json",{},2200);
+  if(!r.ok)return{state:"skip",detail:"Certificate log unreachable"};
+  const j=await r.json();
+  if(!Array.isArray(j))return{state:"skip",detail:"Certificate log unreachable"};
+  if(!j.length)return{state:"warn",detail:"No TLS certificate ever issued for this host",penalty:12};
+  let earliest=Infinity;
+  for(const e of j){const t=Date.parse(e.not_before||"");if(!isNaN(t)&&t<earliest)earliest=t}
+  if(earliest===Infinity)return{state:"clean",detail:j.length+" certificate(s) on record"};
+  const days=Math.max(0,Math.round((Date.now()-earliest)/86400000));
+  if(days<14)return{state:"bad",detail:"First certificate issued "+days+" day(s) ago",penalty:22};
+  if(days<90)return{state:"warn",detail:"Certificate only "+days+" days old",penalty:10};
+  return{state:"clean",detail:"Certified for "+Math.round(days/30)+" month(s)",bonus:days>730?6:0};
+ }catch{return{state:"skip",detail:"Certificate log unreachable"}}
+}
+const SHORTENER=/(^|[^a-z0-9])(bit\.ly|tinyurl\.com|t\.co|goo\.gl|is\.gd|cutt\.ly|rebrand\.ly|s\.id|tiny\.cc|rb\.gy|on\.cl|ow\.ly|buff\.ly)([^a-z0-9]|$)/i;
+// Unwrap a shortener to see what it REALLY points at. A hidden destination behind
+// a friendly short link is the single most common real-world trap.
+async function resolveShort(url){
+ try{const r=await luxFetch("https://unshorten.me/json/"+url,{headers:{accept:"application/json"}},2000);
+  if(!r.ok)return{state:"skip",detail:"Shortener lookup unavailable"};
+  const j=await r.json();
+  const fin=j&&j.resolved_url;
+  if(!fin||fin===url)return{state:"clean",detail:"Shortener target is this link itself"};
+  let h="";try{h=new URL(fin).hostname}catch{}
+  return{state:"clean",detail:"Unwrapped to "+(h||"another URL"),resolved:fin};
+ }catch{return{state:"skip",detail:"Shortener lookup unavailable"}}
 }
 let luxRdapServers=null;
 async function luxRdapDomain(host){
  const bare=host.replace(/^www\./,"");
- try{const r=await luxFetch("https://rdap.org/domain/"+encodeURIComponent(bare),{},2000);
+ try{const r=await luxFetch("https://rdap.org/domain/"+encodeURIComponent(bare),{},1500);
   if(r.ok)return await r.json()}catch{}
  try{
-  if(!luxRdapServers){const b=await luxFetch("https://data.iana.org/rdap/dns.json",{},2000);luxRdapServers=await b.json()}
+  if(!luxRdapServers){const b=await luxFetch("https://data.iana.org/rdap/dns.json",{},1200);luxRdapServers=await b.json()}
   const tld=bare.split(".").pop();
   const svc=(luxRdapServers.services||[]).find(s=>(s[0]||[]).includes(tld));
-  if(svc?.[1]?.[0]){const r2=await luxFetch(svc[1][0]+"domain/"+encodeURIComponent(bare),{},2500);
+  if(svc?.[1]?.[0]){const r2=await luxFetch(svc[1][0]+"domain/"+encodeURIComponent(bare),{},1800);
    if(r2.ok)return await r2.json()}
  }catch{}
  return null;
@@ -431,7 +562,7 @@ async function checkDomainAge(host){
 function rootOf(host){const p=host.split(".");const two=["co.in","bank.in","co.uk","com.au","co.nz","com.br","co.za"];
  if(p.length>=3&&two.includes(p.slice(-2).join(".")))return p.slice(-3).join(".");return p.slice(-2).join(".")}
 async function officialAck(officialDomain,testedRoot){
- try{const r=await luxFetch("https://api.allorigins.win/get?url="+encodeURIComponent("https://"+officialDomain+"/"),{},3000);
+ try{const r=await luxFetch("https://api.allorigins.win/get?url="+encodeURIComponent("https://"+officialDomain+"/"),{},2200);
   const j=await r.json();const html=typeof j?.contents==="string"?j.contents.slice(0,150000).toLowerCase():"";
   if(html&&html.includes(testedRoot.toLowerCase()))return officialDomain+" publicly references "+testedRoot+" — same owner";
   return null;
@@ -440,7 +571,7 @@ async function officialAck(officialDomain,testedRoot){
 function brandOrgRe(al){if(al.orgRe)return al.orgRe;
  const w=al.name.split(" ")[0].replace(/[.*+?^${}()|[\]\\]/g,"\\$&");return new RegExp(w,"i")}
 async function checkUrlhaus(url){
- try{const r=await luxFetch("https://urlhaus-api.abuse.ch/v1/url/",{method:"POST",headers:{"Content-Type":"application/x-www-form-urlencoded"},body:"url="+encodeURIComponent(url)},2500);
+ try{const r=await luxFetch("https://urlhaus-api.abuse.ch/v1/url/",{method:"POST",headers:{"Content-Type":"application/x-www-form-urlencoded"},body:"url="+encodeURIComponent(url)},1800);
   if(!r.ok)return{state:"skip",detail:r.status===401?"Blocklist unreachable (API now requires a key)":"Blocklist unreachable (HTTP "+r.status+")"};
   const j=await r.json();
   if(j?.query_status==="ok")return{state:"bad",detail:"URLhaus lists it as "+(j.threat||"malware"),guilty:true};
@@ -455,7 +586,7 @@ async function fetchOpenPhish(){
  if(opFeedCache.lines&&now-opFeedCache.t<600000)return opFeedCache.lines;
  const direct="https://openphish.com/feed.txt";
  const cands=[(typeof location!=="undefined"&&/^https?:$/.test(location.protocol))?location.origin+"/proxy?url="+encodeURIComponent(direct):null,direct].filter(Boolean);
- for(const c of cands){try{const r=await luxFetch(c,{},3000);if(!r.ok)continue;const txt=await r.text();
+ for(const c of cands){try{const r=await luxFetch(c,{},2200);if(!r.ok)continue;const txt=await r.text();
   const lines=txt.split(/\r?\n/).map(s=>s.trim()).filter(s=>/^https?:\/\//i.test(s));
   if(lines.length>10){opFeedCache={t:now,lines};return lines}}catch(e){}}
  return null;
@@ -470,7 +601,7 @@ async function checkOpenPhish(url){
  }catch(e){return{state:"skip",detail:"Phishing feed unreachable"}}
 }
 async function fetchPageText(url){
- try{const r=await luxFetch("https://api.allorigins.win/get?url="+encodeURIComponent(url),{},3000);
+ try{const r=await luxFetch("https://api.allorigins.win/get?url="+encodeURIComponent(url),{},2200);
   const j=await r.json();
   if(typeof j?.contents==="string"&&j.contents.length>200)return j.contents.slice(0,20000);
   return null;
@@ -479,85 +610,255 @@ async function fetchPageText(url){
 async function cloudCheck(url){ // kept for Google-key boost inside deepVerify
  const key=document.getElementById("sbkey").value.trim();if(!key)return null;
  try{const r=await luxFetch("https://safebrowsing.googleapis.com/v4/threatMatches:find?key="+key,{method:"POST",headers:{"Content-Type":"application/json"},
-  body:JSON.stringify({client:{clientId:"avastluxe",clientVersion:"1.0.0"},threatInfo:{threatTypes:["MALWARE","SOCIAL_ENGINEERING","UNWANTED_SOFTWARE","POTENTIALLY_HARMFUL_APPLICATION"],platformTypes:["ANY_PLATFORM"],threatEntryTypes:["URL"],threatEntries:[{url}]}})},2000);
+  body:JSON.stringify({client:{clientId:"avastluxe",clientVersion:"1.0.0"},threatInfo:{threatTypes:["MALWARE","SOCIAL_ENGINEERING","UNWANTED_SOFTWARE","POTENTIALLY_HARMFUL_APPLICATION"],platformTypes:["ANY_PLATFORM"],threatEntryTypes:["URL"],threatEntries:[{url}]}})},1500);
   const j=await r.json();
   if(j?.matches?.length)return{state:"bad",detail:"Google: confirmed "+j.matches[0].threatType,guilty:true};
   return{state:"clean",detail:"Google: no match"};
  }catch{return{state:"skip",detail:"Google unreachable"}}
 }
-async function deepVerify(rawUrl){
+async function deepVerify(rawUrl,opts){
+ opts=opts||{};
+ const onProg=opts.onProg||null;
  if(deepCache.has(rawUrl)){const e=deepCache.get(rawUrl);if(e.ver===DEEP_CACHE_VER)return e.p;deepCache.delete(rawUrl)}
  const p=(async()=>{
+  const T0=performance.now();
   let url=rawUrl.trim();if(!/^https?:\/\//i.test(url))url="https://"+url.split(/\s/)[0];
   let host="";try{host=new URL(url).hostname.toLowerCase()}catch{host=url}
   const base=analyzeText(url);
-  const sources=[{name:"Offline engine",state:base.verdict==="safe"?"clean":"warn",detail:base.hits.find(h=>/never operates|impostor/i.test(h))||base.hits[0]||"no lure signals"}];
+  onProg&&onProg("Offline engine",base.verdict==="safe"?"clean":"warn");
+  const sources=[{name:"Offline engine",state:base.verdict==="safe"?"clean":"warn",
+   detail:base.hits.find(h=>/never operates|impostor/i.test(h))||base.hits[0]||"no lure or obfuscation signals"}];
   let score=base.score;const hits=[...base.hits];
   const alEarly=(base.brandPen||0)>0&&base.brandAlleged?base.brandAlleged:null;
-const ackP=alEarly?Promise.resolve(officialAck(alEarly.official[0],rootOf(host))).catch(()=>null):Promise.resolve(null);
-const htmlP=fetchPageText(url);
-const[dns,age,haus,phish,ackEarly]=await Promise.all([checkDns(host),checkDomainAge(host),checkUrlhaus(url),checkOpenPhish(url),ackP]);
-  sources.push({name:"Live DNS",...dns});if(dns.penalty){score+=dns.penalty;hits.push(dns.detail)}
-  sources.push({name:"Domain age",...age});if(age.penalty){score+=age.penalty;hits.push(age.detail)}
+
+  // ── EVERY live source starts NOW, in parallel, each reporting as it lands ──
+  const R={};let fireEarly=()=>{};
+  const early=new Promise(res=>{fireEarly=res});
+  const put=(n,v)=>{R[n]=v;if(v&&v.guilty)fireEarly()};
+  const job=(n,pr)=>{
+   onProg&&onProg(n,"run");
+   return Promise.resolve(pr).then(
+    v=>{const o=v||{state:"skip",detail:"unreachable"};put(n,o);onProg&&onProg(n,o.state||"skip");return o},
+    ()=>{const o={state:"skip",detail:"unreachable"};put(n,o);onProg&&onProg(n,"skip");return o});
+  };
+  const jobs=[
+   job("Live DNS",checkDns(host)),
+   job("DNS cross-check",checkDns2(host)),
+   job("Domain age",checkDomainAge(host)),
+   job("Certificate log",checkCT(host)),
+   job("Blocklist",checkUrlhaus(url)),
+   job("Phishing feed",checkOpenPhish(url)),
+   job("Live page scan",fetchPageText(url).then(
+    h=>h?{state:"clean",html:h}:{state:"skip",blocked:true,detail:"Page unreadable (blocked/JS-walled)"})),
+   job("Google Safe Browsing",cloudCheck(url))
+  ];
+  if(alEarly)jobs.push(job("Ownership proof",
+   officialAck(alEarly.official[0],rootOf(host)).then(
+    x=>x?{state:"clean",detail:x}:{state:"skip",detail:"No public reference found"})));
+  if(SHORTENER.test(url))jobs.push(job("Redirect target",resolveShort(url)));
+
+  // Hard cap — a confirmed threat, a full sweep, or the budget: whichever lands first.
+  await Promise.race([early,Promise.allSettled(jobs),lgDelay(LG_BUDGET)]);
+  const ms=Math.round(performance.now()-T0);
+
+  const g=(n,fb)=>R[n]||fb;
+  const dns=g("Live DNS",{state:"skip",detail:"DNS unreachable",ips:null});
+  const dns2=g("DNS cross-check",{state:"skip",detail:"Google DoH unreachable",ips:null});
+  const age=g("Domain age",{state:"skip",detail:"Registry unreachable",ageDays:null,org:"",registrar:""});
+  const ct=g("Certificate log",{state:"skip",detail:"Certificate log unreachable"});
+  const haus=g("Blocklist",{state:"skip",detail:"Blocklist unreachable"});
+  const phish=g("Phishing feed",{state:"skip",detail:"Phishing feed unreachable"});
+  const pg=R["Live page scan"], sb=R["Google Safe Browsing"], rs=R["Redirect target"];
+  const ack=alEarly?g("Ownership proof",{state:"skip",detail:"No public reference found"}):null;
+  let guiltyLive=!!(haus.guilty||phish.guilty), sbGuilty=false;
+
+  // ── DNS: TWO independent providers. Disagreement = live DNS hijack. ──
+  sources.push({name:"Live DNS",state:dns.state,detail:dns.detail});
+  if(dns.penalty){score+=dns.penalty;hits.push(dns.detail)}
+  const d2={name:"DNS cross-check",state:dns2.state,detail:dns2.detail};
+  if(Array.isArray(dns.ips)&&Array.isArray(dns2.ips)&&dns.ips.length&&dns2.ips.length){
+   const a=[...new Set(dns.ips)].sort().join(","),b=[...new Set(dns2.ips)].sort().join(",");
+   if(a!==b){d2.state="bad";d2.detail="Cloudflare and Google disagree — live DNS hijack";d2.penalty=25}
+   else{d2.state="clean";d2.detail="Cloudflare + Google agree on "+dns.ips.length+" record(s)"}
+  }
+  sources.push(d2);if(d2.penalty){score+=d2.penalty;hits.push(d2.detail)}
+
+  sources.push({name:"Domain age",state:age.state,detail:age.detail});
+  if(age.penalty){score+=age.penalty;hits.push(age.detail)}
   if(age.bonus&&base.verdict==="safe")score=Math.max(0,score-age.bonus);
-  sources.push({name:"Blocklist",...haus});if(haus.guilty){score=100;hits.unshift(haus.detail)}
-sources.push({name:"Phishing feed",...phish});if(phish.guilty){score=100;hits.unshift(phish.detail)}
-  const html=await htmlP; // started in parallel above — only waits for what's left
-  let contentPen=0;
-  if(html){const t=html.toLowerCase();let pen=0;const ch=[];
-   const creds=/<input[^>]*(password|otp|cvv)|type=["']?password|enter (your )?(otp|password|cvv|upi pin)/.test(t),money=/(pay|fee|deposit|upi|wallet|card|cvv|refundable)/.test(t);
+
+  sources.push({name:"Certificate log",state:ct.state,detail:ct.detail});
+  if(ct.penalty){score+=ct.penalty;hits.push(ct.detail)}
+  if(ct.bonus&&base.verdict==="safe")score=Math.max(0,score-ct.bonus);
+
+  sources.push({name:"Blocklist",state:haus.state,detail:haus.detail});
+  if(haus.guilty){score=100;hits.unshift(haus.detail)}
+  sources.push({name:"Phishing feed",state:phish.state,detail:phish.detail});
+  if(phish.guilty){score=100;hits.unshift(phish.detail)}
+
+  // ── Shorteners: unwrap and judge what is actually behind the friendly link ──
+  if(rs){
+   sources.push({name:"Redirect target",state:rs.state,detail:rs.detail});
+   if(rs.resolved){
+    const rr=analyzeText(rs.resolved);
+    if(rr.verdict!=="safe"){
+     score=Math.max(score,rr.verdict==="scam"?70:40);
+     if(rr.verdict==="scam")guiltyLive=true;
+     hits.unshift("Shortener hides "+(rr.host||"its destination")+" — "+(rr.hits[0]||"the real target is not safe"));
+    }else if(rr.hits.length)sources.push({name:"Redirect destination",state:"clean",detail:"Hidden target checks out — "+rr.host});
+   }
+  }
+
+  // ── Live page content ──
+  let contentPen=0,pageHidden=false;
+  if(pg&&pg.html){
+   const t=pg.html.toLowerCase();let pen=0;const ch=[];
+   const creds=/<input[^>]*(password|otp|cvv)|type=["']?password|enter (your )?(otp|password|cvv|upi pin)/.test(t),
+         money=/(pay|fee|deposit|upi|wallet|card|cvv|refundable)/.test(t);
    if(creds&&money){pen+=25;ch.push("Live page harvests secrets alongside payments")}
    else if(creds){pen+=12;ch.push("Live page asks for secret credentials")}
    if(/won|prize|lottery|congratulations/.test(t)&&/(fee|deposit|pay now|claim.*pay)/.test(t)){pen+=20;ch.push("Live page pairs prizes with payments")}
    sources.push({name:"Live page scan",state:pen>=20?"bad":pen>0?"warn":"clean",detail:ch[0]||"No harvest patterns in page"});
    if(pen){contentPen=pen;score+=pen;ch.forEach(h=>hits.push(h))}
-  }else sources.push({name:"Live page scan",state:"skip",detail:"Page unreadable (blocked/JS-walled)"});
-  let sbGuilty=false;
-  const sb=await cloudCheck(url);if(sb){sources.push({name:"Google Safe Browsing",...sb});if(sb.guilty){sbGuilty=true;score=100;hits.unshift(sb.detail)}}
-  // OWNERSHIP COURT: accusation needs corroboration, proof acquits.
+  }else{
+   pageHidden=!!(pg&&pg.blocked);
+   sources.push({name:"Live page scan",state:"skip",detail:(pg&&pg.detail)||"Page scan timed out"});
+  }
+  if(sb){sources.push({name:"Google Safe Browsing",state:sb.state,detail:sb.detail});
+   if(sb.guilty){sbGuilty=true;guiltyLive=true;score=100;hits.unshift(sb.detail)}}
+
+  const ackEarly=ack&&ack.state==="clean"?ack.detail:null;
+  const tld=host.split(".").pop()||"";
+  const hasAge=age.ageDays!==null&&age.ageDays!==undefined;
+  const newish=hasAge&&age.ageDays<365;
+  const weakHost=RISKY_TLDS.test(tld)||!!dns.penalty||(ct.penalty||0)>0||base.score>20||host.split(".").length>3;
+  const reputable=base.trusted||(hasAge&&age.ageDays>=730&&!dns.penalty);
+
+  // ══════════════ OWNERSHIP COURT ══════════════
+  // An accusation of brand theft needs corroboration. Hard proof of ownership acquits.
   let acquitted=false;
-  if((base.brandPen||0)>0&&base.brandAlleged&&!haus.guilty&&!sbGuilty){
+  if((base.brandPen||0)>0&&base.brandAlleged&&!guiltyLive){
    const al=base.brandAlleged;let proof=null;
    if(age.org&&brandOrgRe(al).test(age.org))proof="Registry owner matches "+al.name+" ("+age.org.slice(0,70)+")";
    if(!proof&&/idrbt/i.test(age.registrar||"")&&host.endsWith(".bank.in"))proof="Vetted banking zone — registrar IDRBT issues .bank.in only to real Indian banks";
-   if(!proof&&ackEarly)proof=ackEarly
-   // No "merely old" acquittal — age never proves ownership. Hard proof only.
-   if(proof){acquitted=true;score=Math.max(0,score-(base.brandPen||0)-contentPen);
+   if(!proof&&ackEarly)proof=ackEarly;
+   // Age alone never proves ownership. Only hard ownership proof acquits.
+   if(proof){
+    acquitted=true;score=Math.max(0,score-(base.brandPen||0)-contentPen);
     for(let i=hits.length-1;i>=0;i--)if(/never operates|impostor/i.test(hits[i]))hits.splice(i,1);
     hits.unshift("Ownership proven: "+proof);
-    sources.push({name:"Ownership proof",state:"clean",detail:proof});
-    // Evidence must never contradict the verdict — dismiss the allegation line.
-    sources[0]={name:"Offline engine",state:"clean",detail:"Impersonation allegation dismissed — "+proof}}
-   else{
-    // RULE 1 — unrefuted impersonation alone = fake, readable page or not.
+    sources[0]={name:"Offline engine",state:"clean",detail:"Impersonation allegation dismissed — "+proof};
+   }else{
+    // RULE 1 — unrefuted impersonation alone is fake, readable page or not.
     score=Math.max(score,60);
     if(!hits.some(h=>/FAKE SCAM/i.test(h)))hits.unshift("FAKE SCAM WEBSITE/LINK: wears "+al.name+"'s name with no ownership proof — the real "+al.name+" never operates from here. This is a fake scam website, url and link. Entering it risks stolen logins, OTPs and wallet drain.");
-    // RULE 2 — hiding seals it: borrowed name PLUS inspection-blocking page.
-    if(!html&&!sources.some(s=>s.name==="Concealment test"))sources.push({name:"Concealment test",state:"bad",detail:"Brand alleged + no ownership proof + content hidden = fake scam"});
+    sources.push({name:"Ownership proof",state:"bad",detail:"No ownership proof found for the "+al.name+" name it wears"});
    }
   }
-  // RULE 3 — hiding alone with no reputation = fake (aged+trusted+clean exempt).
-  const reputable=base.trusted||(age.ageDays!==null&&age.ageDays>=730&&!dns.penalty);
-  if(sources.some(s=>s.name==="Live page scan"&&s.state==="skip")&&!haus.guilty&&!sbGuilty&&!reputable&&!acquitted&&score<60){
+
+  // ══════════════ CONCEALMENT RULE ══════════════
+  // A page that refuses inspection is NOT automatically a scam — most real sites
+  // block bots. It convicts only when it is already weak: brand-new, risky TLD,
+  // not resolving, or showing offline suspicion. Otherwise it is simply unverifiable.
+  if(pageHidden&&!guiltyLive&&!acquitted&&!reputable&&score<60&&(newish||weakHost||base.score>25)){
    score=60;
-   hits.unshift("FAKE SCAM WEBSITE/LINK: hides its page from security inspection, too new and unknown to verify, with no trusted reputation — treated as a fake scam. Entering it risks malware, stolen logins and wallet drain.");
-   if(!sources.some(s=>s.name==="Concealment test"))sources.push({name:"Concealment test",state:"bad",detail:"Hidden page + no reputation = fake scam"});
+   hits.unshift("FAKE SCAM WEBSITE/LINK: hides its page from security inspection"+(newish?" and is only "+age.ageDays+" days old":" with no verifiable reputation")+", so it cannot be cleared — treated as a fake scam. Entering it risks malware, stolen logins and wallet drain.");
+   sources.push({name:"Concealment test",state:"bad",detail:"Hidden page + weak signals = fake scam"});
   }
-  // FINAL GUARANTEE — either signal alone convicts: (1) borrowed brand name
-  // with no ownership proof, or (2) hidden page with no reputation
-  // (aged + trusted + clean-resolving stays exempt). Always SCAM.
+
+  // ══════════════ FINAL GUARANTEE ══════════════
+  // Either signal alone convicts when nothing disproves it: (1) a borrowed brand
+  // name with no ownership proof, or (2) a hidden page with no reputation and
+  // corroborating weakness. Aged + trusted + clean-resolving stays exempt.
   const hasBrand=hits.some(h=>/never operates|impostor/i.test(h));
-  const pageHidden=sources.some(s=>s.name==="Live page scan"&&s.state==="skip");
-  if((hasBrand||(pageHidden&&!reputable))&&!haus.guilty&&!sbGuilty&&!acquitted&&score<60){
+  const hiddenNoRep=pageHidden&&!reputable&&(newish||weakHost||base.score>20);
+  if((hasBrand||hiddenNoRep)&&!guiltyLive&&!acquitted&&score<60){
    score=60;
    if(!hits.some(h=>/FAKE SCAM/i.test(h)))hits.unshift("FAKE SCAM WEBSITE/LINK: "+(hasBrand?"wears a trusted brand's name with no ownership proof":"hides its page with no verifiable reputation")+" — this is a fake scam website, url, link and phishing operation. Entering it risks stolen logins, OTPs and wallet drain.");
    if(!sources.some(s=>s.name==="Concealment test"))sources.push({name:"Concealment test",state:"bad",detail:"Single-signal rule: unrefuted brand theft or reputation-less hiding = fake scam"});
   }
-  score=Math.min(100,Math.round(score));
-  return{report:{url,host,score,verdict:score>=60?"scam":score>20?"suspicious":"safe",hits:[...new Set(hits)],trusted:base.trusted,kind:base.kind},sources};
+
+  score=Math.min(100,Math.max(0,Math.round(score)));
+  onProg&&onProg("Ownership proof",alEarly?(acquitted?"clean":"bad"):"clean");
+  onProg&&onProg("Concealment test",sources.some(s=>s.name==="Concealment test")?"bad":"clean");
+  return{report:{url,host,score,verdict:score>=60?"scam":score>20?"suspicious":"safe",hits:[...new Set(hits)],trusted:base.trusted,kind:base.kind,ms},sources};
  })();
  deepCache.set(rawUrl,{ver:DEEP_CACHE_VER,p});return p;
 }
+// ══════════════ LINKGUARD PICTURE CONTROLLER ══════════════
+const LG_ARC=270.2; // length of the semicircular gauge track
+const lgEsc=s=>String(s==null?"":s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+function lgBusy(on){const h=document.getElementById("lghero");if(h)h.classList.toggle("scanning",!!on)}
+function lgVerdictColor(v){return v==="safe"?"#00E5A0":v==="suspicious"?"#F6E27A":"#FF4D6D"}
+// The gauge needle is tweened by moving the SVG line itself — CSS transform on an
+// SVG <g> is silently dropped by some engines, so we never depend on it.
+// setTimeout-driven (not requestAnimationFrame) so it still completes in a
+// background or occluded tab, where rAF is suspended.
+const LG_NEEDLE={raf:0,timer:0,curX:100,curY:34};
+function lgNeedle(score){
+ const line=document.getElementById("gneedleline");if(!line)return;
+ const set=(x,y)=>{LG_NEEDLE.curX=x;LG_NEEDLE.curY=y;
+  line.setAttribute("x2",x.toFixed(2));line.setAttribute("y2",y.toFixed(2))};
+ const target=s=>{const rad=(-90+Math.max(0,Math.min(100,s))*1.8)*Math.PI/180;
+  return{x:100+70*Math.sin(rad),y:104-70*Math.cos(rad)}};
+ const t=target(score);
+ const sx=LG_NEEDLE.curX, sy=LG_NEEDLE.curY, D=800, ease=k=>1-Math.pow(1-k,3);
+ if(LG_NEEDLE.raf)cancelAnimationFrame(LG_NEEDLE.raf);
+ clearTimeout(LG_NEEDLE.timer);
+ if(Math.abs(sx-t.x)<0.5&&Math.abs(sy-t.y)<0.5){set(t.x,t.y);return}
+ const t0=Date.now();
+ const step=()=>{
+  const k=Math.min(1,(Date.now()-t0)/D), e=ease(k);
+  set(sx+(t.x-sx)*e, sy+(t.y-sy)*e);
+  if(k<1)LG_NEEDLE.timer=setTimeout(step,33);   // ~30fps, guaranteed to run
+ };
+ step();
+ // belt-and-braces: if timers are frozen too, the final position is still correct
+ LG_NEEDLE.raf=requestAnimationFrame(()=>{LG_NEEDLE.raf=0;set(t.x,t.y)});
+}
+function lgSet(r,timing,src,sources){
+ const h=document.getElementById("lghero");if(!h||!r)return;
+ const sc=Math.max(0,Math.min(100,Number(r.score)||0));
+ const c=lgVerdictColor(r.verdict);
+ h.style.setProperty("--lgc",c);
+ const n=document.getElementById("lgscore");if(n)n.textContent=sc;
+ const f=document.getElementById("gfill");if(f)f.style.strokeDashoffset=(LG_ARC*(1-sc/100)).toFixed(1);
+ lgNeedle(sc);
+ const v=document.getElementById("lgverdict");
+ if(v)v.textContent=r.verdict==="safe"?"✅ GENUINE — SAFE TO OPEN":r.verdict==="suspicious"?"⚠️ NOT SAFE — DO NOT ENTER":"⛔ SCAM — DO NOT ENTER";
+ const core=document.getElementById("lgcore");if(core)core.textContent=r.verdict==="safe"?"🛡️":r.verdict==="suspicious"?"⚠️":"🛑";
+ const t=document.getElementById("lgtiming");if(t)t.textContent=(timing||"")+(src?" • "+src:"");
+ if(sources&&sources.length)lgChips(sources);
+}
+function lgChip(name,state,detail){
+ const box=document.getElementById("lgchips");if(!box)return;
+ const empty=box.querySelector(".lgc.run");
+ if(empty&&state!=="run")empty.remove();
+ let el=box.querySelector('[data-s="'+name+'"]');
+ if(!el){el=document.createElement("span");el.className="lgc run";el.dataset.s=name;box.appendChild(el)}
+ el.className="lgc "+(state||"run");
+ const ic={clean:"✅",warn:"⚠️",bad:"⛔",skip:"➖",run:"🔬"}[state]||"⏳";
+ el.innerHTML=ic+" <b>"+lgEsc(name)+"</b>"+
+  (state&&state!=="run"&&detail?'<span>'+lgEsc(String(detail).slice(0,46))+'</span>':"");
+}
+function lgChips(list){
+ const box=document.getElementById("lgchips");if(!box)return;
+ box.innerHTML="";
+ list.forEach(s=>lgChip(s.name,s.state,s.detail));
+}
+function lgReset(){
+ const box=document.getElementById("lgchips");
+ if(box)box.innerHTML='<span class="lgc run">🔬 engines armed — 10 live sources ready</span>';
+ lgBusy(true);
+}
+// Warm the slow shared feeds at idle so the FIRST real scan is already fast.
+let lgWarmed=false;
+function lgWarm(){
+ if(lgWarmed)return;lgWarmed=true;
+ try{fetchOpenPhish();luxRdapDomain("example.com").catch(()=>{})}catch{}
+}
+if("requestIdleCallback" in window)setTimeout(()=>requestIdleCallback(lgWarm,{timeout:4000}),1800);
+else setTimeout(lgWarm,2600);
 function evidenceHtml(r){
  if(!r.sources)return"• Offline engine only — deep verification running…";
  const ic={clean:"✅",warn:"⚠️",bad:"⛔",skip:"➖"};
@@ -628,10 +929,13 @@ function paintPopup(r,url){
  // restart 3D entrance animation each time
  card.style.animation="none";void card.offsetWidth;card.style.animation="";
  $("pop").style.display="flex";
+ // the LinkGuard picture shows this verdict too — every check lands in one place
+ lgSet(r,(r.sources?"real check • "+r.sources.filter(s=>s.state!=="skip").length+" live sources":"instant screen"),null,r.sources);
+ lgBusy(false);
 }
 // Truth via background worker (10s budget) with live progress + in-page fallback.
 let scanSeq=0;
-const SCAN_STEPS=["Offline engine","Live DNS","Domain age","Blocklist","Phishing feed","Page scan","Google check","Ownership proof","Concealment test"];
+const SCAN_STEPS=["Offline engine","Live DNS","DNS cross-check","Domain age","Certificate log","Blocklist","Phishing feed","Live page scan","Redirect target","Google Safe Browsing","Ownership proof","Concealment test"];
 function showScan(label){
  const id=++scanSeq;
  $("scanurl").textContent=label;
@@ -670,32 +974,35 @@ if(navigator.serviceWorker){
   if(d.type==="VERDICT"&&d.selfTest&&d.deep){addLog("Background self-test: google.com "+d.deep.report.verdict.toUpperCase()+" in "+(d.deep.ms/1000).toFixed(1)+"s — worker alive ✓")}});
 }
 async function checkUrl(u){
- const t0=performance.now();let r=analyzeText(u);
+ const t0=performance.now();const r=analyzeText(u);
  const ms=(performance.now()-t0).toFixed(1);
- paintUrl(r,"instant screen ("+ms+") — connection paused, real check running…");
- addLog("LinkGuard screen: "+(r.host||"input")+" held ("+ms+") — NO result until real check finishes");
- const id=showScan(u); // 3D progress overlay; verdict comes ONLY after the ~10s real check
+ lgReset();
+ paintUrl(r,"instant engine "+ms+" ms — paused, live sources running…");
+ addLog("LinkGuard instant screen: "+(r.host||"input")+" in "+ms+" ms — live sources running");
+ const id=showScan(u);
  const start=Date.now();
  const tick=setInterval(()=>{if(id===scanSeq)$("scantime").textContent=((Date.now()-start)/1000).toFixed(1)+"s"},100);
- scanProgress("Offline engine",r.verdict==="safe"?"clean":"warn");
- try{
-  let deep=await truthViaBackground(u,(n,s)=>{if(id===scanSeq)scanProgress(n,s)});
-  if(!deep){if(id===scanSeq)scanProgress("Live DNS","run");try{deep=await deepVerify(u,{})}catch{deep=null}}
-  clearInterval(tick);
-  if(id!==scanSeq)return; // user cancelled — stay silent
-  hideScan();
-  if(!deep){addLog("Truth sources unreachable — offline screen stands, treat as untrusted");popup(r,r.url||u);return}
-  const up=deep.report;up.sources=deep.sources;
-  const secs=((Date.now()-start)/1000).toFixed(1);
-  paintUrl(up,"real check: "+deep.sources.filter(s=>s.state!=="skip").length+" sources in "+secs+"s");
-  addLog("Real check done in "+secs+"s → "+(up.verdict==="safe"?"GENUINE":"NOT SAFE")+": "+(up.hits[0]||up.host));
-  popup(up,u); // result ONLY now, after the real check
- }catch{clearInterval(tick);if(id===scanSeq){hideScan();popup(r,r.url||u)}}
+ // every source streams its result into the picture AND the overlay as it lands
+ const prog=(n,s)=>{if(id===scanSeq)scanProgress(n,s);lgChip(n,s)};
+ let deep=null;
+ try{deep=await deepVerify(u,{onProg:prog})}catch{}
+ clearInterval(tick);
+ if(id!==scanSeq)return;
+ hideScan();
+ const secs=((Date.now()-start)/1000).toFixed(1);
+ if(!deep){lgBusy(false);addLog("Truth sources unreachable — offline screen stands, treat as untrusted");popup(r,r.url||u);return}
+ const up=deep.report;up.sources=deep.sources;
+ const live=deep.sources.filter(s=>s.state!=="skip").length;
+ paintUrl(up,"real check: "+live+" live sources in "+secs+"s (engine "+(up.ms||0)+" ms)");
+ lgBusy(false);
+ addLog("Real check done in "+secs+"s → "+(up.verdict==="safe"?"GENUINE":"NOT SAFE")+": "+(up.hits[0]||up.host));
+ popup(up,u);
 }
 function paintUrl(r,src){
  const c=r.verdict==="safe"?"#00E5A0":r.verdict==="suspicious"?"#F6E27A":"#FF4D6D";
  $("vline").innerHTML='<span style="color:'+c+'">'+(r.verdict==="safe"?"✅ GENUINE — YOU CAN GO THERE":"⛔ NOT SAFE — DO NOT ENTER")+' • '+src+'</span>';
  $("reasons").innerHTML=(r.host?"Host: "+r.host+"<br>":"")+"• "+(r.hits.join("<br>• ")||"Clean");
+ lgSet(r,src,null,r.sources);if(r.sources)lgBusy(false);
 }
 $("inspect").onclick=()=>checkUrl($("url").value);
 $("scanmsg").onclick=async ()=>{
@@ -713,8 +1020,7 @@ $("scanmsg").onclick=async ()=>{
   scanProgress("Live DNS","run");
   let deep=null;
   try{
-   deep=await truthViaBackground(link,(n,s)=>{if(id===scanSeq)scanProgress(n,s)});
-   if(!deep)deep=await deepVerify(link,{});
+   try{deep=await deepVerify(link,{onProg:(n,s)=>{if(id===scanSeq)scanProgress(n,s)}})}catch{}
   }catch{}
   if(deep&&deep.report.score>worst.score){worst={...deep.report,kind:"message",sources:[...evi,...deep.sources]}}
  }
