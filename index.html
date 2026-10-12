@@ -152,9 +152,6 @@ h2{font-size:17px;margin:18px 0 4px}
 .aplog .lrow .lm{color:var(--mu);font-size:9px;letter-spacing:.6px;flex:0 0 auto;font-variant-numeric:tabular-nums}
 .aplog .lrow.safe{border-left-color:var(--em)}.aplog .lrow.scam{border-left-color:var(--dn)}.aplog .lrow.warn{border-left-color:var(--goldhi)}
 .apempty{font-size:10.5px;color:var(--mu);font-style:italic;padding:7px 4px}
-.apfloat{position:relative;overflow:hidden}
-.apfloat.on{background:linear-gradient(135deg,#00E5A0,#00A874)!important;color:#06120C!important;border:0!important;box-shadow:0 0 22px rgba(0,229,160,.45)}
-.apfloat.on::after{content:"LIVE";position:absolute;top:5px;right:6px;font-size:7.5px;font-weight:900;letter-spacing:1.5px;background:rgba(0,0,0,.35);padding:2px 5px;border-radius:6px}
 .apbtn[disabled]{opacity:.45;cursor:not-allowed}
 .apgrid{display:grid;grid-template-columns:1fr 1fr;gap:7px}
 .apgrid .apbtn{margin-top:0}
@@ -197,6 +194,39 @@ h2{font-size:17px;margin:18px 0 4px}
 .lgc.bad{color:#FF4D6D;border-color:#FF4D6D66;box-shadow:0 0 12px -5px #FF4D6D}
 .lgc.skip{color:#6E6880;border-color:#6E688066}
 @media(max-width:430px){#lghero{flex-direction:column;text-align:center}.lgart{width:104px;height:104px}}
+
+/* ════════════ ANALYSERS INSIDE THE SHIELD ICON ════════════ */
+.aptabs{display:grid;grid-template-columns:repeat(3,1fr);gap:5px;margin-top:6px}
+.aptab{border:1px solid rgba(212,175,55,.3);background:rgba(255,255,255,.04);color:#9A94A6;
+ border-radius:10px;padding:7px 4px;font-size:10px;font-weight:900;letter-spacing:.6px;cursor:pointer;
+ font-family:inherit;transition:.18s}
+.aptab.on{background:rgba(212,175,55,.2);border-color:rgba(212,175,55,.75);color:var(--goldhi);
+ box-shadow:0 0 14px -6px var(--goldhi)}
+.apana{margin-top:7px;display:flex;flex-direction:column;gap:6px}
+.apana[hidden]{display:none}
+.apana input,.apana textarea{width:100%;box-sizing:border-box;background:rgba(0,0,0,.45);
+ border:1px solid rgba(212,175,55,.28);border-radius:10px;padding:9px 10px;color:#F5F1E6;
+ font-size:12px;font-family:inherit;resize:vertical}
+.apana input:focus,.apana textarea:focus{outline:none;border-color:rgba(212,175,55,.7)}
+.apana .apbtn{margin-top:0}
+.apchips{display:flex;flex-wrap:wrap;gap:5px}
+.apchips:empty{display:none}
+.apout{background:rgba(0,0,0,.35);border:1px solid rgba(212,175,55,.22);border-radius:12px;
+ padding:9px 10px;min-height:46px}
+.apver{display:flex;align-items:center;gap:7px;font-weight:900;font-size:11px;letter-spacing:.6px;
+ border:1px solid;border-radius:9px;padding:7px 9px;background:rgba(0,0,0,.4)}
+.apver .avs{margin-left:auto;font-size:11px;font-variant-numeric:tabular-nums;opacity:.9}
+.apbar{height:7px;border-radius:5px;background:rgba(255,255,255,.08);overflow:hidden;margin-top:6px}
+.apbar i{display:block;height:100%;border-radius:5px;transition:width .6s cubic-bezier(.25,1,.35,1)}
+.aptim{font-size:9.5px;color:#9A94A6;letter-spacing:.4px;margin-top:6px}
+.aplist{margin:7px 0 0;padding-left:16px;font-size:11px;color:#C9C3D6;line-height:1.55}
+.aplist li{margin-bottom:3px}
+.aplist li::marker{color:#6E6880}
+.aplinks{display:flex;flex-direction:column;gap:5px;margin-top:8px}
+.aplink{width:100%;text-align:left;background:rgba(255,77,109,.1);border:1px solid rgba(255,77,109,.38);
+ color:#FF8FA5;border-radius:9px;padding:6px 8px;font-size:10px;font-weight:700;cursor:pointer;
+ font-family:inherit;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.aplink:hover{background:rgba(255,77,109,.18)}
 </style>
 </head>
 <body>
@@ -315,7 +345,6 @@ h2{font-size:17px;margin:18px 0 4px}
 <div id="wizard"><div class="wzcard">
   <h2>🛡️ Enable Shield Agent</h2>
   <div class="m" style="color:var(--mu);font-size:11px;margin-bottom:6px">Grant these once — the agent then watches links, messages and on-screen text, and blocks scams before they open.</div>
-  <div class="wzstep"><div class="e">🛰️</div><div style="flex:1"><div class="t">Run above all apps &amp; websites <span style="color:var(--goldhi)">— MAIN PERMISSION</span></div><div class="m">Uses the browser's picture-in-picture window, the only overlay a website is allowed to draw over other apps. The 🛡️ stays floating on top of every app/site you use and shows every verdict live. <b style="color:var(--goldhi)">Tap to approve → shield floats immediately.</b></div></div><div class="wzstat wait" id="wzfloat">APPROVE →</div></div>
   <div class="wzstep"><div class="e">🔔</div><div style="flex:1"><div class="t">Background alerts</div><div class="m">Real browser permission. Threat verdicts arrive as notifications even when this tab is minimized.</div></div><div class="wzstat wait" id="wznotif">ALLOW →</div></div>
   <div class="wzstep"><div class="e">📋</div><div style="flex:1"><div class="t">Clipboard link watch</div><div class="m">Scans any link you copy from WhatsApp/SMS/email — result appears on the floating shield.</div></div><div class="wzstat wait" id="wzclip">ALLOW →</div></div>
   <div class="wzstep"><div class="e">👁️</div><div style="flex:1"><div class="t">On-screen text scan</div><div class="m">Optional. Uses screen-capture + on-device OCR to read messages/URLs visible on screen and flag scams. Nothing leaves your phone.</div></div><div class="wzstat wait" id="wzscreen">ALLOW →</div></div>
@@ -343,16 +372,46 @@ h2{font-size:17px;margin:18px 0 4px}
   <button class="apx" id="apclose">✕</button>
   <h3>🛡️ SHIELD AGENT <span class="apwrap"><span class="apdot"></span></span></h3>
   <div class="apcard" id="agentresult"><span class="big" style="color:var(--em)">ACTIVE — PROTECTED</span>Watching copied links, taps and typed URLs. Drag me anywhere; tap me for the last verdict.</div>
+
+  <!-- ═══════════ LINK · MESSAGE · PHISHING ANALYSERS ═══════════ -->
+  <div class="apsec">🔬 ANALYSER</div>
+  <div class="aptabs">
+    <button class="aptab on" data-k="link">🔗 LINK</button>
+    <button class="aptab" data-k="msg">💬 MESSAGE</button>
+    <button class="aptab" data-k="phish">🎣 PHISHING</button>
+  </div>
+
+  <div class="apana" data-p="link">
+    <input id="alink" spellcheck="false" placeholder="Paste any link — https://…">
+    <button class="apbtn go" id="alinkgo">🔍 CHECK THIS LINK</button>
+    <div class="apchips" id="alinkp"></div>
+    <div class="apout" id="alinkout"><div class="apempty">Same 10 live sources as LinkGuard — tap to verify.</div></div>
+  </div>
+
+  <div class="apana" data-p="msg" hidden>
+    <textarea id="amsg" spellcheck="false" rows="3" placeholder="Paste a WhatsApp / SMS / email message…"></textarea>
+    <button class="apbtn go" id="amsggo">💬 SCAN THIS MESSAGE</button>
+    <div class="apchips" id="amsgp"></div>
+    <div class="apout" id="amsgout"><div class="apempty">Checks the wording AND the most dangerous link hidden inside it.</div></div>
+  </div>
+
+  <div class="apana" data-p="phish" hidden>
+    <textarea id="aphish" spellcheck="false" rows="3" placeholder="Paste the suspicious text — OTP request, prize offer, bank alert…"></textarea>
+    <button class="apbtn go" id="aphishgo">🎣 EXPOSE PHISHING PLAYBOOK</button>
+    <div class="apchips" id="aphishp"></div>
+    <div class="apout" id="aphishout"><div class="apempty">Names every lure the message is using against you.</div></div>
+  </div>
+
   <div class="apsec">🔍 WHY — EVIDENCE</div>
   <div class="apwhy" id="apwhy"><div class="apempty">Verdict reasons and live source checks will be listed here.</div></div>
   <div class="apsec">📶 STATUS</div>
   <div class="apwhy" style="max-height:none;padding-top:4px;padding-bottom:4px">
-    <div class="aprow"><span>Background alerts</span><b id="apnotif" class="prompt">not asked</b></div><div class="aprow"><span>Background worker</span><b id="apsw" class="denied">checking…</b></div><div class="aprow"><span>Clipboard watch</span><b id="apclip" class="prompt">off</b></div><div class="aprow"><span>On-screen text scan</span><b id="apscreen" class="prompt">off</b></div><div class="aprow"><span>Floating above apps</span><b id="apfloatst" class="prompt">off</b></div>
+    <div class="aprow"><span>Background alerts</span><b id="apnotif" class="prompt">not asked</b></div><div class="aprow"><span>Background worker</span><b id="apsw" class="denied">checking…</b></div><div class="aprow"><span>Clipboard watch</span><b id="apclip" class="prompt">off</b></div><div class="aprow"><span>On-screen text scan</span><b id="apscreen" class="prompt">off</b></div>
   </div>
   <div class="apsec">⏱️ LIVE ACTIVITY</div>
   <div class="aplog" id="aplog"><div class="apempty">No scans yet — results will appear here.</div></div>
   <div class="apsec">⚙️ CONTROLS</div>
-  <button class="apbtn go apfloat" id="apenable">🛰️ RUN ABOVE ALL APPS — TAP TO START</button>
+  <button class="apbtn go" id="apenable">🔔 GRANT PERMISSIONS</button>
   <div class="apgrid" style="margin-top:7px">
     <button class="apbtn" id="apperms">⚙️ ALL PERMISSIONS</button>
     <button class="apbtn" id="apscreenbtn">👁️ SCREEN SCAN</button>
@@ -1559,21 +1618,18 @@ paintUrl=function(r,src){
   if(TIP.shown&&r.host&&r.host===TIP.host)showTip(TIP.el,r,TIP.url,0,r.sources);
 };
 
-// ── E. agentState → live card colour, activity log, and the floating window ─
+// ── E. agentState → live card colour, activity log, and evidence ────────────
 const _as=agentState;
 agentState=function(kind,big,text,color){
   _as(kind,big,text,color);
   try{
     const col=color||(kind==="scam"?"#FF4D6D":kind==="safe"?"#00E5A0":"#F6E27A");
-    const sc=(String(text||"").match(/(\d{1,3})\s*\/\s*100/)||[])[1];
-    PIP.state={kind:kind,big:big,text:text,color:col,score:sc!=null?Math.min(100,+sc):null};
     const card=A$("agentresult");
     if(card){
       card.style.borderLeftColor=col;
       card.classList.toggle("busy",kind==="working");
       const bg=card.querySelector(".big");if(bg)bg.style.color=col;
     }
-    if(PIP.on){pipDraw();if(PIP.mode==="doc")renderDocPip()}
     logActivity(kind,big,text);
     const why=A$("apwhy");
     if(why&&!(kind==="safe"&&/^🛡️ SHIELD AGENT/.test(big))){
@@ -1583,152 +1639,184 @@ agentState=function(kind,big,text,color){
   }catch(e){}
 };
 
-// ── F. THE FLOATING SHIELD (Picture-in-Picture above other apps) ───────────
-function rrPath(g,x,y,w,h,r){g.beginPath();g.moveTo(x+r,y);
-  g.arcTo(x+w,y,x+w,y+h,r);g.arcTo(x+w,y+h,x,y+h,r);g.arcTo(x,y+h,x,y,r);g.arcTo(x,y,x+w,y,r);g.closePath()}
-function fitText(g,t,max){if(g.measureText(t).width<=max)return t;let s=t;
-  while(s.length>1&&g.measureText(s+"…").width>max)s=s.slice(0,-1);return s+"…"}
-function wrapText(g,t,max,maxLines){
-  const words=String(t||"").split(/\s+/),lines=[];let cur="";
-  for(const w of words){const test=cur?cur+" "+w:w;
-    if(g.measureText(test).width>max&&cur){lines.push(cur);cur=w;if(lines.length>=maxLines)break}
-    else cur=test}
-  if(lines.length<maxLines&&cur)lines.push(cur);
-  return lines.slice(0,maxLines);
+// ── F. ANALYSERS INSIDE THE SHIELD ICON ─────────────────────────────────────
+// 🔗 link, 💬 message, 🎣 phishing — all three run on the SAME engine as the
+// rest of the page (analyzeText → deepVerify) and all three render inside
+// this panel, so the shield icon itself is now the scanner.
+const ANA={seq:0};
+function switchAna(k){
+  document.querySelectorAll(".aptab").forEach(b=>b.classList.toggle("on",b.dataset.k===k));
+  document.querySelectorAll(".apana").forEach(p=>{p.hidden=p.dataset.p!==k});
 }
-function pipDraw(){
-  const c=PIP.canvas,g=PIP.ctx;if(!c||!g)return;
-  const W=c.width,H=c.height;
-  const s=PIP.state||{kind:"safe",big:"SHIELD ACTIVE",text:"Watching links, taps and messages",score:null};
-  const col=s.color||(s.kind==="scam"?"#FF4D6D":s.kind==="safe"?"#00E5A0":"#F6E27A");
-  const pulse=0.5+0.5*Math.sin(Date.now()/650);
-  g.clearRect(0,0,W,H);
-  const bg=g.createLinearGradient(0,0,W,H);
-  bg.addColorStop(0,"#1c1526");bg.addColorStop(.6,"#0A0C13");bg.addColorStop(1,"#141021");
-  g.fillStyle=bg;g.fillRect(0,0,W,H);
-  g.save();
-  g.lineWidth=3;g.strokeStyle=col;g.shadowColor=col;g.shadowBlur=14+12*pulse;
-  rrPath(g,5,5,W-10,H-10,20);g.stroke();
-  g.restore();
-  g.save();rrPath(g,5,5,W-10,H-10,20);g.clip();
-  g.textAlign="center";g.textBaseline="alphabetic";
-  g.font='44px "Segoe UI Emoji","Apple Color Emoji",serif';g.fillText("🛡️",W/2,66);
-  g.font="900 23px 'Segoe UI',system-ui,sans-serif";g.fillStyle=col;
-  g.fillText(fitText(g,s.big||"SHIELD ACTIVE",W-46),W/2,104);
-  g.font="500 13.5px 'Segoe UI',system-ui,sans-serif";g.fillStyle="#DDD7EA";
-  wrapText(g,stripTags(s.text||""),W-60,3).forEach((ln,i)=>g.fillText(fitText(g,ln,W-58),W/2,132+i*19));
-  if(s.score!=null){
-    const bw=W-72,bx=36,by=H-64;
-    g.fillStyle="rgba(255,255,255,.09)";rrPath(g,bx,by,bw,9,4.5);g.fill();
-    g.fillStyle=col;rrPath(g,bx,by,Math.max(8,bw*Math.min(100,s.score)/100),9,4.5);g.fill();
-    g.font="800 11px 'Segoe UI',system-ui,sans-serif";
-    g.textAlign="left";g.fillStyle="#9A94A6";g.fillText("RISK SCORE",bx,by-7);
-    g.textAlign="right";g.fillStyle=col;g.fillText(s.score+"/100",bx+bw,by-7);
+function anaClear(k){
+  const b=A$(k+"p");if(b)b.innerHTML="";
+  const o=A$(k+"out");if(o)o.innerHTML='<div class="apempty">Inspecting…</div>';
+}
+function anaChip(k,name,state){
+  const box=A$(k+"p");if(!box)return;
+  let el=box.querySelector('[data-s="'+name+'"]');
+  if(!el){el=document.createElement("span");el.className="lgc";el.dataset.s=name;box.appendChild(el)}
+  el.className="lgc "+(state||"run");
+  const ic={clean:"✅",warn:"⚠️",bad:"⛔",skip:"➖",run:"🔬"}[state]||"⏳";
+  el.innerHTML=ic+" <b>"+esc(name)+"</b>";
+}
+function anaBar(score,verdict){
+  const sc=Math.max(0,Math.min(100,Number(score)||0));
+  const col=verdict==="safe"?"#00E5A0":verdict==="suspicious"?"#F6E27A":"#FF4D6D";
+  const lbl=verdict==="safe"?"GENUINE — SAFE":verdict==="suspicious"?"NOT SAFE — DO NOT OPEN":"SCAM — DO NOT OPEN";
+  return '<div class="apver" style="border-color:'+col+';color:'+col+'"><span>'+
+    (verdict==="safe"?"✅":verdict==="suspicious"?"⚠️":"⛔")+'</span><span>'+lbl+
+    '</span><span class="avs">'+sc+'/100</span></div>'+
+    '<div class="apbar"><i style="width:'+sc+'%;background:'+col+'"></i></div>';
+}
+function anaHits(list){
+  const uniq=[...new Set(list||[])];
+  if(!uniq.length)return '<div class="apempty">No lure, obfuscation or impersonation signal found.</div>';
+  return '<ul class="aplist">'+uniq.slice(0,7).map(h=>'<li>'+esc(h)+'</li>').join("")+'</ul>';
+}
+function anaLinks(k,text){
+  const links=[...new Set((String(text||"").match(/https?:\/\/[^\s"'<>]+/gi)||[]))].slice(0,6);
+  if(!links.length)return"";
+  return '<div class="aplinks">'+links.map(l=>
+    '<button class="aplink" data-u="'+esc(l)+'">🔎 '+esc(l)+'</button>').join("")+'</div>';
+}
+function wireAnaLinks(k,cb){
+  const box=A$(k+"out");if(!box)return;
+  box.querySelectorAll(".aplink").forEach(b=>{b.onclick=()=>cb(b.dataset.u)});
+}
+function anaReport(k,score,verdict,timing,hits,extra){
+  A$(k+"out").innerHTML=anaBar(score,verdict)+
+    '<div class="aptim">'+esc(timing||"")+'</div>'+anaHits(hits)+(extra||"");
+}
+
+// ── 🔗 LINK ANALYSER ────────────────────────────────────────────────────────
+async function anaLink(){
+  const u=(A$("alink").value||"").trim();
+  if(!u){A$("alinkout").innerHTML='<div class="apempty">Paste a link first.</div>';return}
+  const id=++ANA.seq;
+  anaClear("alink");
+  agentState("working","🔬 ANALYSING LINK",u);
+  const t0=performance.now();
+  const inst=analyzeText(u);
+  const ims=(performance.now()-t0).toFixed(1);
+  anaReport("alink",inst.score,inst.verdict,
+    "instant screen "+ims+" ms • live sources running…",inst.hits);
+  anaChip("alink","Offline engine",inst.verdict==="safe"?"clean":"warn");
+  let deep=null;
+  try{deep=await deepVerify(u,{onProg:(n,s)=>{if(id===ANA.seq)anaChip("alink",n,s)}})}catch(e){}
+  if(id!==ANA.seq)return;
+  if(!deep){
+    anaReport("alink",inst.score,inst.verdict,
+      "live sources unreachable — instant screen stands",inst.hits);
+    agentState(null,"🔬 LINK CHECK — PARTIAL",(inst.host||u)+" • "+inst.score+"/100");
+    return;
   }
-  g.textAlign="center";g.font="800 9.5px 'Segoe UI',system-ui,sans-serif";g.fillStyle="#6E6880";
-  g.fillText("AVASTLUXE • LIVE ABOVE ALL APPS",W/2,H-18);
-  g.restore();
+  const r=deep.report;r.sources=deep.sources;
+  const live=deep.sources.filter(s=>s.state!=="skip").length;
+  anaReport("alink",r.score,r.verdict,
+    "real check • "+live+" live sources • "+(r.ms||0)+" ms",r.hits,anaLinks("alink",r.url));
+  wireAnaLinks("alink",L=>{A$("alink").value=L;anaLink()});
+  agentState(r.verdict==="safe"?"safe":r.verdict==="scam"?"scam":null,
+    r.verdict==="safe"?"✅ LINK GENUINE":r.verdict==="scam"?"⛔ LINK IS A SCAM":"⚠️ LINK NOT SAFE",
+    (r.host||r.url)+" — "+r.score+"/100 • "+live+" live sources in "+(r.ms||0)+" ms");
+  renderWhy(r,"");
 }
-function renderDocPip(){
-  const w=PIP.win;if(!w||!w.document)return;
-  const d=w.document,s=PIP.state||{big:"SHIELD ACTIVE",text:"",score:null};
-  const col=s.color||(s.kind==="safe"?"#00E5A0":s.kind==="scam"?"#FF4D6D":"#F6E27A");
-  let root=d.getElementById("pdroot");
-  if(!root){
-    d.body.style.margin="0";d.body.style.background="#0A0C13";
-    d.body.innerHTML='<div id="pdroot" style="box-sizing:border-box;min-height:100vh;padding:16px 18px;font-family:Segoe UI,system-ui,sans-serif;color:#F5F1E6;background:linear-gradient(160deg,#1c1526,#0A0C13 60%,#141021);border:2px solid #D4AF37;border-radius:18px"></div>';
-    root=d.getElementById("pdroot");
+
+// ── 💬 MESSAGE ANALYSER (WhatsApp / SMS / email) ────────────────────────────
+async function anaMsg(){
+  const text=(A$("amsg").value||"").trim();
+  if(!text){A$("amsgout").innerHTML='<div class="apempty">Paste a message first.</div>';return}
+  const id=++ANA.seq;
+  anaClear("amsg");
+  agentState("working","💬 SCANNING MESSAGE","Checking wording and hidden links…");
+  const r=analyzeText(text);
+  anaChip("amsg","Message wording",r.verdict==="safe"?"clean":"warn");
+  const links=[...new Set(text.match(/https?:\/\/[^\s"'<>]+/gi)||[])];
+  // deep-check ONLY the highest-risk link — one live pass, not N of them
+  const top=links.map(L=>({L:L,r:analyzeText(L)})).sort((a,b)=>b.r.score-a.r.score)[0];
+  let deep=null;
+  if(top){
+    anaChip("amsg","Hidden link",top.r.verdict==="safe"?"clean":"warn");
+    try{deep=await deepVerify(top.L,{onProg:(n,s)=>{if(id===ANA.seq)anaChip("amsg",n,s)}})}catch(e){}
   }
-  root.style.borderColor=col;
-  const sc=s.score;
-  root.innerHTML='<div style="text-align:center;font-size:34px">🛡️</div>'+
-    '<div style="text-align:center;font-weight:900;font-size:16px;letter-spacing:1.4px;color:'+col+'">'+esc(s.big||"SHIELD ACTIVE")+'</div>'+
-    '<div style="text-align:center;font-size:12px;color:#C9C3D6;margin-top:7px;line-height:1.5">'+esc(stripTags(s.text||""))+'</div>'+
-    (sc!=null?'<div style="height:8px;background:rgba(255,255,255,.09);border-radius:5px;margin-top:13px;overflow:hidden"><div style="height:100%;width:'+Math.min(100,sc)+'%;background:'+col+'"></div></div><div style="display:flex;justify-content:space-between;font-size:10px;letter-spacing:1px;color:#9A94A6;margin-top:5px"><span>RISK</span><span style="color:'+col+';font-weight:900">'+sc+'/100</span></div>':"")+
-    '<div style="text-align:center;font-size:9px;letter-spacing:2px;color:#6E6880;margin-top:16px">LIVE ABOVE ALL APPS</div>';
+  if(id!==ANA.seq)return;
+  const lr=deep?deep.report:null;
+  const score=Math.max(r.score,lr?lr.score:0);
+  const verdict=score>=60?"scam":score>20?"suspicious":"safe";
+  const hits=[...new Set(r.hits.concat(lr&&lr.hits?lr.hits:[]))];
+  const timing=deep
+    ? (links.length?"wording + "+links.length+" link(s) • worst verified live in "+(lr.ms||0)+" ms"
+                  :"no link inside — wording only")
+    : (links.length?"wording only — link check unreachable":"no link inside");
+  anaReport("amsg",score,verdict,timing,hits,anaLinks("amsg",text));
+  wireAnaLinks("amsg",L=>{A$("alink").value=L;switchAna("link");anaLink()});
+  if(lr){lr.sources=deep.sources;renderWhy(lr,"")}else renderWhy(r,"");
+  agentState(verdict==="safe"?"safe":verdict==="scam"?"scam":null,
+    verdict==="safe"?"✅ MESSAGE GENUINE":verdict==="scam"?"⛔ SCAM MESSAGE":"⚠️ SUSPICIOUS MESSAGE",
+    score+"/100 • "+hits.length+" signal(s) • "+(links.length?links.length+" link(s) found":"no link"));
 }
-function setFloatUI(on){
-  const st=A$("apfloatst"),wz=A$("wzfloat"),btn=A$("apenable");
-  if(st){st.textContent=on?"floating above apps":"off";st.className=on?"granted":"prompt"}
-  if(wz){const no=PIP.supported===false;
-    wz.textContent=on?"✅ FLOATING":no?"❌ UNAVAILABLE":"APPROVE →";
-    wz.className="wzstat "+(on?"ok":no?"no":"wait")}
-  if(btn){btn.classList.toggle("on",on);
-    btn.textContent=on?"🛰️ FLOATING ABOVE ALL APPS — TAP TO STOP":"🛰️ RUN ABOVE ALL APPS — TAP TO START"}
+
+// ── 🎣 PHISHING MESSAGE ANALYSER — names the exact playbook ─────────────────
+const PHISH_SIGS=[
+ {w:20,why:"Pretends to be a brand, bank, government body or the police",
+  re:/(hdfc|sbi|icici|kotak|axis|idbi|hdfc|paytm|phonepe|gpay|google|whatsapp|instagram|facebook|amazon|apple|microsoft|netflix|paypal|irctc|income\s?tax|gst|aadhaar|uidai|passport|police|bank|atm|upi|govt|government)/i},
+ {w:30,why:"Demands a secret code — no real company ever asks for one",
+  re:/\botp\b|one[\s-]?time[\s-]?password|verification code|security code|auth(?:entication)?\s*code|\bcvv\b|m[\s-]?pin|upi pin/i},
+ {w:22,why:"Asks for your password or PIN",
+  re:/password|passcode|login cred|security answer|secret question/i},
+ {w:16,why:"'Update your account' pretext to harvest the form you fill",
+  re:/\b(kyc|know your customer|update your|reactivate|unfreeze|validate your|verify your account|confirm your details|refresh your)\b/i},
+ {w:18,why:"Clock pressure or a threat designed to stop you thinking",
+  re:/\b(urgent|immediately|asap|within\s+\d+\s*(?:hr|hour|min)|last day|expire[sd]?|suspend(?:ed|sion)?|block(?:ed|ing)?|deactivat|restrict(?:ed)?|legal action|penalty)\b/i},
+ {w:18,why:"Prize bait — money you never competed for",
+  re:/congratulat|you(?:'ve|\s+have)?\s+won|lottery|lucky\s+(?:draw|winner)|prize|reward|free\s+(?:gift|coupon)|jackpot|selected winner|cashback/i},
+ {w:16,why:"Money moves out — fees, deposits, refunds or crypto",
+  re:/\b(?:pay|payment|transfer|deposit|fee|charge|refundable|processing fee|recharge|gift card|bitcoin|crypto|usdt|money order)\b/i},
+ {w:12,why:"Fake delivery or customs pretext",
+  re:/delivery|courier|parcel|package|post office|customs|shipping fee|dhl|fedex|india\s?post/i},
+ {w:14,why:"Work-from-home or investment income lure",
+  re:/(?:work\s*from\s*home|part[\s-]?time\s*(?:job|work)|daily\s*earn|earn\s*₹|earn\s*\$|salary\s*₹|per\s*day\s*payout|investment\s*return)/i},
+ {w:6,why:"Generic greeting — a real service addresses you by name",
+  re:/dear\s+(?:customer|user|member|subscriber|sir|madam)/i},
+ {w:16,why:"Directs you off-platform to an unverified destination",
+  re:/click\s+(?:the\s+)?link|tap\s+here|below\s+link|link\s+in\s+bio|bit\.ly|tinyurl|t\.co|\.apk|wa\.me|verify\s+now/i},
+ {w:18,why:"Account-at-risk threat paired with a 'fix' action",
+  re:/(?:bank|atm|card|account)[^.!?\n]{0,45}(?:block|suspend|close|expire|deactivat)/i},
+ {w:14,why:"Secrecy instruction — so nobody else can warn you",
+  re:/keep\s+this\s+(?:secret|confidential)|do\s+not\s+(?:share|tell)|forward\s+this|reply\s+with|kindly\s+(?:send|share|provide)/i}
+];
+function anaPhish(){
+  const text=(A$("aphish").value||"").trim();
+  if(!text){A$("aphishout").innerHTML='<div class="apempty">Paste the suspicious text first.</div>';return}
+  ++ANA.seq;
+  const t=String(text).slice(0,4000);
+  const fired=PHISH_SIGS.filter(s=>s.re.test(t));
+  const links=[...new Set(t.match(/https?:\/\/[^\s"'<>]+/gi)||[])];
+  const g=analyzeText(t);
+  let score=fired.reduce((a,s)=>a+s.w,0)+Math.min(20,links.length*10);
+  score=Math.max(0,Math.min(100,Math.round(Math.max(score,g.score))));
+  const verdict=score>=60?"scam":score>20?"suspicious":"safe";
+  const hits=fired.length?fired.map(s=>s.why):g.hits;
+  const timing="phishing playbook • "+fired.length+"/"+PHISH_SIGS.length+" lures matched"+
+    (links.length?" • "+links.length+" link(s) found":"")+" • instant";
+  anaReport("aphish",score,verdict,timing,hits,anaLinks("aphish",text));
+  wireAnaLinks("aphish",L=>{A$("alink").value=L;switchAna("link");anaLink()});
+  renderWhy({hits:hits,sources:[]},"");
+  agentState(verdict==="safe"?"safe":verdict==="scam"?"scam":null,
+    verdict==="safe"?"✅ MESSAGE LOOKS GENUINE":verdict==="scam"?"🎣 PHISHING MESSAGE":"⚠️ POSSIBLE PHISHING",
+    score+"/100 • "+fired.length+" of "+PHISH_SIGS.length+" lures matched"+
+    (links.length?" • "+links.length+" link(s)":""));
 }
-function onPipLeave(){
-  PIP.on=false;PIP.mode=null;
-  if(PIP.loop){clearInterval(PIP.loop);PIP.loop=null}
-  try{if(PIP.video&&PIP.video.srcObject){PIP.video.srcObject.getTracks().forEach(t=>t.stop());PIP.video.srcObject=null}}catch(e){}
-  setFloatUI(false);
-}
-async function startFloatingShield(){
-  if(PIP.on)return true;
-  if(!PIP.canvas){
-    PIP.canvas=document.createElement("canvas");PIP.canvas.width=460;PIP.canvas.height=300;
-    PIP.ctx=PIP.canvas.getContext("2d");
-    PIP.video=document.createElement("video");
-    PIP.video.muted=true;PIP.video.playsInline=true;PIP.video.setAttribute("playsinline","");
-    PIP.video.style.cssText="position:fixed;width:1px;height:1px;opacity:0;left:-10px;top:-10px;pointer-events:none";
-    document.body.appendChild(PIP.video);
-    PIP.video.addEventListener("leavepictureinpicture",onPipLeave);
-    PIP.video.addEventListener("webkitpresentationmodechanged",e=>{if(e.presentationMode!=="picture-in-picture")onPipLeave()});
-  }
-  if(!PIP.state)PIP.state={kind:"safe",big:"SHIELD ACTIVE",text:"Watching links, taps, copied text and typed URLs",score:null};
-  pipDraw();
-  const mobile=matchMedia("(pointer:coarse)").matches||/Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
-  const hasVideo=typeof HTMLVideoElement!=="undefined"&&!!HTMLVideoElement.prototype.requestPictureInPicture&&document.pictureInPictureEnabled!==false;
-  const hasWebKit=typeof HTMLVideoElement!=="undefined"&&!!HTMLVideoElement.prototype.webkitSetPresentationMode;
-  const hasDoc=!!(window.documentPictureInPicture&&window.documentPictureInPicture.requestPictureInPicture);
-  const order=mobile?["video","webkit","doc"]:["doc","video","webkit"];
-  const tryVideo=async()=>{if(!hasVideo)throw 0;
-    PIP.stream=PIP.canvas.captureStream(30);PIP.video.srcObject=PIP.stream;
-    await PIP.video.play();await PIP.video.requestPictureInPicture();PIP.mode="video"};
-  const tryWebKit=async()=>{if(!hasWebKit)throw 0;
-    PIP.stream=PIP.canvas.captureStream(30);PIP.video.srcObject=PIP.stream;
-    await PIP.video.play();await PIP.video.webkitSetPresentationMode("picture-in-picture");PIP.mode="webkit"};
-  const tryDoc=async()=>{if(!hasDoc)throw 0;
-    const w=await window.documentPictureInPicture.requestPictureInPicture({width:470,height:330});
-    PIP.win=w;PIP.mode="doc";
-    w.addEventListener("pagehide",onPipLeave);
-    renderDocPip()};
-  for(const m of order){
-    try{
-      if(m==="video")await tryVideo();
-      else if(m==="webkit")await tryWebKit();
-      else await tryDoc();
-      PIP.on=true;PIP.supported=true;
-      setFloatUI(true);localStorage.setItem("luxe_float_on","1");
-      if(PIP.mode==="video"||PIP.mode==="webkit"){if(PIP.loop)clearInterval(PIP.loop);
-        PIP.loop=setInterval(pipDraw,130)}
-      agentState("safe","🛰️ FLOATING ABOVE ALL APPS","The 🛡️ now floats on top of every app and website you use. Every verdict appears live inside it.");
-      return true;
-    }catch(e){}
-  }
-  PIP.supported=false;setFloatUI(false);
-  agentState(null,"🛰️ FLOATING NOT SUPPORTED HERE","This browser blocks picture-in-picture. Chrome/Edge/Samsung Internet support it — install the app and enable it there. In-tab shield still works.");
-  return false;
-}
-async function stopFloatingShield(){
-  try{
-    if(PIP.mode==="video"&&document.pictureInPictureElement)await document.exitPictureInPicture();
-    if(PIP.mode==="webkit"&&PIP.video)await PIP.video.webkitSetPresentationMode("inline");
-    if(PIP.mode==="doc"&&window.documentPictureInPicture&&window.documentPictureInPicture.close)window.documentPictureInPicture.close();
-    if(PIP.win&&!PIP.win.closed)PIP.win.close();
-  }catch(e){}
-  onPipLeave();
-  localStorage.removeItem("luxe_float_on");
-  agentState(null,"🛰️ FLOATING SHIELD OFF","Tap RUN ABOVE ALL APPS to float it over your other apps again.");
-}
-A$("apenable").onclick=()=>{PIP.on?stopFloatingShield():startFloatingShield()};
-A$("apperms").onclick=openWizard;
-A$("wzfloat").onclick=()=>{PIP.on?stopFloatingShield():startFloatingShield();paintWizard()};
-const _wd=A$("wzdone").onclick;
-A$("wzdone").onclick=()=>{_wd&&_wd();startFloatingShield()};
-if(localStorage.getItem("luxe_float_on")==="1"){
-  setTimeout(()=>logActivity("warn","🛰️ Floating shield needs one tap","This browser must be re-granted on every load — tap the shield → RUN ABOVE ALL APPS."),1600);
-}
-setFloatUI(false);
+
+A$("alinkgo").onclick=anaLink;
+A$("amsggo").onclick=anaMsg;
+A$("aphishgo").onclick=anaPhish;
+A$("alink").addEventListener("keydown",e=>{if(e.key==="Enter"){e.preventDefault();anaLink()}});
+A$("amsg").addEventListener("keydown",e=>{if(e.key==="Enter"&&!e.shiftKey){e.preventDefault();anaMsg()}});
+A$("aphish").addEventListener("keydown",e=>{if(e.key==="Enter"&&!e.shiftKey){e.preventDefault();anaPhish()}});
+document.querySelectorAll(".aptab").forEach(b=>{b.onclick=()=>switchAna(b.dataset.k)});
+try{const m=A$("url");if(m&&m.value&&!A$("alink").value)A$("alink").value=m.value}catch(e){}
+switchAna("link");
 </script>
 
 
